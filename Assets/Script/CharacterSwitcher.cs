@@ -21,9 +21,7 @@ public class CharacterSwitcher : MonoBehaviour
 
     void Start()
     {
-        
-        activePlayer = player1;
-        ActivatePlayer(player1, player2);
+        ActivatePlayer(player2, player1);
     }
 
     void Update()
