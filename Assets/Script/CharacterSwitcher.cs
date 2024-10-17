@@ -8,7 +8,7 @@ public class CharacterSwitcher : MonoBehaviour
     public GameObject player2;    // the second character
     public Camera mainCamera;     // main camera
 
-    public Vector3 cameraOffset1 = new Vector3(0, 5, 11);
+    public Vector3 cameraOffset1 = new Vector3(0, 5, 13);
     public Vector3 cameraOffset2 = new Vector3(0, 5, -10);
 
     public Quaternion cameraRotation1 = new Quaternion(0.02621f, 0.95009f, -0.08312f, 0.29956f);

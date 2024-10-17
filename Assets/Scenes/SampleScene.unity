@@ -20209,7 +20209,7 @@ MonoBehaviour:
   player1: {fileID: 2139354924}
   player2: {fileID: 1597786032}
   mainCamera: {fileID: 963194227}
-  cameraOffset1: {x: 0, y: 5, z: 11}
+  cameraOffset1: {x: 0, y: 5, z: 13}
   cameraOffset2: {x: 0, y: 5, z: -10}
   cameraRotation1: {x: 0.02621, y: 0.95009, z: -0.08312, w: 0.29956}
   cameraRotation2: {x: 0.08501, y: 0.2195, z: -0.0192, w: 0.97171}
