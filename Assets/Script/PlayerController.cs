@@ -22,9 +22,9 @@ public class PlayerController : MonoBehaviour
         
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        float horizontal = characterSwitcher.isPlayer1Playing ? -horizontalInput : horizontalInput;
-        float vertical = characterSwitcher.isPlayer1Playing ? -verticalInput : verticalInput;
-        Vector3 movement = new Vector3(horizontal, 0, vertical) * speed * Time.deltaTime;
+        //float horizontal = characterSwitcher.isPlayer1Playing ? -horizontalInput : horizontalInput;
+        //float vertical = characterSwitcher.isPlayer1Playing ? -verticalInput : verticalInput;
+        Vector3 movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
         transform.Translate(movement);
 
         
