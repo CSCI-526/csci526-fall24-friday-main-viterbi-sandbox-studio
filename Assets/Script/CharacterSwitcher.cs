@@ -8,14 +8,7 @@ public class CharacterSwitcher : MonoBehaviour
     public GameObject player2;    // the second character
     public Camera mainCamera;     // main camera
 
-    public Vector3 cameraOffset1 = new Vector3(-8, 5, 0);
-    public Vector3 cameraOffset2 = new Vector3(-7, 5, 0);
-
-    private Quaternion cameraRotation1 = Quaternion.Euler(25, 90, 0);
-    private Quaternion cameraRotation2 = Quaternion.Euler(25, 90, 0);
-
     private GameObject activePlayer;
-    public bool isPlayer1Playing;
 
     private bool isControllingBoth = false;  
 
@@ -49,8 +42,6 @@ public class CharacterSwitcher : MonoBehaviour
             isControllingBoth = false;
             ControlBothPlayers(false);
         }
-
-        UpdateCameraPosition();
     }
 
     
@@ -66,7 +57,6 @@ public class CharacterSwitcher : MonoBehaviour
 
         
         activePlayer = newActivePlayer;
-        isPlayer1Playing = (newActivePlayer == player1);
     }
 
     
@@ -86,27 +76,8 @@ public class CharacterSwitcher : MonoBehaviour
         }
     }
 
-    
-    void UpdateCameraPosition()
+    public GameObject getActivePlayer()
     {
-        if (activePlayer != null)
-        {
-            Vector3 desiredPosition;
-            Quaternion desiredRotation;
-            if (activePlayer == player1)
-            {
-                desiredPosition = activePlayer.transform.position + cameraOffset1;
-                desiredRotation = cameraRotation1;
-            }
-            else
-            {
-                desiredPosition = activePlayer.transform.position + cameraOffset2;
-                desiredRotation = cameraRotation2;
-            }
-            mainCamera.transform.position = desiredPosition;
-            //Debug.Log(mainCamera.transform.rotation);
-            mainCamera.transform.rotation = desiredRotation;
-
-        }
+        return activePlayer;
     }
 }
