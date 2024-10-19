@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;  // Required for coroutines
 
-public class CharacterSwitchController : MonoBehaviour
+public class PlayerTips : MonoBehaviour
 {
     [SerializeField] private Text promptText;  // Initial prompt text
     [SerializeField] private Text promptTextNext;  // Success prompt text after switching
