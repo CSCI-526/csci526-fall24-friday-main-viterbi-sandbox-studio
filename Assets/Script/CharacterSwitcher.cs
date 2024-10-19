@@ -8,11 +8,11 @@ public class CharacterSwitcher : MonoBehaviour
     public GameObject player2;    // the second character
     public Camera mainCamera;     // main camera
 
-    public Vector3 cameraOffset1 = new Vector3(0, 5, 13);
-    public Vector3 cameraOffset2 = new Vector3(0, 5, -10);
+    public Vector3 cameraOffset1 = new Vector3(-8, 5, 0);
+    public Vector3 cameraOffset2 = new Vector3(-7, 5, 0);
 
-    public Quaternion cameraRotation1 = new Quaternion(0.02621f, 0.95009f, -0.08312f, 0.29956f);
-    public Quaternion cameraRotation2 = new Quaternion(0.08501f, 0.21950f, -0.01920f, 0.97171f);
+    private Quaternion cameraRotation1 = Quaternion.Euler(25, 90, 0);
+    private Quaternion cameraRotation2 = Quaternion.Euler(25, 90, 0);
 
     private GameObject activePlayer;
     public bool isPlayer1Playing;
@@ -104,6 +104,7 @@ public class CharacterSwitcher : MonoBehaviour
                 desiredRotation = cameraRotation2;
             }
             mainCamera.transform.position = desiredPosition;
+            //Debug.Log(mainCamera.transform.rotation);
             mainCamera.transform.rotation = desiredRotation;
 
         }
