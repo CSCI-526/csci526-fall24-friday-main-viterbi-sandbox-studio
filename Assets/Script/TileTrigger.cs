@@ -45,29 +45,20 @@ public class TileTrigger : MonoBehaviour
         {
             playersOnTile--;
             Debug.Log("Player exited: " + gameObject.name + ", playersOnTile: " + playersOnTile);
+        }
+    }
 
-            if (playersOnTile <= 0)
+    private void LateUpdate()
+    {
+        // Check if both players are on the next tile trigger
+        if (nextTileTrigger != null)
+        {
+            TileTrigger nextTileTriggerScript = nextTileTrigger.GetComponent<TileTrigger>();
+            if (nextTileTriggerScript != null && nextTileTriggerScript.playersOnTile == 2)
             {
-                if (tile != null)
-                {
-                    StartCoroutine(DeactivateAfterDelay(tile, 0.1f));
-                }
+                StartCoroutine(DeactivateAfterDelay(tile, 0.1f));
                 StartCoroutine(DeactivateAfterDelay(gameObject, 0.1f));
-            }
-
-            if (nextTile != null)
-            {
-                TileTrigger nextTileScript = nextTile.GetComponent<TileTrigger>();
-
-                // Deactivate next tile and trigger if there are no players on it
-                if (nextTileScript != null && nextTileScript.playersOnTile <= 0)
-                {
-                    StartCoroutine(DeactivateAfterDelay(nextTile, 0.1f));
-                    if (nextTileTrigger != null)
-                    {
-                        StartCoroutine(DeactivateAfterDelay(nextTileTrigger, 0.1f));
-                    }
-                }
+                Debug.Log(tile.name + " deactivated because both players are on the next tile's trigger.");
             }
         }
     }
