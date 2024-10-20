@@ -8,24 +8,13 @@ public class PreventObjectOverlap : MonoBehaviour
     public string obstacleTag = "Untagged";
 
     private Vector3 startPosition;
-    //private float halfSize;
+    
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        /*
-        Collider collider = GetComponent<Collider>();
-        if (collider != null)
-        {
-            halfSize = collider.bounds.extents.x;
-        }
-        else
-        {
-            Debug.LogError("No Collider Component!");
-            halfSize = 0f;
-        }
-        */
+        
 
         startPosition = transform.position;
     }
@@ -44,7 +33,7 @@ public class PreventObjectOverlap : MonoBehaviour
             {
                 if (hit.collider.CompareTag(obstacleTag))
                 {
-                    //Vector3 hitPosition = hit.point - transform.forward * halfSize;
+                    
                     transform.position = hit.point;
 
                     // Stop the object
@@ -61,17 +50,12 @@ public class PreventObjectOverlap : MonoBehaviour
 
         startPosition = endPosition;
     }
-    /*
-    private Vector3 GetFrontPosition()
-    {
-        return transform.position + transform.forward * halfSize;
-    }
-    */
+    
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(obstacleTag))
         {
-            //Vector3 lastPosition = startPosition - transform.forward * halfSize;
+            
             transform.position = startPosition;
             if (rb != null)
             {
