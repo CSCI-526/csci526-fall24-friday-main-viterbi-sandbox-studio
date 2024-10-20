@@ -45,6 +45,14 @@ public class TileTrigger : MonoBehaviour
         {
             playersOnTile--;
             Debug.Log("Player exited: " + gameObject.name + ", playersOnTile: " + playersOnTile);
+
+            // If there is no next tile and both players have left the current tile, deactivate it
+            if (playersOnTile <= 0 && nextTile == null)
+            {
+                StartCoroutine(DeactivateAfterDelay(tile, 0.1f));
+                StartCoroutine(DeactivateAfterDelay(gameObject, 0.1f));
+                Debug.Log(tile.name + " deactivated because it is the last tile and both players have left.");
+            }
         }
     }
 
