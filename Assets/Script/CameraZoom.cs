@@ -20,11 +20,9 @@ public class CameraZoom : MonoBehaviour
     void Start()
     {
         characterSwitcher = FindObjectOfType<CharacterSwitcher>();
-        GameObject activePlayer = characterSwitcher.getActivePlayer();
+
         currentOffset = initialOffset; // Start with the initial offset
         currentRotation = initialRotation; // Start with the initial rotation
-        transform.position = activePlayer.transform.position + currentOffset;
-        transform.rotation = Quaternion.Euler(currentRotation);
     }
 
     void LateUpdate()
