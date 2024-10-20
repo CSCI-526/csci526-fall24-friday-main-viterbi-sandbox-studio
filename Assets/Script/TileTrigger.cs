@@ -15,7 +15,6 @@ public class TileTrigger : MonoBehaviour
         Debug.Log(gameObject.name + " OnEnable: playersOnTile reset to 0");
     }
 
-    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -23,20 +22,23 @@ public class TileTrigger : MonoBehaviour
             playersOnTile++;
             Debug.Log("Player entered: " + gameObject.name + ", playersOnTile: " + playersOnTile);
 
-            if (nextTile != null)
+            // Activate next tile and trigger only if both players are on the tile
+            if (playersOnTile == 2)  // Both players are on the tile
             {
-                nextTile.SetActive(true);
-                Debug.Log(nextTile.name + " activated");
-            }
-            if (nextTileTrigger != null)
-            {
-                nextTileTrigger.SetActive(true);
-                Debug.Log(nextTileTrigger.name + " trigger activated");
+                if (nextTile != null)
+                {
+                    nextTile.SetActive(true);
+                    Debug.Log(nextTile.name + " activated");
+                }
+                if (nextTileTrigger != null)
+                {
+                    nextTileTrigger.SetActive(true);
+                    Debug.Log(nextTileTrigger.name + " trigger activated");
+                }
             }
         }
     }
 
-    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -57,6 +59,7 @@ public class TileTrigger : MonoBehaviour
             {
                 TileTrigger nextTileScript = nextTile.GetComponent<TileTrigger>();
 
+                // Deactivate next tile and trigger if there are no players on it
                 if (nextTileScript != null && nextTileScript.playersOnTile <= 0)
                 {
                     StartCoroutine(DeactivateAfterDelay(nextTile, 0.1f));
@@ -75,7 +78,7 @@ public class TileTrigger : MonoBehaviour
         obj.SetActive(false);
         Debug.Log(obj.name + " deactivated after delay");
     }
-    
+
     public void ResetPlayersOnTile()
     {
         playersOnTile = 0;
