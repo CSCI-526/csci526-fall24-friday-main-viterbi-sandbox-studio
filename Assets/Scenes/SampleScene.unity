@@ -20392,6 +20392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   jumpForce: 11
+  arrowPrefab: {fileID: 1949486348391650267, guid: 47744e389916c4807ab2aaa19b2c5b53, type: 3}
 --- !u!54 &1597786034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24460,6 +24461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   jumpForce: 11
+  arrowPrefab: {fileID: 1949486348391650267, guid: 47744e389916c4807ab2aaa19b2c5b53, type: 3}
 --- !u!54 &2139354926
 Rigidbody:
   m_ObjectHideFlags: 0
