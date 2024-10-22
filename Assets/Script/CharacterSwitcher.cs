@@ -42,6 +42,9 @@ public class CharacterSwitcher : MonoBehaviour
             isControllingBoth = false;
             ControlBothPlayers(false);
         }
+
+        
+        UpdateArrowVisibility();
     }
 
     
@@ -79,5 +82,22 @@ public class CharacterSwitcher : MonoBehaviour
     public GameObject getActivePlayer()
     {
         return activePlayer;
+    }
+
+    
+    void UpdateArrowVisibility()
+    {
+        if (isControllingBoth)
+        {
+            
+            player1.GetComponent<PlayerController>().ToggleArrow(true);
+            player2.GetComponent<PlayerController>().ToggleArrow(true);
+        }
+        else
+        {
+            
+            player1.GetComponent<PlayerController>().ToggleArrow(activePlayer == player1);
+            player2.GetComponent<PlayerController>().ToggleArrow(activePlayer == player2);
+        }
     }
 }
