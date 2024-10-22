@@ -9,12 +9,21 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;           
     private bool isGrounded = true;
 
+
+    public GameObject arrowPrefab;   
+    private GameObject arrowInstance; 
+
     private CharacterSwitcher characterSwitcher;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         characterSwitcher = FindObjectOfType<CharacterSwitcher>();
+
+        
+        arrowInstance = Instantiate(arrowPrefab, transform.position + Vector3.up * 3, Quaternion.identity);
+        arrowInstance.transform.SetParent(transform);  
+        arrowInstance.SetActive(false);  
     }
 
     void Update()
@@ -48,6 +57,15 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Tile"))
         {
             isGrounded = false;
+        }
+    }
+
+    
+    public void ToggleArrow(bool showArrow)
+    {
+        if (arrowInstance != null)
+        {
+            arrowInstance.SetActive(showArrow);
         }
     }
 }
