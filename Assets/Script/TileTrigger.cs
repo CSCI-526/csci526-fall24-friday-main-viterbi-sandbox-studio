@@ -2,12 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileTrigger : MonoBehaviour
+public class TileTrigger : MonoBehaviour, IResettable
 {
     public GameObject tile;             
     public GameObject nextTile;         
     public GameObject nextTileTrigger;  
-    private int playersOnTile = 0;      
+    private int playersOnTile = 0;
+
+    private int _initialPlayersOnTile = 0;
+    public bool initialActive = true;
+
+    [SerializeField]
+    public int level; // The level this object belongs to
+
+    public void SaveInitialState()
+    {
+        _initialPlayersOnTile = playersOnTile;
+        tile.SetActive(initialActive);
+        gameObject.SetActive(initialActive);
+    }
+
+    public void ResetState()
+    {
+        playersOnTile = _initialPlayersOnTile;
+        tile.SetActive(initialActive);
+        gameObject.SetActive(initialActive);
+    }
+
+    void Start()
+    {
+        SaveInitialState();
+        FindObjectOfType<LevelResetManager>().RegisterObject(level, this);
+    }
 
     private void OnEnable()
     {
