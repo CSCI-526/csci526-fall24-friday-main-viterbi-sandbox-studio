@@ -23396,6 +23396,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playButton: {fileID: 1897926815}
+  player1: {fileID: 2139354930}
+  player2: {fileID: 1597786038}
+  level1Wall: {fileID: 920721934}
 --- !u!1 &1905202085
 GameObject:
   m_ObjectHideFlags: 0
