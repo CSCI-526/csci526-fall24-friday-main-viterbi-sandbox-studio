@@ -7,7 +7,7 @@ public class Checkpoint : MonoBehaviour
     private LevelManager levelManager;
     private PlayerRespawn playerRespawn;
     private bool isPassed = false;
-
+    private int passedPlayerCount = 0;
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -17,15 +17,30 @@ public class Checkpoint : MonoBehaviour
     {
         if (!isPassed && other.CompareTag("Player"))
         {
-            Debug.Log("pass checkpoint");
-            levelManager.LevelUp();
-            if (playerRespawn != null)
+            passedPlayerCount++;
+            if (passedPlayerCount == 2)
             {
-                Debug.Log("set new respawn position to: " + transform.position);
-                playerRespawn.SetRespawnPoint(transform.position);
+                if (levelManager != null)
+                {
+                    TriggerLevelUp();
+                }
+                if (playerRespawn != null)
+                {
+                    UpdateRespawnPoint();
+                }
+                isPassed = true;
             }
-            isPassed = true;
-            FindObjectOfType<LevelResetManager>().ResetCurrentLevelObjects();
         }
+    }
+
+    private void TriggerLevelUp()
+    {
+        levelManager.LevelUp();
+        FindObjectOfType<LevelResetManager>().ResetCurrentLevelObjects();
+    }
+
+    private void UpdateRespawnPoint()
+    {
+        playerRespawn.SetRespawnPoint(transform.position);
     }
 }
