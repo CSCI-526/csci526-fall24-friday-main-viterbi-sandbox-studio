@@ -1,36 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
-public class TextEnhancer : MonoBehaviour
+public class BoxMovementTrigger : MonoBehaviour
 {
-    public Text uiText;
+    public Text uiTip;  // UI文本组件
+    private Vector3 startPosition;
+    private bool isTipShown = false;
+    public float significantMoveThreshold = 1.0f;  // 显著移动的阈值
 
     void Start()
     {
-        if (uiText != null)
+        startPosition = transform.position;  // 记录初始位置
+        uiTip.canvasRenderer.SetAlpha(0.0f);  // 初始化UI文本透明度为0
+    }
+
+    void Update()
+    {
+        // 检测箱子是否显著移动
+        if (!isTipShown && (transform.position - startPosition).magnitude > significantMoveThreshold)
         {
-            // 调整字体大小
-            uiText.fontSize = 24;
-
-            // 改变字体颜色为白色
-            uiText.color = Color.white;
-
-            // 设置字体样式为粗体
-            uiText.fontStyle = FontStyle.Bold;
-
-            // 添加阴影组件
-            Shadow shadow = uiText.gameObject.GetComponent<Shadow>() ?? uiText.gameObject.AddComponent<Shadow>();
-            shadow.effectColor = Color.black;
-            shadow.effectDistance = new Vector2(2f, -2f);
-
-            // 添加轮廓组件
-            Outline outline = uiText.gameObject.GetComponent<Outline>() ?? uiText.gameObject.AddComponent<Outline>();
-            outline.effectColor = Color.black;
-            outline.effectDistance = new Vector2(1f, -1f);
+            ShowTip();
+            isTipShown = true;  // 标记提示已显示
         }
-        else
-        {
-            Debug.LogError("UI Text component is not attached to the script.");
-        }
+    }
+
+    void ShowTip()
+    {
+        uiTip.gameObject.SetActive(true);
+        uiTip.canvasRenderer.SetAlpha(1.0f);  // 设置文本透明度为全不透明
+        uiTip.CrossFadeAlpha(0.0f, 3.0f, false);  // 在3秒内文本逐渐透明
+        StartCoroutine(DeactivateTip());
+    }
+
+    IEnumerator DeactivateTip()
+    {
+        yield return new WaitForSeconds(3.0f);
+        uiTip.gameObject.SetActive(false);
     }
 }
