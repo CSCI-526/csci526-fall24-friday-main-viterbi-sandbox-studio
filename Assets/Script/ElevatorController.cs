@@ -1,18 +1,41 @@
 using UnityEngine;
 
-public class ElevatorController : MonoBehaviour
+public class ElevatorController : MonoBehaviour, IResettable
 {
     public float speed = 2f;
     public float lowerHeight = 1f;
     public float upperHeight = 10f;
 
     private bool movingUp = true;          
-    private bool isMoving = false;         
+    private bool isMoving = false;
 
+    [SerializeField]
+    public int level; // The level this object belongs
+
+    private bool _initialIsMoving;
+    private bool _initialMovingUp;
+
+    public void SaveInitialState()
+    {
+        _initialIsMoving = isMoving;
+        _initialMovingUp = movingUp;
+    }
+
+    public void ResetState()
+    {
+        isMoving = _initialIsMoving;
+        movingUp = _initialMovingUp;
+    }
 
     public void ToggleMovement()
     {
         isMoving = !isMoving; 
+    }
+
+    void Start()
+    {
+        SaveInitialState();
+        FindObjectOfType<LevelResetManager>().RegisterObject(level, this);
     }
 
     private void Update()
