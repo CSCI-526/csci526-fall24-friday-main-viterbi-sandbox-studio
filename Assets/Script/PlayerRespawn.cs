@@ -26,7 +26,9 @@ public class PlayerRespawn : MonoBehaviour
     public void Respawn()
     {
         player1.transform.position = _respawnPoint1;
+        player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player2.transform.position = _respawnPoint2;
+        player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
         // Reset other player states, such as health or animations, if necessary
     }
 }
