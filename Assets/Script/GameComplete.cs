@@ -6,8 +6,17 @@ using TMPro;
 public class GameComplete : MonoBehaviour
 {
     public TextMeshProUGUI winText;
+    public GameObject winPanel;
+
     private int reached = 0;
     private HashSet<GameObject> reachedPlayers = new HashSet<GameObject>();
+
+    void Start()
+    {
+        
+        winPanel.SetActive(false);
+        winText.enabled = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && !reachedPlayers.Contains(other.gameObject))
@@ -17,6 +26,7 @@ public class GameComplete : MonoBehaviour
 
             if (reached == 2)
             {
+                winPanel.SetActive(true);
                 winText.enabled = true;
             }
         }

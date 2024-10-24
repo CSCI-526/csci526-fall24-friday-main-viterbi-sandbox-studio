@@ -9,6 +9,8 @@ TagManager:
   - Weight
   - Tile
   - End
+  - BoxLevelF
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
