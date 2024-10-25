@@ -10,11 +10,14 @@ public class CharacterSwitcher : MonoBehaviour
 
     private GameObject activePlayer;
 
-    private bool isControllingBoth = false;  
+    private bool isControllingBoth = false;
+
+    private CharacterSwitchTracker characterSwitchTracker;
 
     void Start()
     {
         ActivatePlayer(player2, player1);
+        characterSwitchTracker = FindObjectOfType<CharacterSwitchTracker>();
     }
 
     void Update()
@@ -30,6 +33,11 @@ public class CharacterSwitcher : MonoBehaviour
             {
                 ActivatePlayer(player1, player2);
             }
+            if (characterSwitchTracker != null)
+            {
+                characterSwitchTracker.RecordPlayerSwitch();
+            }
+
         }
         
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))

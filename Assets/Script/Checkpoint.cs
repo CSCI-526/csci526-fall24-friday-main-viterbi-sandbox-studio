@@ -6,12 +6,16 @@ public class Checkpoint : MonoBehaviour
 {
     private LevelManager levelManager;
     private PlayerRespawn playerRespawn;
+    private CharacterSwitchTracker characterSwitchTracker;
+
     private bool isPassed = false;
     private int passedPlayerCount = 0;
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         playerRespawn = FindObjectOfType<PlayerRespawn>();
+        characterSwitchTracker = FindObjectOfType<CharacterSwitchTracker>();
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +26,11 @@ public class Checkpoint : MonoBehaviour
             {
                 if (levelManager != null)
                 {
+                    if (characterSwitchTracker != null)
+                    {
+                        int currentLevel = levelManager.getLevel();
+                        characterSwitchTracker.SendCharacterSwitchEvent(currentLevel);
+                    }
                     TriggerLevelUp();
                 }
                 if (playerRespawn != null)

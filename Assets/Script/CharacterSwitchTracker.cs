@@ -1,8 +1,9 @@
 using System;
 using System.IO;
+using Unity.Services.Analytics;
 using UnityEngine;
 
-public class SimpleSwitchTracker : MonoBehaviour
+public class CharacterSwitchTracker : MonoBehaviour
 {
     private int switchCount = 0;
     private string logFilePath;
@@ -21,14 +22,7 @@ public class SimpleSwitchTracker : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            switchCount++;
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            string message = $"Switch {switchCount}: Character switched at {timestamp}.";
-            LogMessage(message);
-            Debug.Log(message);
-        }
+
     }
 
     private void LogMessage(string message)
@@ -37,5 +31,32 @@ public class SimpleSwitchTracker : MonoBehaviour
         {
             sw.WriteLine(message);
         }
+    }
+
+    private void ResetSwitchCount()
+    {
+        switchCount = 0;
+    }
+
+    public void RecordPlayerSwitch()
+    {
+        switchCount++;
+        string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        string message = $"Switch {switchCount}: Character switched at {timestamp}.";
+        LogMessage(message);
+        Debug.Log(message);
+    }
+
+    public void SendCharacterSwitchEvent(int currentLevel)
+    {
+        CharacterSwitchCountsEvent characterSwitchCountsEvent = new CharacterSwitchCountsEvent
+        {
+            CharacterSwitchCounts = switchCount,
+            CurrentLevel = currentLevel
+        };
+
+        AnalyticsService.Instance.RecordEvent(characterSwitchCountsEvent);
+        Debug.Log($"characterSwitchCountsEvent sent. Current level {currentLevel}, switchCount {switchCount}");
+        ResetSwitchCount();
     }
 }

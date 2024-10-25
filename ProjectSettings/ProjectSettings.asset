@@ -754,11 +754,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 98629132-e7a2-4555-9ddc-a1a8f987a70a
+  cloudProjectId: 1bb716d4-fe4e-4b55-9997-af777ccd9a81
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Duality Shift 2024-09-24_22-40-11
-  organizationId: henry012007
+  projectName: Duality Shift
+  organizationId: danieltu35
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
