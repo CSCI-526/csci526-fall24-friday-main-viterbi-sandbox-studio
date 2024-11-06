@@ -17,7 +17,7 @@ public class BoxPushControl : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
             playerCount = playerCount + 1;
             Check();
@@ -27,7 +27,7 @@ public class BoxPushControl : MonoBehaviour
     void OnCollisionExit(Collision collision)
     {
         
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
             playerCount = playerCount - 1; ;
             Check();
