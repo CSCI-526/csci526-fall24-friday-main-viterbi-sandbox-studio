@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoxPushControl : MonoBehaviour
 {
-    public float force = 10f; 
+     
     private int playerCount = 0; 
     private Rigidbody rb;
 
@@ -41,17 +41,16 @@ public class BoxPushControl : MonoBehaviour
         {
             rb.isKinematic = false; 
         }
+        else if(playerCount == 0)
+        {
+            rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
+        }
         else
         {
             rb.isKinematic = true; 
         }
     }
 
-    void FixedUpdate()
-    {
-        if (playerCount > 1)
-        {
-            rb.AddForce(Vector3.forward * force);
-        }
-    }
+    
 }
