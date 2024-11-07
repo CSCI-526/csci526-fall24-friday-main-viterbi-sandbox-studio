@@ -18,12 +18,12 @@ public class PushByColorRed : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player2"))
+        if (collision.gameObject.name == "Player2")
         {
             player1Count++;
             check();
         }
-        else if (collision.gameObject.CompareTag("Player1"))
+        else if (collision.gameObject.name == "Player1")
         {
             otherPlayerCount++;
             check();
@@ -33,12 +33,12 @@ public class PushByColorRed : MonoBehaviour
     void OnCollisionExit(Collision collision)
     {
 
-        if (collision.gameObject.CompareTag("Player2"))
+        if (collision.gameObject.name == "Player2")
         {
             player1Count--;
             check();
         }
-        else if (collision.gameObject.CompareTag("Player1"))
+        else if (collision.gameObject.name == "Player1")
         {
             otherPlayerCount--;
             check();

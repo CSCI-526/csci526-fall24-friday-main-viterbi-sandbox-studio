@@ -1052,7 +1052,7 @@ Transform:
   m_GameObject: {fileID: 578160726}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70629346, w: 0.70791924}
-  m_LocalPosition: {x: 26.976, y: 3.7890837, z: -9.706}
+  m_LocalPosition: {x: 62.938, y: 2.64, z: -9.88}
   m_LocalScale: {x: 7.1277213, y: 0.15802002, z: 0.6974}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1437,7 +1437,7 @@ Transform:
   m_GameObject: {fileID: 729839409}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70629346, w: 0.70791924}
-  m_LocalPosition: {x: 26.904, y: 3.7890837, z: 10.014001}
+  m_LocalPosition: {x: 62.76, y: 2.54, z: 9.8}
   m_LocalScale: {x: 7.1277227, y: 0.15802467, z: 0.6974}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2234,6 +2234,7 @@ GameObject:
   - component: {fileID: 1126724241}
   - component: {fileID: 1126724240}
   - component: {fileID: 1126724239}
+  - component: {fileID: 1126724245}
   m_Layer: 0
   m_Name: Level1 - Small Box
   m_TagString: BoxLevelF
@@ -2300,7 +2301,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1, y: 1.07, z: 1.1}
+  m_Size: {x: 1.03, y: 1.07, z: 1.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1126724242
 MeshRenderer:
@@ -2368,6 +2369,19 @@ Transform:
   - {fileID: 1838850717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1126724245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126724237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cbcde10ae3f42341bf51a6889e23197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 10
 --- !u!1 &1166114113
 GameObject:
   m_ObjectHideFlags: 0
@@ -3908,6 +3922,7 @@ GameObject:
   - component: {fileID: 2047612018}
   - component: {fileID: 2047612017}
   - component: {fileID: 2047612022}
+  - component: {fileID: 2047612023}
   m_Layer: 0
   m_Name: Level1 - Medium Box
   m_TagString: BoxLevelF
@@ -3961,7 +3976,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.22, y: 1.03, z: 1.1}
+  m_Size: {x: 1.03, y: 1.03, z: 1.03}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2047612019
 MeshRenderer:
@@ -4042,6 +4057,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+--- !u!114 &2047612023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047612016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7003bec2c01370d46bb537a50d111296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 10
 --- !u!1 &2139354924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4076,7 +4104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  jumpForce: 11
+  jumpForce: 12
   arrowPrefab: {fileID: 1949486348391650267, guid: 47744e389916c4807ab2aaa19b2c5b53, type: 3}
 --- !u!54 &2139354926
 Rigidbody:
