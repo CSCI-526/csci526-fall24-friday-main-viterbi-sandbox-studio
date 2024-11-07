@@ -7,7 +7,7 @@ public class PushByColorBlue : MonoBehaviour
     private Rigidbody rb;
     private int player1Count = 0;
     private int otherPlayerCount = 0;   
-    public float force = 10f;
+    
     void Start()
     {
 
@@ -52,19 +52,18 @@ public class PushByColorBlue : MonoBehaviour
         {
             rb.isKinematic = false;
         }
+        else if (player1Count == 0 && otherPlayerCount == 0)
+        {
+            rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
+        }
         else
         {
 
             rb.isKinematic = true;
         }
     }
-    void FixedUpdate()
-    {
-        if (player1Count == 1 && otherPlayerCount == 0)
-        {
-            rb.AddForce(Vector3.forward * force);
-        }
-    }
+    
 
 
 }
