@@ -90,6 +90,7 @@ public class MainMenuController : MonoBehaviour
     public void LoadLevel1()
     {
         SceneManager.LoadScene("level1"); // Loads "level1" scene directly
+        ChangeButtonPattern();
     }
 
 }
