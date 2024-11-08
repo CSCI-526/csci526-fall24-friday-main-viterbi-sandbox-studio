@@ -63,6 +63,8 @@ public class PadTrigger : MonoBehaviour
             {
                 Debug.Log("Single player is on their pad. Transitioning to the next scene.");
                 SceneManager.LoadScene(nextSceneName);
+                PersistentMenu.instance.showWinContext();
+                PersistentMenu.instance.ShowMainMenu();
             }
         }
         else
@@ -72,6 +74,8 @@ public class PadTrigger : MonoBehaviour
             {
                 Debug.Log("Both players are on their respective pads. Transitioning to the next scene.");
                 SceneManager.LoadScene(nextSceneName);
+                PersistentMenu.instance.showWinContext();
+                PersistentMenu.instance.ShowMainMenu();
             }
         }
     }

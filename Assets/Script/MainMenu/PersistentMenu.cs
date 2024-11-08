@@ -1,11 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PersistentMenu : MonoBehaviour
 {
-    private static PersistentMenu instance;
+    public static PersistentMenu instance;
     public GameObject mainPanel; 
     public GameObject LevelPanel;
+    public GameObject winContext;
+    public GameObject MainText;
+
 
     private void Awake()
     {
@@ -25,15 +29,9 @@ public class PersistentMenu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Hide the main menu canvas if not in the main menu scene
-        LevelPanel.SetActive(false);
         if (scene.name == "MainMenuScene")
         {
-            mainPanel.SetActive(true);
-        }
-        else
-        {
-            mainPanel.SetActive(false);
+            ShowMainMenu();
         }
     }
 
@@ -41,5 +39,23 @@ public class PersistentMenu : MonoBehaviour
     {
         // Unsubscribe from the scene loaded event when the object is destroyed
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void showWinContext()
+    {
+        winContext.SetActive(true);
+        MainText.SetActive(false);
+    }
+
+    public void noShowWinContext()
+    {
+        winContext.SetActive(false);
+        MainText.SetActive(true);
+    }
+
+    public void ShowMainMenu()
+    {
+        LevelPanel.SetActive(false);
+        mainPanel.SetActive(true);
     }
 }
