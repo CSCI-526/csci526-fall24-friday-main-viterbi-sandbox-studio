@@ -10,6 +10,7 @@ public class MainMenuController : MonoBehaviour
     public Button menuButton;
     public Button continueButton;
     public Button levelButton;
+    public Button restartButton;
 
     public GameObject mainPanel;
     public GameObject LevelPanel;
@@ -38,6 +39,14 @@ public class MainMenuController : MonoBehaviour
     {
         Debug.Log("Start Game");
         SceneManager.LoadScene("tutortiallevel1"); 
+        ChangeButtonPattern();
+    }
+
+    public void ChangeButtonPattern()
+    {
+        startGameButton.gameObject.SetActive(false);
+        continueButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
     }
 
     public void ShowMainMenu()
@@ -75,6 +84,7 @@ public class MainMenuController : MonoBehaviour
                 Debug.LogError("Invalid tutorial level number");
                 break;
         }
+        ChangeButtonPattern();
     }
 
     public void LoadLevel1()
