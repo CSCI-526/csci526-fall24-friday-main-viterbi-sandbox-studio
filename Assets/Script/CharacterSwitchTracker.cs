@@ -6,18 +6,18 @@ using UnityEngine;
 public class CharacterSwitchTracker : MonoBehaviour
 {
     private int switchCount = 0;
-    private string logFilePath;
+    //private string logFilePath;
 
     void Start()
     {
-        string logDirectory = Path.Combine(Application.dataPath, "Logs");
-        if (!Directory.Exists(logDirectory))
-        {
-            Directory.CreateDirectory(logDirectory);
-        }
+        //string logDirectory = Path.Combine(Application.dataPath, "Logs");
+        //if (!Directory.Exists(logDirectory))
+        //{
+        //    Directory.CreateDirectory(logDirectory);
+        //}
         
-        logFilePath = Path.Combine(logDirectory, "GameLog.txt");
-        Debug.Log("Log file path: " + logFilePath);
+        //logFilePath = Path.Combine(logDirectory, "GameLog.txt");
+        //Debug.Log("Log file path: " + logFilePath);
     }
 
     void Update()
@@ -25,13 +25,13 @@ public class CharacterSwitchTracker : MonoBehaviour
 
     }
 
-    private void LogMessage(string message)
-    {
-        using (StreamWriter sw = File.AppendText(logFilePath))
-        {
-            sw.WriteLine(message);
-        }
-    }
+    //private void LogMessage(string message)
+    //{
+    //    using (StreamWriter sw = File.AppendText(logFilePath))
+    //    {
+    //        sw.WriteLine(message);
+    //    }
+    //}
 
     private void ResetSwitchCount()
     {
@@ -41,10 +41,10 @@ public class CharacterSwitchTracker : MonoBehaviour
     public void RecordPlayerSwitch()
     {
         switchCount++;
-        string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-        string message = $"Switch {switchCount}: Character switched at {timestamp}.";
-        LogMessage(message);
-        Debug.Log(message);
+        //string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+        //string message = $"Switch {switchCount}: Character switched at {timestamp}.";
+        //LogMessage(message);
+        //Debug.Log(message);
     }
 
     public void SendCharacterSwitchEvent(int currentLevel)
