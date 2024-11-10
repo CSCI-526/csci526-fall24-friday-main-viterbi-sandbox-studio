@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         
         arrowInstance = Instantiate(arrowPrefab, transform.position + Vector3.up * 3, Quaternion.identity);
         arrowInstance.transform.SetParent(transform);  
-        arrowInstance.SetActive(false);  
+        arrowInstance.SetActive(true);  
     }
 
     void Update()
@@ -37,36 +37,33 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        //Vector3 forward = cameraTransform.forward;
-        //Vector3 right = cameraTransform.right;
+        Vector3 movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
 
-        Vector3 movement = Vector3.zero;
-
-        if (isBlocked)
-        {
-            if (verticalInput < 0) 
-            {
-                movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-            }
-        }
-        else
-        {
+        //if (isBlocked)
+        //{
+        //    if (verticalInput < 0) 
+        //    {
+        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
+        //    }
+        //}
+        //else
+        //{
             
-            if (verticalInput > 0) 
-            {
-                movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-            }
-            else if (verticalInput <= 0) 
-            {
-                movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-            }
+        //    if (verticalInput > 0) 
+        //    {
+        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
+        //    }
+        //    else if (verticalInput <= 0) 
+        //    {
+        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
+        //    }
 
             
-            if (horizontalInput != 0)
-            {
-                movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-            }
-        }
+        //    if (horizontalInput != 0)
+        //    {
+        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
+        //    }
+        //}
 
         transform.Translate(movement);
 

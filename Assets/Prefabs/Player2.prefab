@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6958566504767857087}
   - component: {fileID: 3188040499748858705}
   - component: {fileID: 7184097470499249158}
-  - component: {fileID: 9047679230371553489}
   - component: {fileID: 4352066045118799204}
   - component: {fileID: 132293501200209854}
   m_Layer: 0
@@ -31,10 +30,11 @@ Transform:
   m_GameObject: {fileID: 2126085673393016668}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.26, y: 7, z: -3.99}
+  m_LocalPosition: {x: -0.17, y: 10, z: -3.99}
   m_LocalScale: {x: 1.8299812, y: 1.8299812, z: 1.8299812}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6731535421794837421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6958566504767857087
@@ -114,22 +114,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &9047679230371553489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126085673393016668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341b3406e55429b419646615b8c3e356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptText: {fileID: 0}
-  promptTextNext: {fileID: 0}
-  fadeDuration: 5
-  stepsToShowPrompt: 20
 --- !u!114 &4352066045118799204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ac081111aacd546adc5f86b390c477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
+  rotationSpeed: 10
   speed: 7
   jumpForce: 11
   arrowPrefab: {fileID: 1949486348391650267, guid: 47744e389916c4807ab2aaa19b2c5b53, type: 3}
@@ -166,3 +152,34 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.55
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5607226135548699622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6731535421794837421}
+  m_Layer: 0
+  m_Name: CameraPivot2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6731535421794837421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5607226135548699622}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7466867789324279409}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

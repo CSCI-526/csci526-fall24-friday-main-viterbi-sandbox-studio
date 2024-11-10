@@ -41,7 +41,7 @@ public class CharacterSwitcher : MonoBehaviour
             {
                 ActivatePlayer(player1, player2);
             }
-            cameraController.SwitchCameraPivot();
+            cameraController.SwitchCameraPivot(); 
 
             if (characterSwitchTracker != null)
             {
@@ -65,7 +65,8 @@ public class CharacterSwitcher : MonoBehaviour
 
     void ActivatePlayer(GameObject newActivePlayer, GameObject oldActivePlayer)
     {
-        if (isControllingBoth || newActivePlayer == null) return;
+        activePlayer = newActivePlayer;
+        if (isControllingBoth) return;
 
         if (oldActivePlayer != null)
         {
@@ -73,7 +74,6 @@ public class CharacterSwitcher : MonoBehaviour
         }
 
         newActivePlayer.GetComponent<PlayerController>().enabled = true;
-        activePlayer = newActivePlayer;
     }
 
     void ControlBothPlayers(bool controlBoth)

@@ -7,6 +7,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Transform cameraPivot1;
     [SerializeField] private Transform cameraPivot2; // optional
+    public LayerMask wallLayerMask; // Layer mask to detect walls
+
     private Transform currentPivot;
     private Vector3 initialOffset = new Vector3(0, 1, -7);
     private int minVerticalAngle = -20;
@@ -75,7 +77,7 @@ public class CameraController : MonoBehaviour
         Vector3 directionToCamera = (cam.transform.position - currentPivot.position).normalized;
 
         // Raycast from the camera pivot to the camera's position to detect obstacles
-        if (Physics.Raycast(currentPivot.position, directionToCamera, out hit, maxZoomDistance))
+        if (Physics.Raycast(currentPivot.position, directionToCamera, out hit, maxZoomDistance, wallLayerMask))
         {
             // If an obstacle is detected, adjust the zoom distance to avoid it
             currentZoomDistance = Mathf.Clamp(Mathf.Lerp(currentZoomDistance, hit.distance - 0.2f, Time.deltaTime * zoomSpeed), 1.5f, maxZoomDistance);
