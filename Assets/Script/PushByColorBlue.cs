@@ -48,7 +48,7 @@ public class PushByColorBlue : MonoBehaviour
     private void check()
     {
 
-        if (player1Count == 1 && otherPlayerCount == 0  )
+        if (player1Count == 1)
         {
             rb.isKinematic = false;
         }

@@ -7,6 +7,7 @@ public class BoxPushControl : MonoBehaviour
      
     private int playerCount = 0; 
     private Rigidbody rb;
+    private List<GameObject> otherCollisions = new List<GameObject>();
 
     void Start()
     {
@@ -22,6 +23,11 @@ public class BoxPushControl : MonoBehaviour
             playerCount = playerCount + 1;
             Check();
         }
+        else
+        {
+            otherCollisions.Add(collision.gameObject);
+            Check();
+        }
     }
 
     void OnCollisionExit(Collision collision)
@@ -30,6 +36,11 @@ public class BoxPushControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerCount = playerCount - 1; ;
+            Check();
+        }
+        else
+        {
+            otherCollisions.Remove(collision.gameObject);
             Check();
         }
     }
@@ -41,7 +52,7 @@ public class BoxPushControl : MonoBehaviour
         {
             rb.isKinematic = false; 
         }
-        else if(playerCount == 0)
+        else if(playerCount == 0 && otherCollisions.Count == 0)
         {
             rb.isKinematic = false;
             rb.velocity = Vector3.zero;
