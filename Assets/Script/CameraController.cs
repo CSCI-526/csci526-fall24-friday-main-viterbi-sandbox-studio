@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     {
         maxZoomDistance = initialOffset.magnitude;
         currentZoomDistance = maxZoomDistance;
+        previousPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -33,23 +34,21 @@ public class CameraController : MonoBehaviour
     void RotateCamera()
     {
         cam.transform.position = cameraPivot.position;
-        if (Input.GetMouseButtonDown(1))
+        // Capture the mouse position on the first frame
+        if (previousPosition == Vector3.zero)
         {
             previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
         }
 
-        if (Input.GetMouseButton(1))
-        {
-            Vector3 direction = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
+        Vector3 direction = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
 
 
-            cam.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
-            cam.transform.Rotate(new Vector3(0, 1, 0), -direction.x * 180, Space.World);
+        cam.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
+        cam.transform.Rotate(new Vector3(0, 1, 0), -direction.x * 180, Space.World);
 
-            ClampVerticalRotation();
+        ClampVerticalRotation();
 
-            previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
-        }
+        previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
         cam.transform.Translate(initialOffset);
     }
 
