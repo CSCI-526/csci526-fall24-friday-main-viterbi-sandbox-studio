@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
-    [SerializeField] private Transform cameraPivot;
+    [SerializeField] private Transform cameraPivot1;
+    [SerializeField] private Transform cameraPivot2; // optional
+    private Transform currentPivot;
     private Vector3 initialOffset = new Vector3(0, 1, -7);
     private int minVerticalAngle = -20;
     private int maxVerticalAngle = 60;
@@ -22,6 +24,8 @@ public class CameraController : MonoBehaviour
         maxZoomDistance = initialOffset.magnitude;
         currentZoomDistance = maxZoomDistance;
         previousPosition = Vector3.zero;
+
+        currentPivot = cameraPivot1;
     }
 
     // Update is called once per frame
@@ -33,7 +37,7 @@ public class CameraController : MonoBehaviour
 
     void RotateCamera()
     {
-        cam.transform.position = cameraPivot.position;
+        cam.transform.position = currentPivot.position;
         // Capture the mouse position on the first frame
         if (previousPosition == Vector3.zero)
         {
@@ -68,10 +72,10 @@ public class CameraController : MonoBehaviour
     void AdjustCameraZoom()
     {
         RaycastHit hit;
-        Vector3 directionToCamera = (cam.transform.position - cameraPivot.position).normalized;
+        Vector3 directionToCamera = (cam.transform.position - currentPivot.position).normalized;
 
         // Raycast from the camera pivot to the camera's position to detect obstacles
-        if (Physics.Raycast(cameraPivot.position, directionToCamera, out hit, maxZoomDistance))
+        if (Physics.Raycast(currentPivot.position, directionToCamera, out hit, maxZoomDistance))
         {
             // If an obstacle is detected, adjust the zoom distance to avoid it
             currentZoomDistance = Mathf.Clamp(Mathf.Lerp(currentZoomDistance, hit.distance - 0.2f, Time.deltaTime * zoomSpeed), 1.5f, maxZoomDistance);
@@ -83,6 +87,14 @@ public class CameraController : MonoBehaviour
         }
 
         // Position the camera at the new zoom distance
-        cam.transform.position = cameraPivot.position + directionToCamera * currentZoomDistance;
+        cam.transform.position = currentPivot.position + directionToCamera * currentZoomDistance;
+    }
+
+    public void SwitchCameraPivot()
+    {
+        if (cameraPivot2 != null)
+        {
+            currentPivot = (currentPivot == cameraPivot1) ? cameraPivot2 : cameraPivot1;
+        }
     }
 }

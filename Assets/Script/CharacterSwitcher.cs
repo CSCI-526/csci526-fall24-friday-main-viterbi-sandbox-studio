@@ -12,12 +12,13 @@ public class CharacterSwitcher : MonoBehaviour
     private bool isControllingBoth = false;
 
     private CharacterSwitchTracker characterSwitchTracker;
+    private CameraController cameraController;
 
     void Start()
     {
         if (player2 != null)
         {
-            ActivatePlayer(player2, player1);  // Start with player2 active by default
+            ActivatePlayer(player1, player2);  // Start with player2 active by default
         }
         else
         {
@@ -25,6 +26,7 @@ public class CharacterSwitcher : MonoBehaviour
         }
 
         characterSwitchTracker = FindObjectOfType<CharacterSwitchTracker>();
+        cameraController = FindObjectOfType<CameraController>();
     }
 
     void Update()
@@ -39,6 +41,7 @@ public class CharacterSwitcher : MonoBehaviour
             {
                 ActivatePlayer(player1, player2);
             }
+            cameraController.SwitchCameraPivot();
 
             if (characterSwitchTracker != null)
             {

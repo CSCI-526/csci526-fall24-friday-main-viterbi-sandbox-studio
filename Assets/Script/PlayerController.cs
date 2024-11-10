@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Transform cameraTransform; // Reference to the camera transform
+
+    public float rotationSpeed = 10f;
     public float speed = 5f;        
     public float jumpForce = 5f;    
     private Rigidbody rb;           
@@ -29,10 +32,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
-        
+        RotatePlayerToCameraDirection();
+
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
+        //Vector3 forward = cameraTransform.forward;
+        //Vector3 right = cameraTransform.right;
 
         Vector3 movement = Vector3.zero;
 
@@ -117,6 +123,20 @@ public class PlayerController : MonoBehaviour
         if (arrowInstance != null)
         {
             arrowInstance.SetActive(showArrow);
+        }
+    }
+
+    void RotatePlayerToCameraDirection()
+    {
+        // Get the direction the camera is facing
+        Vector3 cameraForward = Quaternion.Euler(0, -90, 0) * cameraTransform.forward;
+        cameraForward.y = 0; // Ignore vertical component to keep player upright
+
+        // Only rotate if there's movement input to avoid unwanted rotations
+        if (cameraForward.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed); // Smooth rotation
         }
     }
 }
