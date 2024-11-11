@@ -27,6 +27,16 @@ public class CharacterSwitchTracker : MonoBehaviour, IEventTracker
         switchCount++;
     }
 
+    public void ResetTracker()
+    {
+        switchCount = 0;
+    }
+
+    public string GetTrackerId()
+    {
+        return trackerId;
+    }
+
     public void SendEvent()
     {
         string currentLevelName = levelManager.GetCurrentLevelName();

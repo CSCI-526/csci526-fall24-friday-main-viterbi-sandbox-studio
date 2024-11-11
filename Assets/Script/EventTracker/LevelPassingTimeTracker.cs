@@ -29,6 +29,16 @@ public class LevelPassingTimeTracker : MonoBehaviour, IEventTracker
         EventManager.Instance.UnregisterTracker(trackerId);
     }
 
+    public string GetTrackerId()
+    {
+        return trackerId;
+    }
+
+    public void ResetTracker()
+    {
+        previousTime = Time.time;
+    }
+
     public void SendEvent()
     {
         float timeSpent = Time.time - previousTime;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private int currentLevel;
+    private Dictionary<int, List<IEventTracker>> levelEventTrackerMap = new Dictionary<int, List<IEventTracker>>();
     private Dictionary<int, string> levelNameMap = new Dictionary<int, string>
     {
         { 1, "Tutorial 1" },
@@ -74,17 +75,41 @@ public class LevelManager : MonoBehaviour
 
     public void OnStartLevel()
     {
-        LevelPassingTimeTracker levelPassingTimeTracker = gameObject.AddComponent<LevelPassingTimeTracker>();
-        levelPassingTimeTracker.Initialize(currentLevel);
-        CharacterSwitchTracker characterSwitchTracker = gameObject.AddComponent<CharacterSwitchTracker>();
-        characterSwitchTracker.Initialize(currentLevel);
+        if (currentLevel == -1)
+        {
+            return;
+        }
+        if (!levelEventTrackerMap.ContainsKey(currentLevel))
+        {
+            levelEventTrackerMap[currentLevel] = new List<IEventTracker>();
+            IEventTracker levelPassingTimeTracker = gameObject.AddComponent<LevelPassingTimeTracker>();
+            levelPassingTimeTracker.Initialize(currentLevel);
+            levelEventTrackerMap[currentLevel].Add(levelPassingTimeTracker);
+            IEventTracker characterSwitchTracker = gameObject.AddComponent<CharacterSwitchTracker>();
+            characterSwitchTracker.Initialize(currentLevel);
+            levelEventTrackerMap[currentLevel].Add(characterSwitchTracker);
+        }
+        else
+        {
+            foreach (IEventTracker eventTracker in levelEventTrackerMap[currentLevel])
+            {
+                eventTracker.ResetTracker();
+            }
+        }
 
     }
 
     public void OnCompleteLevel()
     {
-        EventManager.Instance.SendEvent($"LevelPassingTime_{currentLevel}");
-        EventManager.Instance.SendEvent($"CharacterSwitchCount_{currentLevel}");
+        if (currentLevel == -1)
+        {
+            return;
+        }
+        EventManager eventManager = EventManager.Instance;
+        foreach (IEventTracker eventTracker in levelEventTrackerMap[currentLevel])
+        {
+            eventManager.SendEvent(eventTracker.GetTrackerId());
+        }
     }
 
     public void OnDestroyLevel()
@@ -93,7 +118,9 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
-        EventManager.Instance.UnregisterTracker($"LevelPassingTime_{currentLevel}");
-        EventManager.Instance.UnregisterTracker($"CharacterSwitchCount_{currentLevel}");
+        foreach (IEventTracker eventTracker in levelEventTrackerMap[currentLevel])
+        {
+            eventTracker.ResetTracker();
+        }
     }
 }
