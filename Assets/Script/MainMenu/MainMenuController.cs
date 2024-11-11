@@ -41,8 +41,13 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        Debug.Log("Start Game");
-        SceneManager.LoadScene("tutortiallevel1"); 
+        int levelNumber = 1;
+        bool result = gameManager.StartLevel(levelNumber);
+        if (!result)
+        {
+            Debug.LogError("Invalid level number");
+            return;
+        }
         InactiveMenu();
         ChangeButtonPattern();
     }

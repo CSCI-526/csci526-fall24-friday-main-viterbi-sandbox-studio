@@ -3,15 +3,18 @@ using System.IO;
 using Unity.Services.Analytics;
 using UnityEngine;
 
-public class CharacterSwitchTracker : MonoBehaviour
+public class CharacterSwitchTracker : MonoBehaviour, IEventTracker
 {
     private int switchCount = 0;
-
+    private string trackerId;
     private LevelManager levelManager;
 
-    void Start()
+    public void Initialize(int levelId)
     {
         levelManager = FindObjectOfType<LevelManager>();
+
+        trackerId = $"CharacterSwitchCount_{levelId}";
+        EventManager.Instance.RegisterTracker(trackerId, this);
     }
 
     void Update()
@@ -19,17 +22,12 @@ public class CharacterSwitchTracker : MonoBehaviour
 
     }
 
-    private void ResetSwitchCount()
-    {
-        switchCount = 0;
-    }
-
     public void RecordPlayerSwitch()
     {
         switchCount++;
     }
 
-    public void SendCharacterSwitchEvent()
+    public void SendEvent()
     {
         string currentLevelName = levelManager.GetCurrentLevelName();
         CharacterSwitchFrequencyEvent characterSwitchFrequencyEvent = new CharacterSwitchFrequencyEvent
@@ -40,6 +38,5 @@ public class CharacterSwitchTracker : MonoBehaviour
 
         AnalyticsService.Instance.RecordEvent(characterSwitchFrequencyEvent);
         Debug.Log($"characterSwitchCountsEvent sent. Current level {currentLevelName}, switchCount {switchCount}");
-        ResetSwitchCount();
     }
 }

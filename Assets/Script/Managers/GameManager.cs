@@ -6,16 +6,20 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private LevelManager levelManager;
+    private LevelResetManager levelResetManager;
 
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        levelResetManager = FindObjectOfType<LevelResetManager>();
     }
 
-    public void RestartLevel()
+    public void ReloadScene()
     {
-        FindObjectOfType<PlayerRespawn>().Respawn();
-        FindObjectOfType<LevelResetManager>().ResetCurrentLevelObjects();
+        levelManager.OnDestroyLevel();
+        levelResetManager.UnregisterCurrentLevelObjects();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        levelManager.OnStartLevel();
     }
 
     public bool StartLevel(int level)
@@ -24,14 +28,19 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+        levelManager.OnDestroyLevel();
         levelManager.SetLevel(level);
         string levelSceneName = levelManager.GetCurrentLevelSceneName();
         SceneManager.LoadScene(levelSceneName);
+        levelManager.OnStartLevel();
         return true;
     }
 
     public bool AdvanceToNextLevel()
     {
+        levelManager.OnCompleteLevel();
+        levelResetManager.UnregisterCurrentLevelObjects();
+        levelManager.OnDestroyLevel();
         levelManager.LevelUp();
         if (!levelManager.levelSceneNameMap.ContainsKey(levelManager.GetLevel()))
         {
@@ -39,6 +48,7 @@ public class GameManager : MonoBehaviour
         }
         string nextSceneName = levelManager.GetCurrentLevelSceneName();
         SceneManager.LoadScene(nextSceneName);
+        levelManager.OnStartLevel();
         return true;
 
     }

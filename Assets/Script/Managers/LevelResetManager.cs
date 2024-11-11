@@ -28,13 +28,13 @@ public class LevelResetManager : MonoBehaviour
         {
             foreach (var obj in levelObjects[currentLevel])
             {
-                Debug.Log("Initial obj");
+                //Debug.Log("Initial obj");
                 obj.ResetState();
             }
         }
     }
 
-    public void UnregisterLevelObjects()
+    public void UnregisterCurrentLevelObjects()
     {
         int currentLevel = levelManager.GetLevel();
         // Check if the level exists in the dictionary

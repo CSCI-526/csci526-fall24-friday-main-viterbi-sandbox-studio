@@ -3,7 +3,7 @@ using Unity.Services.Analytics;
 public class CharacterSwitchFrequencyEvent : Event
 {
     // Constructor to initialize the event with its name
-    public CharacterSwitchFrequencyEvent() : base("characterSwitchFrequency")
+    public CharacterSwitchFrequencyEvent() : base("chracterSwitchFrequency")
     {
     }
 

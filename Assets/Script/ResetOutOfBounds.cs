@@ -8,11 +8,11 @@ public class ResetOutOfBounds : MonoBehaviour
     public GameObject player1;
     public GameObject player2; // optional
 
-    private GameManager gameManager;
+    private LevelManager levelManager;
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -20,11 +20,11 @@ public class ResetOutOfBounds : MonoBehaviour
     {
         if (player1 != null && IsPlayerOutOfBound(player1))
         {
-            gameManager.RestartLevel();
+            levelManager.RestartLevel();
         }
         else if (player2 != null && IsPlayerOutOfBound(player2))
         {
-            gameManager.RestartLevel();
+            levelManager.RestartLevel();
         }
     }
 

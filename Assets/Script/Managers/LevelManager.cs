@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLevel = 1;
+        currentLevel = -1;
     }
 
     // Update is called once per frame
@@ -56,9 +56,44 @@ public class LevelManager : MonoBehaviour
         currentLevel = newLevel;
     }
 
+    public void RestartLevel()
+    {
+        FindObjectOfType<PlayerRespawn>().Respawn();
+        FindObjectOfType<LevelResetManager>().ResetCurrentLevelObjects();
+    }
+
     public void LevelUp()
     {
+        if (!levelNameMap.ContainsKey(currentLevel + 1))
+        {
+            return;
+        }
         currentLevel += 1;
         Debug.Log("currentLevel is " + currentLevel);
+    }
+
+    public void OnStartLevel()
+    {
+        LevelPassingTimeTracker levelPassingTimeTracker = gameObject.AddComponent<LevelPassingTimeTracker>();
+        levelPassingTimeTracker.Initialize(currentLevel);
+        CharacterSwitchTracker characterSwitchTracker = gameObject.AddComponent<CharacterSwitchTracker>();
+        characterSwitchTracker.Initialize(currentLevel);
+
+    }
+
+    public void OnCompleteLevel()
+    {
+        EventManager.Instance.SendEvent($"LevelPassingTime_{currentLevel}");
+        EventManager.Instance.SendEvent($"CharacterSwitchCount_{currentLevel}");
+    }
+
+    public void OnDestroyLevel()
+    {
+        if (currentLevel == -1)
+        {
+            return;
+        }
+        EventManager.Instance.UnregisterTracker($"LevelPassingTime_{currentLevel}");
+        EventManager.Instance.UnregisterTracker($"CharacterSwitchCount_{currentLevel}");
     }
 }

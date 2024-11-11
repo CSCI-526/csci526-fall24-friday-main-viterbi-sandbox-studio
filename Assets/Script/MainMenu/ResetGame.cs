@@ -8,16 +8,20 @@ public class ResetGame : MonoBehaviour
 {
     public Button playButton;
 
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
         playButton.onClick.AddListener(ResetGameScene);
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Method to reset the game
     public void ResetGameScene()
     {
         // Reload the current scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.ReloadScene();
     }
 }
