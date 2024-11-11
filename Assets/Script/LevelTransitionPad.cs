@@ -11,11 +11,15 @@ public class PadTrigger : MonoBehaviour
     private static bool player1OnPad = false;
     private static bool player2OnPad = false;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         // Reset the pad states at the start of each level
         player1OnPad = false;
         player2OnPad = false;
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,7 +66,11 @@ public class PadTrigger : MonoBehaviour
             if ((playerName == "Player1" && player1OnPad) || (playerName == "Player2" && player2OnPad))
             {
                 Debug.Log("Single player is on their pad. Transitioning to the next scene.");
-                SceneManager.LoadScene(nextSceneName);
+                bool hasTransitioned = gameManager.AdvanceToNextLevel();
+                if (!hasTransitioned)
+                {
+                    return;
+                }
                 PersistentMenu.instance.showWinContext();
                 PersistentMenu.instance.ShowMainMenu();
             }
@@ -73,7 +81,11 @@ public class PadTrigger : MonoBehaviour
             if (player1OnPad && player2OnPad)
             {
                 Debug.Log("Both players are on their respective pads. Transitioning to the next scene.");
-                SceneManager.LoadScene(nextSceneName);
+                bool hasTransitioned = gameManager.AdvanceToNextLevel();
+                if (!hasTransitioned)
+                {
+                    return;
+                }
                 PersistentMenu.instance.showWinContext();
                 PersistentMenu.instance.ShowMainMenu();
             }

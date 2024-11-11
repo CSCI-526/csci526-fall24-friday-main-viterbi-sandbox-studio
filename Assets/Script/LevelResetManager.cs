@@ -11,13 +11,14 @@ public class LevelResetManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<LevelManager>();
     }
-    public void RegisterObject(int level, IResettable levelObject)
+    public void RegisterObject(IResettable levelObject)
     {
-        if (!levelObjects.ContainsKey(level))
+        int currentLevel = levelManager.GetLevel();
+        if (!levelObjects.ContainsKey(currentLevel))
         {
-            levelObjects[level] = new List<IResettable>();
+            levelObjects[currentLevel] = new List<IResettable>();
         }
-        levelObjects[level].Add(levelObject);
+        levelObjects[currentLevel].Add(levelObject);
     }
 
     public void ResetCurrentLevelObjects()
@@ -30,6 +31,19 @@ public class LevelResetManager : MonoBehaviour
                 Debug.Log("Initial obj");
                 obj.ResetState();
             }
+        }
+    }
+
+    public void UnregisterLevelObjects()
+    {
+        int currentLevel = levelManager.GetLevel();
+        // Check if the level exists in the dictionary
+        if (levelObjects.ContainsKey(currentLevel))
+        {
+
+            levelObjects[currentLevel].Clear();
+            //levelObjects.Remove(currentLevel);
+            Debug.Log($"Unregistered all objects from level {currentLevel}");
         }
     }
 }

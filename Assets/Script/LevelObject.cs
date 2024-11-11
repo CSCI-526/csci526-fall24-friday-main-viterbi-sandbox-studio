@@ -7,9 +7,6 @@ public class LevelObject : MonoBehaviour, IResettable
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
 
-    [SerializeField]
-    public int level; // The level this object belongs to
-
     public void SaveInitialState()
     {
         _initialPosition = transform.position;
@@ -27,6 +24,6 @@ public class LevelObject : MonoBehaviour, IResettable
     private void Start()
     {
         SaveInitialState();
-        FindObjectOfType<LevelResetManager>().RegisterObject(level, this);
+        FindObjectOfType<LevelResetManager>().RegisterObject(this);
     }
 }

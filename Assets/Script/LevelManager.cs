@@ -5,14 +5,23 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private int currentLevel;
-    private Dictionary<int, string> levelMap = new Dictionary<int, string>
+    private Dictionary<int, string> levelNameMap = new Dictionary<int, string>
     {
         { 1, "Tutorial 1" },
         { 2, "Tutorial 2" },
         { 3, "Tutorial 3" },
         { 4, "Level 1" },
-        { 5, "Tutorial 4" },
-        { 6, "Level 2" }
+        //{ 5, "Tutorial 4" },
+        //{ 6, "Level 2" }
+    };
+    public Dictionary<int, string> levelSceneNameMap = new Dictionary<int, string>
+    {
+        { 1, "tutortiallevel1" },
+        { 2, "tutoriallevel2" },
+        { 3, "tutoriallevel3" },
+        { 4, "level1" },
+        //{ 5, "tutoriallevel4" },
+        //{ 6, "level2" }
     };
 
     // Start is called before the first frame update
@@ -34,17 +43,22 @@ public class LevelManager : MonoBehaviour
 
     public string GetCurrentLevelName()
     {
-        return levelMap[currentLevel];
+        return levelNameMap[currentLevel];
+    }
+
+    public string GetCurrentLevelSceneName()
+    {
+        return levelSceneNameMap[currentLevel];
+    }
+
+    public void SetLevel(int newLevel)
+    {
+        currentLevel = newLevel;
     }
 
     public void LevelUp()
     {
         currentLevel += 1;
         Debug.Log("currentLevel is " + currentLevel);
-    }
-
-    public void ResetLevel()
-    {
-        currentLevel = 1;
     }
 }

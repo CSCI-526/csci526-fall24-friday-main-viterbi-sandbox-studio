@@ -6,7 +6,7 @@ public class ResetOutOfBounds : MonoBehaviour
 {
     public float yBoundary = -10f;
     public GameObject player1;
-    public GameObject player2;
+    public GameObject player2; // optional
 
     private GameManager gameManager;
     // Start is called before the first frame update
@@ -18,9 +18,18 @@ public class ResetOutOfBounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player1.transform.position.y < yBoundary || player2.transform.position.y < yBoundary)
+        if (player1 != null && IsPlayerOutOfBound(player1))
         {
             gameManager.RestartLevel();
         }
+        else if (player2 != null && IsPlayerOutOfBound(player2))
+        {
+            gameManager.RestartLevel();
+        }
+    }
+
+    bool IsPlayerOutOfBound(GameObject player)
+    {
+        return player.transform.position.y < yBoundary;
     }
 }

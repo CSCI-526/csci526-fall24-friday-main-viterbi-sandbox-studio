@@ -21,6 +21,8 @@ public class MainMenuController : MonoBehaviour
     public Button l4Button;
     public Button backButton;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         // Assign the StartGame function to the button's onClick event
@@ -33,6 +35,8 @@ public class MainMenuController : MonoBehaviour
         l3Button.onClick.AddListener(() => LoadTutorialLevel(3));
         l4Button.onClick.AddListener(LoadLevel1);
         backButton.onClick.AddListener(ShowMainMenu);
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     public void StartGame()
@@ -77,20 +81,11 @@ public class MainMenuController : MonoBehaviour
     public void LoadTutorialLevel(int levelNumber)
     {
         // Load tutorial levels based on the selected number (1, 2, or 3)
-        switch (levelNumber)
+        bool result = gameManager.StartLevel(levelNumber);
+        if (!result)
         {
-            case 1:
-                SceneManager.LoadScene("tutortiallevel1");
-                break;
-            case 2:
-                SceneManager.LoadScene("tutoriallevel2");
-                break;
-            case 3:
-                SceneManager.LoadScene("tutoriallevel3");
-                break;
-            default:
-                Debug.LogError("Invalid tutorial level number");
-                break;
+            Debug.LogError("Invalid tutorial level number");
+            return;
         }
         InactiveMenu();
         ChangeButtonPattern();
@@ -99,7 +94,13 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadLevel1()
     {
-        SceneManager.LoadScene("level1"); // Loads "level1" scene directly
+        int levelNumber = 4;
+        bool result = gameManager.StartLevel(levelNumber);
+        if (!result)
+        {
+            Debug.LogError("Invalid level number");
+            return;
+        }
         InactiveMenu();
         ChangeButtonPattern();
         PersistentMenu.instance.noShowWinContext();

@@ -12,9 +12,6 @@ public class TileTrigger : MonoBehaviour, IResettable
     private int _initialPlayersOnTile = 0;
     public bool initialActive = true;
 
-    [SerializeField]
-    public int level; // The level this object belongs to
-
     public void SaveInitialState()
     {
         _initialPlayersOnTile = playersOnTile;
@@ -32,7 +29,7 @@ public class TileTrigger : MonoBehaviour, IResettable
     void Start()
     {
         SaveInitialState();
-        FindObjectOfType<LevelResetManager>().RegisterObject(level, this);
+        FindObjectOfType<LevelResetManager>().RegisterObject(this);
     }
 
     private void OnEnable()

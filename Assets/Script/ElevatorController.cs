@@ -9,9 +9,6 @@ public class ElevatorController : MonoBehaviour, IResettable
     private bool movingUp = true;          
     private bool isMoving = false;
 
-    [SerializeField]
-    public int level; // The level this object belongs
-
     private bool _initialIsMoving;
     private bool _initialMovingUp;
 
@@ -35,7 +32,7 @@ public class ElevatorController : MonoBehaviour, IResettable
     void Start()
     {
         SaveInitialState();
-        FindObjectOfType<LevelResetManager>().RegisterObject(level, this);
+        FindObjectOfType<LevelResetManager>().RegisterObject(this);
     }
 
     private void Update()
