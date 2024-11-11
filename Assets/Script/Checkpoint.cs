@@ -28,8 +28,7 @@ public class Checkpoint : MonoBehaviour
                 {
                     if (characterSwitchTracker != null)
                     {
-                        int currentLevel = levelManager.getLevel();
-                        characterSwitchTracker.SendCharacterSwitchEvent(currentLevel);
+                        characterSwitchTracker.SendCharacterSwitchEvent();
                     }
                     TriggerLevelUp();
                 }

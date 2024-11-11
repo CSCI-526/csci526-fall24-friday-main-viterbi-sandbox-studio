@@ -6,32 +6,18 @@ using UnityEngine;
 public class CharacterSwitchTracker : MonoBehaviour
 {
     private int switchCount = 0;
-    //private string logFilePath;
+
+    private LevelManager levelManager;
 
     void Start()
     {
-        //string logDirectory = Path.Combine(Application.dataPath, "Logs");
-        //if (!Directory.Exists(logDirectory))
-        //{
-        //    Directory.CreateDirectory(logDirectory);
-        //}
-        
-        //logFilePath = Path.Combine(logDirectory, "GameLog.txt");
-        //Debug.Log("Log file path: " + logFilePath);
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
     void Update()
     {
 
     }
-
-    //private void LogMessage(string message)
-    //{
-    //    using (StreamWriter sw = File.AppendText(logFilePath))
-    //    {
-    //        sw.WriteLine(message);
-    //    }
-    //}
 
     private void ResetSwitchCount()
     {
@@ -41,22 +27,19 @@ public class CharacterSwitchTracker : MonoBehaviour
     public void RecordPlayerSwitch()
     {
         switchCount++;
-        //string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-        //string message = $"Switch {switchCount}: Character switched at {timestamp}.";
-        //LogMessage(message);
-        //Debug.Log(message);
     }
 
-    public void SendCharacterSwitchEvent(int currentLevel)
+    public void SendCharacterSwitchEvent()
     {
-        CharacterSwitchCountsEvent characterSwitchCountsEvent = new CharacterSwitchCountsEvent
+        string currentLevelName = levelManager.GetCurrentLevelName();
+        CharacterSwitchFrequencyEvent characterSwitchFrequencyEvent = new CharacterSwitchFrequencyEvent
         {
             CharacterSwitchCounts = switchCount,
-            CurrentLevel = currentLevel
+            CurrentLevelName = currentLevelName
         };
 
-        AnalyticsService.Instance.RecordEvent(characterSwitchCountsEvent);
-        Debug.Log($"characterSwitchCountsEvent sent. Current level {currentLevel}, switchCount {switchCount}");
+        AnalyticsService.Instance.RecordEvent(characterSwitchFrequencyEvent);
+        Debug.Log($"characterSwitchCountsEvent sent. Current level {currentLevelName}, switchCount {switchCount}");
         ResetSwitchCount();
     }
 }

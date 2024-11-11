@@ -22,7 +22,7 @@ public class LevelResetManager : MonoBehaviour
 
     public void ResetCurrentLevelObjects()
     {
-        int currentLevel = levelManager.getLevel();
+        int currentLevel = levelManager.GetLevel();
         if (levelObjects.ContainsKey(currentLevel))
         {
             foreach (var obj in levelObjects[currentLevel])
