@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7184097470499249158}
   - component: {fileID: 4352066045118799204}
   - component: {fileID: 132293501200209854}
+  - component: {fileID: 3762070585218124020}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -130,6 +131,8 @@ MonoBehaviour:
   rotationSpeed: 10
   speed: 7
   jumpForce: 11
+  distanceToGround: 1.5
+  isRectangular: 0
   arrowPrefab: {fileID: 1949486348391650267, guid: 47744e389916c4807ab2aaa19b2c5b53, type: 3}
 --- !u!135 &132293501200209854
 SphereCollider:
@@ -150,8 +153,31 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.55
+  m_Radius: 0.53
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &3762070585218124020
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126085673393016668}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 0.9
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!1 &5607226135548699622
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,20 +10,17 @@ public class PlayerController : MonoBehaviour
     public float speed = 7f;
     public float jumpForce = 11f;
     public float distanceToGround = 1.8f;
-    private float jumpCooldown = 0.6f;  // 0.6 second cooldown
+    public bool isRectangular = true;
+    private float jumpCooldown = 0.5f;  // 0.5 second cooldown
     private float lastJumpTime;
     private Rigidbody rb;           
 
     public GameObject arrowPrefab;   
     private GameObject arrowInstance; 
 
-    private CharacterSwitcher characterSwitcher;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        characterSwitcher = FindObjectOfType<CharacterSwitcher>();
-
         
         arrowInstance = Instantiate(arrowPrefab, transform.position + Vector3.up * 3, Quaternion.identity);
         arrowInstance.transform.SetParent(transform);  
@@ -52,7 +49,23 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, distanceToGround + 0.1f);
+        if (isRectangular)
+        {
+            return IsBoxGrounded();
+        }
+        return IsSphereGrounded();
+    }
+
+    private bool IsBoxGrounded()
+    {
+        Vector3 boxSize = new Vector3(transform.localScale.x / 2, 0.1f, transform.localScale.z / 2);
+        return Physics.BoxCast(transform.position, boxSize, Vector3.down, Quaternion.identity, distanceToGround + 0.1f);
+    }
+
+    private bool IsSphereGrounded()
+    {
+        float sphereRadius = transform.localScale.x / 2;
+        return Physics.SphereCast(transform.position, sphereRadius, Vector3.down, out RaycastHit hit, distanceToGround + 0.1f);
     }
 
     public void ToggleArrow(bool showArrow)
