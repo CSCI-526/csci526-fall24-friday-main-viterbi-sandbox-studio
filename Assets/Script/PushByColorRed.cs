@@ -23,7 +23,7 @@ public class PushByColorRed : MonoBehaviour
             player1Count++;
             check();
         }
-        else if (collision.gameObject.name == "Player1")
+        else 
         {
             otherPlayerCount++;
             check();
@@ -38,7 +38,7 @@ public class PushByColorRed : MonoBehaviour
             player1Count--;
             check();
         }
-        else if (collision.gameObject.name == "Player1")
+        else 
         {
             otherPlayerCount--;
             check();

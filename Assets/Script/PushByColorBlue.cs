@@ -6,8 +6,9 @@ public class PushByColorBlue : MonoBehaviour
 {
     private Rigidbody rb;
     private int player1Count = 0;
-    private int otherPlayerCount = 0;   
+    private int otherPlayerCount = 0;
     
+
     void Start()
     {
 
@@ -23,11 +24,12 @@ public class PushByColorBlue : MonoBehaviour
             player1Count++;
             check();
         }
-        else if (collision.gameObject.name == "Player2") 
+        else 
         {
             otherPlayerCount++;
             check();
         }
+        
     }
 
     void OnCollisionExit(Collision collision)
@@ -38,11 +40,12 @@ public class PushByColorBlue : MonoBehaviour
             player1Count--;
             check();
         }
-        else if (collision.gameObject.name == "Player2") 
+        else 
         {
             otherPlayerCount--;
             check();
         }
+       
     }
 
     private void check()
