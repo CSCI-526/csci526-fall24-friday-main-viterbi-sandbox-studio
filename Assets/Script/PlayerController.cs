@@ -7,12 +7,12 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform; // Reference to the camera transform
 
     public float rotationSpeed = 10f;
-    public float speed = 5f;        
-    public float jumpForce = 5f;    
+    public float speed = 7f;
+    public float jumpForce = 11f;
+    public float distanceToGround = 1.8f;
+    private float jumpCooldown = 0.6f;  // 0.6 second cooldown
+    private float lastJumpTime;
     private Rigidbody rb;           
-    private bool isGrounded = true;
-    private bool isBlocked = false;
-
 
     public GameObject arrowPrefab;   
     private GameObject arrowInstance; 
@@ -27,10 +27,12 @@ public class PlayerController : MonoBehaviour
         
         arrowInstance = Instantiate(arrowPrefab, transform.position + Vector3.up * 3, Quaternion.identity);
         arrowInstance.transform.SetParent(transform);  
-        arrowInstance.SetActive(true);  
+        arrowInstance.SetActive(true);
+
+        lastJumpTime = -jumpCooldown;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         RotatePlayerToCameraDirection();
 
@@ -39,82 +41,20 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
 
-        //if (isBlocked)
-        //{
-        //    if (verticalInput < 0) 
-        //    {
-        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-        //    }
-        //}
-        //else
-        //{
-            
-        //    if (verticalInput > 0) 
-        //    {
-        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-        //    }
-        //    else if (verticalInput <= 0) 
-        //    {
-        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-        //    }
-
-            
-        //    if (horizontalInput != 0)
-        //    {
-        //        movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
-        //    }
-        //}
-
         transform.Translate(movement);
 
-        
-        
-
-        
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && Time.time >= lastJumpTime + jumpCooldown)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false; 
+            lastJumpTime = Time.time;
         }
     }
 
-    void FixedUpdate()
+    private bool IsGrounded()
     {
-        if (isBlocked)
-        {
-
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        }
+        return Physics.Raycast(transform.position, Vector3.down, distanceToGround + 0.1f);
     }
 
-    void OnCollisionStay(Collision collision)
-    {
-        
-        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Tile"))
-        {
-            isGrounded = true;
-        }
-
-        if (collision.gameObject.CompareTag("Untagged"))
-        {
-            isBlocked = true;
-        }
-    }
-    
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Untagged"))
-        {
-            isBlocked = false;
-        }
-
-        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Box") || collision.gameObject.CompareTag("Tile"))
-        {
-            isGrounded = false;
-        }
-    }
-
-    
     public void ToggleArrow(bool showArrow)
     {
         if (arrowInstance != null)
