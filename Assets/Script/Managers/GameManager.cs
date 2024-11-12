@@ -41,8 +41,8 @@ public class GameManager : MonoBehaviour
         levelManager.OnCompleteLevel();
         levelResetManager.UnregisterCurrentLevelObjects();
         levelManager.OnDestroyLevel();
-        levelManager.LevelUp();
-        if (!levelManager.levelSceneNameMap.ContainsKey(levelManager.GetLevel()))
+
+        if (!levelManager.LevelUp())
         {
             return false;
         }

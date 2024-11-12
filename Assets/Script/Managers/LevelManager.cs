@@ -63,14 +63,15 @@ public class LevelManager : MonoBehaviour
         FindObjectOfType<LevelResetManager>().ResetCurrentLevelObjects();
     }
 
-    public void LevelUp()
+    public bool LevelUp()
     {
         if (!levelNameMap.ContainsKey(currentLevel + 1))
         {
-            return;
+            return false;
         }
         currentLevel += 1;
         Debug.Log("currentLevel is " + currentLevel);
+        return true;
     }
 
     public void OnStartLevel()
