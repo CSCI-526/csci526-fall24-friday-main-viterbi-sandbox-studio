@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 11f;
     public float distanceToGround = 2.0f;
     public bool isRectangular = true;
-    private float jumpCooldown = 0.6f;  // 0.5 second cooldown
-    private float lastJumpTime;
     private Rigidbody rb;           
 
     public GameObject arrowPrefab;   
@@ -25,8 +23,14 @@ public class PlayerController : MonoBehaviour
         arrowInstance = Instantiate(arrowPrefab, transform.position + Vector3.up * 3, Quaternion.identity);
         arrowInstance.transform.SetParent(transform);  
         arrowInstance.SetActive(true);
+    }
 
-        lastJumpTime = -jumpCooldown;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     void FixedUpdate()
@@ -39,12 +43,6 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
 
         transform.Translate(movement);
-
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && Time.time >= lastJumpTime + jumpCooldown)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            lastJumpTime = Time.time;
-        }
     }
 
     private bool IsGrounded()

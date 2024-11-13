@@ -131,7 +131,7 @@ MonoBehaviour:
   rotationSpeed: 10
   speed: 7
   jumpForce: 11
-  distanceToGround: 1.5
+  distanceToGround: 0
   isRectangular: 0
   arrowPrefab: {fileID: 1949486348391650267, guid: 47744e389916c4807ab2aaa19b2c5b53, type: 3}
 --- !u!135 &132293501200209854
