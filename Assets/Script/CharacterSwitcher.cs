@@ -11,7 +11,7 @@ public class CharacterSwitcher : MonoBehaviour
     private GameObject activePlayer;
     private bool isControllingBoth = false;
 
-    private CharacterSwitchTracker characterSwitchTracker;
+    private LevelCompleteTracker levelCompleteTracker;
     private CameraController cameraController;
 
     void Start()
@@ -25,7 +25,7 @@ public class CharacterSwitcher : MonoBehaviour
             ActivatePlayer(player1, null);  // Only player1 exists
         }
 
-        characterSwitchTracker = FindObjectOfType<CharacterSwitchTracker>();
+        levelCompleteTracker = FindObjectOfType<LevelCompleteTracker>();
         cameraController = FindObjectOfType<CameraController>();
     }
 
@@ -43,9 +43,9 @@ public class CharacterSwitcher : MonoBehaviour
             }
             cameraController.SwitchCameraPivot(); 
 
-            if (characterSwitchTracker != null)
+            if (levelCompleteTracker != null)
             {
-                characterSwitchTracker.RecordPlayerSwitch();
+                levelCompleteTracker.RecordPlayerSwitch();
             }
         }
 
