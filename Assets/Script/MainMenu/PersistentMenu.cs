@@ -9,7 +9,9 @@ public class PersistentMenu : MonoBehaviour
     public GameObject LevelPanel;
     public GameObject winContext;
     public GameObject MainText;
+    public GameObject menuButton;
 
+    public bool inTransit = false;
 
     private void Awake()
     {
@@ -23,7 +25,6 @@ public class PersistentMenu : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject); // Make this canvas persistent
 
-        // Subscribe to scene loaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -47,7 +48,7 @@ public class PersistentMenu : MonoBehaviour
         MainText.SetActive(false);
     }
 
-    public void noShowWinContext()
+    public void HideWinContext()
     {
         winContext.SetActive(false);
         MainText.SetActive(true);
@@ -55,7 +56,15 @@ public class PersistentMenu : MonoBehaviour
 
     public void ShowMainMenu()
     {
+        menuButton.SetActive(false);
         LevelPanel.SetActive(false);
         mainPanel.SetActive(true);
+    }
+
+    public void WinTransit()
+    {
+        showWinContext();
+        ShowMainMenu();
+        inTransit = true;
     }
 }

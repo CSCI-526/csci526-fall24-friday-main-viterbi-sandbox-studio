@@ -1219,7 +1219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &644522723
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2828,7 +2828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8627451}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3799,6 +3799,8 @@ MonoBehaviour:
   LevelPanel: {fileID: 1877791148}
   winContext: {fileID: 1593594964}
   MainText: {fileID: 1471275193}
+  menuButton: {fileID: 644522722}
+  inTransit: 0
 --- !u!114 &2104350040
 MonoBehaviour:
   m_ObjectHideFlags: 0

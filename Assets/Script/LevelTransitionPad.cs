@@ -66,13 +66,7 @@ public class PadTrigger : MonoBehaviour
             if ((playerName == "Player1" && player1OnPad) || (playerName == "Player2" && player2OnPad))
             {
                 Debug.Log("Single player is on their pad. Transitioning to the next scene.");
-                bool hasTransitioned = gameManager.AdvanceToNextLevel();
-                if (!hasTransitioned)
-                {
-                    return;
-                }
-                PersistentMenu.instance.showWinContext();
-                PersistentMenu.instance.ShowMainMenu();
+                PersistentMenu.instance.WinTransit();
             }
         }
         else
@@ -81,13 +75,7 @@ public class PadTrigger : MonoBehaviour
             if (player1OnPad && player2OnPad)
             {
                 Debug.Log("Both players are on their respective pads. Transitioning to the next scene.");
-                bool hasTransitioned = gameManager.AdvanceToNextLevel();
-                if (!hasTransitioned)
-                {
-                    return;
-                }
-                PersistentMenu.instance.showWinContext();
-                PersistentMenu.instance.ShowMainMenu();
+                PersistentMenu.instance.WinTransit();
             }
         }
     }

@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !PersistentMenu.instance.inTransit)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -35,14 +35,17 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        RotatePlayerToCameraDirection();
+        if (!PersistentMenu.instance.inTransit)
+        {        
+            RotatePlayerToCameraDirection();
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
+            Vector3 movement = new Vector3(verticalInput, 0, -horizontalInput) * speed * Time.deltaTime;
 
-        transform.Translate(movement);
+            transform.Translate(movement);
+        }
     }
 
     private bool IsGrounded()

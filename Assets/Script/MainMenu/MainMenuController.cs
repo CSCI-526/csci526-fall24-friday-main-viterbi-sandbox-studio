@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    // Function to start the game by loading the first level
     public Button startGameButton;
     public Button menuButton;
     public Button continueButton;
@@ -30,10 +29,10 @@ public class MainMenuController : MonoBehaviour
         menuButton.onClick.AddListener(ShowMainMenu);
         continueButton.onClick.AddListener(ContinueGame);
         levelButton.onClick.AddListener(ShowLevelMenu);
-        l1Button.onClick.AddListener(() => LoadTutorialLevel(1));
-        l2Button.onClick.AddListener(() => LoadTutorialLevel(2));
-        l3Button.onClick.AddListener(() => LoadTutorialLevel(3));
-        l4Button.onClick.AddListener(LoadLevel1);
+        l1Button.onClick.AddListener(() => LoadLevel(1));
+        l2Button.onClick.AddListener(() => LoadLevel(2));
+        l3Button.onClick.AddListener(() => LoadLevel(3));
+        l4Button.onClick.AddListener(() => LoadLevel(4));
         backButton.onClick.AddListener(ShowMainMenu);
 
         gameManager = FindObjectOfType<GameManager>();
@@ -41,6 +40,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
+        PersistentMenu.instance.inTransit = false;
         int levelNumber = 1;
         bool result = gameManager.StartLevel(levelNumber);
         if (!result)
@@ -59,16 +59,25 @@ public class MainMenuController : MonoBehaviour
         restartButton.gameObject.SetActive(true);
     }
 
-    public void ShowMainMenu()
+    private void ShowMainMenu()
     {
-        LevelPanel.SetActive(false);
-        mainPanel.SetActive(true);
+        PersistentMenu.instance.ShowMainMenu();
     }
 
     public void ContinueGame()
     {
-        mainPanel.SetActive(false);
-        PersistentMenu.instance.noShowWinContext();
+        if (PersistentMenu.instance.inTransit)
+        {
+            bool hasTransitioned = gameManager.AdvanceToNextLevel();
+            PersistentMenu.instance.inTransit = false;
+            if (!hasTransitioned)
+            {
+                // TODO: Show Win Game
+                return;
+            }
+        }
+        InactiveMenu();
+        PersistentMenu.instance.HideWinContext();
     }
 
     public void ShowLevelMenu()
@@ -79,13 +88,13 @@ public class MainMenuController : MonoBehaviour
 
     public void InactiveMenu()
     {
+        menuButton.gameObject.SetActive(true);
         mainPanel.SetActive(false);
         LevelPanel.SetActive(false);
     }
 
-    public void LoadTutorialLevel(int levelNumber)
+    public void LoadLevel(int levelNumber)
     {
-        // Load tutorial levels based on the selected number (1, 2, or 3)
         bool result = gameManager.StartLevel(levelNumber);
         if (!result)
         {
@@ -94,21 +103,8 @@ public class MainMenuController : MonoBehaviour
         }
         InactiveMenu();
         ChangeButtonPattern();
-        PersistentMenu.instance.noShowWinContext();
-    }
-
-    public void LoadLevel1()
-    {
-        int levelNumber = 4;
-        bool result = gameManager.StartLevel(levelNumber);
-        if (!result)
-        {
-            Debug.LogError("Invalid level number");
-            return;
-        }
-        InactiveMenu();
-        ChangeButtonPattern();
-        PersistentMenu.instance.noShowWinContext();
+        PersistentMenu.instance.HideWinContext();
+        PersistentMenu.instance.inTransit = false;
     }
 
 }
