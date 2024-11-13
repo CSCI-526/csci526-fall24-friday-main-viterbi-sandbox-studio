@@ -25,7 +25,10 @@ public class CharacterSwitcher : MonoBehaviour
             ActivatePlayer(player1, null);  // Only player1 exists
         }
         LevelManager levelManager = FindObjectOfType<LevelManager>();
-        levelCompleteTracker = levelManager.GetCurrentLevelCompleteTracker();
+        if (levelManager != null)
+        {
+            levelCompleteTracker = levelManager.GetCurrentLevelCompleteTracker();
+        }
         cameraController = FindObjectOfType<CameraController>();
     }
 
