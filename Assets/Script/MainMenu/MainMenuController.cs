@@ -18,6 +18,8 @@ public class MainMenuController : MonoBehaviour
     public Button l2Button;
     public Button l3Button;
     public Button l4Button;
+    public Button l5Button;
+    public Button l6Button;
     public Button backButton;
 
     private GameManager gameManager;
@@ -33,6 +35,8 @@ public class MainMenuController : MonoBehaviour
         l2Button.onClick.AddListener(() => LoadLevel(2));
         l3Button.onClick.AddListener(() => LoadLevel(3));
         l4Button.onClick.AddListener(() => LoadLevel(4));
+        l5Button.onClick.AddListener(() => LoadLevel(5));
+        l6Button.onClick.AddListener(() => LoadLevel(6));
         backButton.onClick.AddListener(ShowMainMenu);
 
         gameManager = FindObjectOfType<GameManager>();
@@ -72,11 +76,20 @@ public class MainMenuController : MonoBehaviour
             PersistentMenu.instance.inTransit = false;
             if (!hasTransitioned)
             {
-                // TODO: Show Win Game
+                WinGame();
                 return;
             }
         }
         InactiveMenu();
+    }
+
+    private void WinGame()
+    {
+        SceneManager.LoadScene("MainMenuScene");
+        PersistentMenu.instance.ShowWinEnd();
+        startGameButton.gameObject.SetActive(true);
+        continueButton.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
     }
 
     private void ShowLevelMenu()
@@ -88,6 +101,9 @@ public class MainMenuController : MonoBehaviour
     private void InactiveMenu()
     {
         PersistentMenu.instance.HideMainMenu();
+        startGameButton.gameObject.SetActive(true);
+        continueButton.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
     }
 
     public void LoadLevel(int levelNumber)
