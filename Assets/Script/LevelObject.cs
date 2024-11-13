@@ -24,6 +24,10 @@ public class LevelObject : MonoBehaviour, IResettable
     private void Start()
     {
         SaveInitialState();
-        FindObjectOfType<LevelResetManager>().RegisterObject(this);
+        LevelResetManager levelResetManager = FindObjectOfType<LevelResetManager>();
+        if (levelResetManager != null)
+        {
+            levelResetManager.RegisterObject(this);
+        }
     }
 }
