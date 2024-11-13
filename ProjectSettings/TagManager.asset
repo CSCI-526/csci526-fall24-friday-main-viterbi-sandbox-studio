@@ -13,6 +13,7 @@ TagManager:
   - CheckPoint
   - Player1
   - Player2
+  - LiftTrigger
   layers:
   - Default
   - TransparentFX
