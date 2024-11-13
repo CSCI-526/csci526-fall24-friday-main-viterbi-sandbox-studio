@@ -12,8 +12,8 @@ public class LevelManager : MonoBehaviour
         { 2, "Tutorial 2" },
         { 3, "Tutorial 3" },
         { 4, "Level 1" },
-        //{ 5, "Tutorial 4" },
-        //{ 6, "Level 2" }
+        { 5, "Tutorial 4" },
+        { 6, "Level 2" }
     };
     public Dictionary<int, string> levelSceneNameMap = new Dictionary<int, string>
     {
@@ -21,8 +21,8 @@ public class LevelManager : MonoBehaviour
         { 2, "tutoriallevel2" },
         { 3, "tutoriallevel3" },
         { 4, "level1" },
-        //{ 5, "tutoriallevel4" },
-        //{ 6, "level2" }
+        { 5, "tutoriallevel4" },
+        { 6, "level2" }
     };
 
     // Start is called before the first frame update
