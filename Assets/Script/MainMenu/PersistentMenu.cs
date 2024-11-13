@@ -12,7 +12,7 @@ public class PersistentMenu : MonoBehaviour
     public GameObject menuButton;
 
     public bool inTransit = false;
-    public bool disableInput = false;
+    public bool menuOpened = false; // disable input
 
     private void Awake()
     {
@@ -27,6 +27,24 @@ public class PersistentMenu : MonoBehaviour
         DontDestroyOnLoad(gameObject); // Make this canvas persistent
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void Update()
+    {
+        if (inTransit) return;
+
+        // ESC open menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (mainPanel.activeSelf)
+            {
+                HideMainMenu();
+            }
+            else
+            {
+                ShowMainMenu();
+            }
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -64,6 +82,7 @@ public class PersistentMenu : MonoBehaviour
 
     public void HideMainMenu()
     {
+        HideWinContext();
         menuButton.SetActive(true);
         mainPanel.SetActive(false);
         LevelPanel.SetActive(false);

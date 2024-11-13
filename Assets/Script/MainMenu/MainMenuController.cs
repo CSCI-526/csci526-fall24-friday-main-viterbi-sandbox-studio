@@ -77,7 +77,6 @@ public class MainMenuController : MonoBehaviour
             }
         }
         InactiveMenu();
-        PersistentMenu.instance.HideWinContext();
     }
 
     private void ShowLevelMenu()
@@ -101,7 +100,6 @@ public class MainMenuController : MonoBehaviour
         }
         InactiveMenu();
         ChangeButtonPattern();
-        PersistentMenu.instance.HideWinContext();
         PersistentMenu.instance.inTransit = false;
     }
 
