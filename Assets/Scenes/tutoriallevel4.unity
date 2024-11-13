@@ -489,6 +489,10 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7119833764073023857, guid: ceeec515f67ccba4f9d5a01d34a27fd0, type: 3}
+      propertyPath: singlePlayerMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8820217585866523524, guid: ceeec515f67ccba4f9d5a01d34a27fd0, type: 3}
       propertyPath: m_Name
       value: Blue_Pad
