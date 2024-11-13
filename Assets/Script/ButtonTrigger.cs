@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ButtonTrigger : MonoBehaviour
 {
-    public LiftController elevatorController;
+    public ElevatorController elevatorController;
 
     private void OnTriggerEnter(Collider other)
     {
