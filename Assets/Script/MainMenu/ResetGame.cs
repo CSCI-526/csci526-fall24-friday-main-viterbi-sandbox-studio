@@ -23,5 +23,7 @@ public class ResetGame : MonoBehaviour
     {
         // Reload the current scene
         gameManager.ReloadScene();
+        PersistentMenu.instance.inTransit = false;
+        PersistentMenu.instance.HideMainMenu();
     }
 }

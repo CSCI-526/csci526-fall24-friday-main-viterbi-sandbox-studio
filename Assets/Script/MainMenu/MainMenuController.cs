@@ -38,7 +38,7 @@ public class MainMenuController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    public void StartGame()
+    private void StartGame()
     {
         PersistentMenu.instance.inTransit = false;
         int levelNumber = 1;
@@ -52,7 +52,7 @@ public class MainMenuController : MonoBehaviour
         ChangeButtonPattern();
     }
 
-    public void ChangeButtonPattern()
+    private void ChangeButtonPattern()
     {
         startGameButton.gameObject.SetActive(false);
         continueButton.gameObject.SetActive(true);
@@ -64,7 +64,7 @@ public class MainMenuController : MonoBehaviour
         PersistentMenu.instance.ShowMainMenu();
     }
 
-    public void ContinueGame()
+    private void ContinueGame()
     {
         if (PersistentMenu.instance.inTransit)
         {
@@ -80,17 +80,15 @@ public class MainMenuController : MonoBehaviour
         PersistentMenu.instance.HideWinContext();
     }
 
-    public void ShowLevelMenu()
+    private void ShowLevelMenu()
     {
         mainPanel.SetActive(false);
         LevelPanel.SetActive(true);
     }
 
-    public void InactiveMenu()
+    private void InactiveMenu()
     {
-        menuButton.gameObject.SetActive(true);
-        mainPanel.SetActive(false);
-        LevelPanel.SetActive(false);
+        PersistentMenu.instance.HideMainMenu();
     }
 
     public void LoadLevel(int levelNumber)

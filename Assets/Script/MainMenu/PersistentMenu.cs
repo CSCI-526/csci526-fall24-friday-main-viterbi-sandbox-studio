@@ -61,6 +61,13 @@ public class PersistentMenu : MonoBehaviour
         mainPanel.SetActive(true);
     }
 
+    public void HideMainMenu()
+    {
+        menuButton.SetActive(true);
+        mainPanel.SetActive(false);
+        LevelPanel.SetActive(false);
+    }
+
     public void WinTransit()
     {
         showWinContext();
