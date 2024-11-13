@@ -13,7 +13,7 @@ public class PushByColorBlue : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
+        rb.isKinematic = false;
 
     }
 
@@ -58,7 +58,7 @@ public class PushByColorBlue : MonoBehaviour
         else if (player1Count == 0 && otherPlayerCount == 0)
         {
             rb.isKinematic = false;
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
         }
         else
         {
