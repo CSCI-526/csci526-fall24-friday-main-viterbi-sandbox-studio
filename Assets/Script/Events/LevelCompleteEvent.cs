@@ -7,6 +7,11 @@ public class LevelCompleteEvent : Event
     {
     }
 
+    public int RestartLevelCounts
+    {
+        set { SetParameter("restartLevelCounts", value); }
+    }
+
     public int CharacterSwitchCounts
     {
         set { SetParameter("characterSwitchCounts", value); }

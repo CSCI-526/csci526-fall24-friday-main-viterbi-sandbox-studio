@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private int currentLevel;
-    private Dictionary<int, List<IEventTracker>> levelEventTrackerMap = new Dictionary<int, List<IEventTracker>>();
+    private Dictionary<int, LevelCompleteTracker> levelCompleteTrackerMap = new Dictionary<int, LevelCompleteTracker>();
     private Dictionary<int, string> levelNameMap = new Dictionary<int, string>
     {
         { 1, "Tutorial 1" },
@@ -52,12 +52,17 @@ public class LevelManager : MonoBehaviour
         return levelSceneNameMap[currentLevel];
     }
 
+    public LevelCompleteTracker GetCurrentLevelCompleteTracker()
+    {
+        return levelCompleteTrackerMap[currentLevel];
+    }
+
     public void SetLevel(int newLevel)
     {
         currentLevel = newLevel;
     }
 
-    public void RestartLevel()
+    public void ResetPlayerAndObjects()
     {
         FindObjectOfType<PlayerRespawn>().Respawn();
         FindObjectOfType<LevelResetManager>().ResetCurrentLevelObjects();
@@ -81,25 +86,30 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        if (!levelEventTrackerMap.ContainsKey(currentLevel))
+        if (!levelCompleteTrackerMap.ContainsKey(currentLevel))
         {
             IEventTracker levelStartTracker = gameObject.AddComponent<LevelStartTracker>();
             levelStartTracker.Initialize(currentLevel);
             levelStartTracker.SendEvent();
 
-            levelEventTrackerMap[currentLevel] = new List<IEventTracker>();
-            IEventTracker levelCompleteTracker = gameObject.AddComponent<LevelCompleteTracker>();
+            LevelCompleteTracker levelCompleteTracker = gameObject.AddComponent<LevelCompleteTracker>();
+            levelCompleteTrackerMap.Add(currentLevel, levelCompleteTracker);
             levelCompleteTracker.Initialize(currentLevel);
-            levelEventTrackerMap[currentLevel].Add(levelCompleteTracker);
         }
         else
         {
-            foreach (IEventTracker eventTracker in levelEventTrackerMap[currentLevel])
-            {
-                eventTracker.ResetTracker();
-            }
+            OnRestartLevel();
         }
 
+    }
+
+    public void OnRestartLevel()
+    {
+        if (currentLevel == -1)
+        {
+            return;
+        }
+        levelCompleteTrackerMap[currentLevel].ResetTracker();
     }
 
     public void OnCompleteLevel()
@@ -108,10 +118,7 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
-        foreach (IEventTracker eventTracker in levelEventTrackerMap[currentLevel])
-        {
-            eventTracker.SendEvent();
-        }
+        levelCompleteTrackerMap[currentLevel].SendEvent();
     }
 
     public void OnDestroyLevel()
@@ -120,9 +127,6 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
-        foreach (IEventTracker eventTracker in levelEventTrackerMap[currentLevel])
-        {
-            eventTracker.ResetTracker();
-        }
+        levelCompleteTrackerMap[currentLevel].InitializeParams();
     }
 }

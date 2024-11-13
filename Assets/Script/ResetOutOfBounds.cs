@@ -20,11 +20,11 @@ public class ResetOutOfBounds : MonoBehaviour
     {
         if (player1 != null && IsPlayerOutOfBound(player1))
         {
-            levelManager.RestartLevel();
+            levelManager.ResetPlayerAndObjects();
         }
         else if (player2 != null && IsPlayerOutOfBound(player2))
         {
-            levelManager.RestartLevel();
+            levelManager.ResetPlayerAndObjects();
         }
     }
 

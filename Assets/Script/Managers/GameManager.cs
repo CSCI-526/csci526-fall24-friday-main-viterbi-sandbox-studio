@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         levelManager.OnDestroyLevel();
         levelResetManager.UnregisterCurrentLevelObjects();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        levelManager.OnStartLevel();
+        levelManager.OnRestartLevel();
     }
 
     public bool StartLevel(int level)
