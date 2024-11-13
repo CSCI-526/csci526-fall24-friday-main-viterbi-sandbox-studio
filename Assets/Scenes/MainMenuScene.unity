@@ -2206,8 +2206,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293470722
-  m_fontColor: {r: 0.008603156, g: 0.16454168, b: 0.91194963, a: 1}
+    rgba: 4279239401
+  m_fontColor: {r: 0.9137255, g: 0.0078431135, b: 0.06343832, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4447,6 +4447,7 @@ MonoBehaviour:
   winContext: {fileID: 1593594964}
   MainText: {fileID: 1471275193}
   menuButton: {fileID: 644522722}
+  winEndGame: {fileID: 1278997325}
   inTransit: 0
   menuOpened: 0
 --- !u!114 &2104350040
