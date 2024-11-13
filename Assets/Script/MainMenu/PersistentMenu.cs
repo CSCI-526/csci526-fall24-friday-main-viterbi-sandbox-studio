@@ -12,6 +12,7 @@ public class PersistentMenu : MonoBehaviour
     public GameObject menuButton;
 
     public bool inTransit = false;
+    public bool disableInput = false;
 
     private void Awake()
     {
