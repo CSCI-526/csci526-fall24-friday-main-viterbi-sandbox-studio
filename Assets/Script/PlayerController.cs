@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 10f;
     public float speed = 7f;
     public float jumpForce = 11f;
-    public float distanceToGround = 1.8f;
+    public float distanceToGround = 2.0f;
     public bool isRectangular = true;
-    private float jumpCooldown = 0.5f;  // 0.5 second cooldown
+    private float jumpCooldown = 0.6f;  // 0.5 second cooldown
     private float lastJumpTime;
     private Rigidbody rb;           
 
