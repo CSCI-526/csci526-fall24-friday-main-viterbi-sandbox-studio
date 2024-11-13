@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Services.Analytics;
 using UnityEngine;
+using Unity.Services.Analytics;
 
-public class LiftPlaformTutorialMechanicTracker : MonoBehaviour
+public abstract class TutorialTracker : MonoBehaviour
 {
-    private float startTime;
+    // Protected fields so they can be accessed by subclasses
+    protected float startTime;
+    protected string mechanicName;
 
-    void StartTracking()
+    public void StartTracking()
     {
         startTime = Time.time;
     }
 
-    void SendEvent()
+    public void SendEvent()
     {
         float timeSpent = Time.time - startTime;
-        string mechanicName = "Platform Lift";
         TimeSpentOnLearningMechanicsEvent timeSpentOnLearningMechanicsEvent = new TimeSpentOnLearningMechanicsEvent
         {
             TimeSpent = timeSpent,

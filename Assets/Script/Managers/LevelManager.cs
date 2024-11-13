@@ -80,15 +80,17 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
+
         if (!levelEventTrackerMap.ContainsKey(currentLevel))
         {
+            IEventTracker levelStartTracker = gameObject.AddComponent<LevelStartTracker>();
+            levelStartTracker.Initialize(currentLevel);
+            levelStartTracker.SendEvent();
+
             levelEventTrackerMap[currentLevel] = new List<IEventTracker>();
-            IEventTracker levelPassingTimeTracker = gameObject.AddComponent<LevelPassingTimeTracker>();
-            levelPassingTimeTracker.Initialize(currentLevel);
-            levelEventTrackerMap[currentLevel].Add(levelPassingTimeTracker);
-            IEventTracker characterSwitchTracker = gameObject.AddComponent<CharacterSwitchTracker>();
-            characterSwitchTracker.Initialize(currentLevel);
-            levelEventTrackerMap[currentLevel].Add(characterSwitchTracker);
+            IEventTracker levelCompleteTracker = gameObject.AddComponent<LevelCompleteTracker>();
+            levelCompleteTracker.Initialize(currentLevel);
+            levelEventTrackerMap[currentLevel].Add(levelCompleteTracker);
         }
         else
         {
@@ -106,10 +108,9 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
-        EventManager eventManager = EventManager.Instance;
         foreach (IEventTracker eventTracker in levelEventTrackerMap[currentLevel])
         {
-            eventManager.SendEvent(eventTracker.GetTrackerId());
+            eventTracker.SendEvent();
         }
     }
 
