@@ -239,8 +239,9 @@ GameObject:
   - component: {fileID: 30505753}
   - component: {fileID: 30505752}
   - component: {fileID: 30505751}
+  - component: {fileID: 30505755}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +266,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -328,12 +329,25 @@ Transform:
   m_GameObject: {fileID: 30505750}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.23, y: 0.32, z: 10.94}
+  m_LocalPosition: {x: 58.23, y: 0.28, z: 10.94}
   m_LocalScale: {x: 1.8574, y: 0.07076214, z: 1.8574}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &30505755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30505750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78664499d106e37458efbf3ece0cfd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elevatorController: {fileID: 1428213549}
 --- !u!1 &128110371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,8 +2308,9 @@ GameObject:
   - component: {fileID: 1428213547}
   - component: {fileID: 1428213546}
   - component: {fileID: 1428213545}
+  - component: {fileID: 1428213549}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2387,6 +2402,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1428213549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428213544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afee5ff2e9fbc904787732d9ef55b60d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  lowerHeight: 1
+  upperHeight: 10
 --- !u!1 &1650822509
 GameObject:
   m_ObjectHideFlags: 0
