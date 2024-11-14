@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !PersistentMenu.instance.inTransit)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !PersistentMenu.instance.IsInTransitOrMenuOpened())
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PersistentMenu.instance.inTransit)
+        if (!PersistentMenu.instance.IsInTransitOrMenuOpened())
         {        
             RotatePlayerToCameraDirection();
 
