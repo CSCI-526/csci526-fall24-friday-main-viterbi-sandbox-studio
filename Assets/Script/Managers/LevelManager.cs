@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private int currentLevel;
+    private Dictionary<int, LevelStartTracker> levelStartTrackerMap = new Dictionary<int, LevelStartTracker>();
     private Dictionary<int, LevelCompleteTracker> levelCompleteTrackerMap = new Dictionary<int, LevelCompleteTracker>();
     private Dictionary<int, string> levelNameMap = new Dictionary<int, string>
     {
@@ -88,7 +89,8 @@ public class LevelManager : MonoBehaviour
 
         if (!levelCompleteTrackerMap.ContainsKey(currentLevel))
         {
-            IEventTracker levelStartTracker = gameObject.AddComponent<LevelStartTracker>();
+            LevelStartTracker levelStartTracker = gameObject.AddComponent<LevelStartTracker>();
+            levelStartTrackerMap.Add(currentLevel, levelStartTracker);
             levelStartTracker.Initialize(currentLevel);
             levelStartTracker.SendEvent();
 
@@ -109,6 +111,7 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
+        levelStartTrackerMap[currentLevel].SendEvent();
         levelCompleteTrackerMap[currentLevel].ResetTracker();
     }
 

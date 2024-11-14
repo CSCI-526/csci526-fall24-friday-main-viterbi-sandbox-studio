@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
 
     public bool AdvanceToNextLevel()
     {
-        levelManager.OnCompleteLevel();
         levelResetManager.UnregisterCurrentLevelObjects();
         levelManager.OnDestroyLevel();
 
