@@ -86,7 +86,6 @@ public class MainMenuController : MonoBehaviour
     private void WinGame()
     {
         SceneManager.LoadScene("MainMenuScene");
-        PersistentMenu.instance.ShowWinEnd();
         startGameButton.gameObject.SetActive(true);
         continueButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
@@ -101,9 +100,6 @@ public class MainMenuController : MonoBehaviour
     private void InactiveMenu()
     {
         PersistentMenu.instance.HideMainMenu();
-        startGameButton.gameObject.SetActive(true);
-        continueButton.gameObject.SetActive(false);
-        restartButton.gameObject.SetActive(false);
     }
 
     public void LoadLevel(int levelNumber)
