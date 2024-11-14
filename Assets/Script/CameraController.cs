@@ -39,6 +39,10 @@ public class CameraController : MonoBehaviour
 
     void RotateCamera()
     {
+        if (PersistentMenu.instance.IsInTransitOrMenuOpened())
+        {
+            return;
+        }
         cam.transform.position = currentPivot.position;
         // Capture the mouse position on the first frame
         if (previousPosition == Vector3.zero)

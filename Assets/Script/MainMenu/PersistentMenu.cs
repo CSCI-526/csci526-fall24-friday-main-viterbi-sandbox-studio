@@ -111,4 +111,9 @@ public class PersistentMenu : MonoBehaviour
         ShowMainMenu();
         inTransit = true;
     }
+
+    public bool IsInTransitOrMenuOpened()
+    {
+        return inTransit || menuOpened;
+    }
 }
