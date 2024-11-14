@@ -26,19 +26,19 @@ public class PadTrigger : MonoBehaviour
     {
         if (other.gameObject.name == playerName)
         {
-            if (playerName == "Player1")
+            if (playerName == "Player1" && !player1OnPad)
             {
                 player1OnPad = true;
                 Debug.Log("Player 1 is on their pad.");
+                CheckTransitionCondition();
             }
-            else if (playerName == "Player2")
+            else if (playerName == "Player2" && !player2OnPad)
             {
                 player2OnPad = true;
                 Debug.Log("Player 2 is on their pad.");
+                CheckTransitionCondition();
             }
         }
-
-        CheckTransitionCondition();
     }
 
     private void OnTriggerExit(Collider other)
