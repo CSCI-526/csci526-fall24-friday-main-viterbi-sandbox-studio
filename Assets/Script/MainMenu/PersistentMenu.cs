@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PersistentMenu : MonoBehaviour
 {
@@ -11,13 +12,17 @@ public class PersistentMenu : MonoBehaviour
     public GameObject MainText;
     public GameObject menuButton;
     public GameObject winEndGame;
+    public TMP_Text levelTitle;
 
     public bool inTransit = false;
     public bool menuOpened = false; // disable input
 
+    private LevelManager levelManager;
+
     private void Awake()
     {
         // Ensure only one instance of the canvas exists across scenes
+        levelManager = FindObjectOfType<LevelManager>();
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -52,7 +57,13 @@ public class PersistentMenu : MonoBehaviour
     {
         if (scene.name == "MainMenuScene")
         {
+            levelTitle.gameObject.SetActive(false);
             ShowMainMenu();
+        }
+        else
+        {   
+            levelTitle.text = levelManager.GetCurrentLevelName();
+            levelTitle.gameObject.SetActive(true);
         }
     }
 
@@ -99,8 +110,7 @@ public class PersistentMenu : MonoBehaviour
 
     public void WinTransit()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName == "level2")
+        if (levelManager.GetLevel() == 6)
         {
             ShowWinEnd();
         }
