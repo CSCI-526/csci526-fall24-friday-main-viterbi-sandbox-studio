@@ -36,6 +36,6 @@ public class AnalyticsManager : MonoBehaviour
     private bool PlayerHasConsented()
     {
         // Replace this with actual logic to check if the player has given consent
-        return true;  // For now, assume consent is given
+        return false;  // For now, assume consent is given
     }
 }
