@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
 
     private Transform currentPivot;
     private Vector3 initialOffset = new Vector3(0, 1, -7);
+    public float sensitivity = 270f;
     private int minVerticalAngle = -20;
     private int maxVerticalAngle = 60;
     private Vector3 previousPosition;
@@ -53,8 +54,8 @@ public class CameraController : MonoBehaviour
         Vector3 direction = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
 
 
-        cam.transform.Rotate(new Vector3(1, 0, 0), direction.y * 180);
-        cam.transform.Rotate(new Vector3(0, 1, 0), -direction.x * 180, Space.World);
+        cam.transform.Rotate(new Vector3(1, 0, 0), direction.y * sensitivity);
+        cam.transform.Rotate(new Vector3(0, 1, 0), -direction.x * sensitivity, Space.World);
 
         ClampVerticalRotation();
 

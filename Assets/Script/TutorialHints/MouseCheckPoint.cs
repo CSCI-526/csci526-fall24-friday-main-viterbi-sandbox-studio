@@ -15,8 +15,14 @@ public class MouseCheckPoint : MonoBehaviour
     private bool hasTriggered;
     private bool hasMovedMouse;
 
+    private CameraRotationTutorialTracker cameraRotationTutorialTracker;
+    private PlayerMoveTutorialTracker playerMoveTutorialTracker;
+
     private void Start()
     {
+        cameraRotationTutorialTracker = FindObjectOfType<CameraRotationTutorialTracker>();
+        playerMoveTutorialTracker = FindObjectOfType<PlayerMoveTutorialTracker>();
+
         firstCheckpointImage.gameObject.SetActive(false);
         checkpointImage.gameObject.SetActive(false);
         lastpointImage.gameObject.SetActive(false);
@@ -38,6 +44,7 @@ public class MouseCheckPoint : MonoBehaviour
         {
             hasMovedMouse = true;
             ShowSecondCheckpointUI();
+            SendCameraRotationEvent();
 
             // Reset accumulated movement if needed for repeated detection
             accumulatedMovement = 0.0f;
@@ -75,5 +82,22 @@ public class MouseCheckPoint : MonoBehaviour
         checkpointImage.gameObject.SetActive(false);
 
         lastpointImage.gameObject.SetActive(true);
+        StartPlayerMoveEvent();
+    }
+
+    private void SendCameraRotationEvent()
+    {
+        if (cameraRotationTutorialTracker != null)
+        {
+            cameraRotationTutorialTracker.SendEvent();
+        }
+    }
+
+    private void StartPlayerMoveEvent()
+    {
+        if (playerMoveTutorialTracker != null)
+        {
+            playerMoveTutorialTracker.StartTracking();
+        }
     }
 }

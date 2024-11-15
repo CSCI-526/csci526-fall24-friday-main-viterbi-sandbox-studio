@@ -11,10 +11,11 @@ public class AnalyticsManager : MonoBehaviour
         await InitializeServices();
 
         // Once initialized, check for player consent
-        if (PlayerHasConsented())
+        if (PlayerHasConsented() & !InDevelopment())
         {
             // Start data collection for Analytics if the player has consented
             AnalyticsService.Instance.StartDataCollection();
+            Debug.Log("Start Data Collection.");
         }
     }
 
@@ -36,6 +37,15 @@ public class AnalyticsManager : MonoBehaviour
     private bool PlayerHasConsented()
     {
         // Replace this with actual logic to check if the player has given consent
-        return false;  // For now, assume consent is given
+        return true;  // For now, assume consent is given
+    }
+
+    private bool InDevelopment()
+    {
+        #if UNITY_EDITOR
+        return true;
+        #else
+        return false;
+        #endif
     }
 }
