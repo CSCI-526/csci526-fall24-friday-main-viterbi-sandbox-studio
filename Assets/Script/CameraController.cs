@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     private float zoomSpeed = 10f;
 
     private float horizontalAngle = 90f;
-    private float verticalAngle = 0f;
+    private float verticalAngle = 15f;
 
 
     // Start is called before the first frame update
@@ -48,24 +48,21 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        // Get mouse input
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        // Update angles
         horizontalAngle += mouseX * sensitivity * Time.deltaTime;
-        verticalAngle -= mouseY * sensitivity * Time.deltaTime;
-        verticalAngle = Mathf.Clamp(verticalAngle, minVerticalAngle, maxVerticalAngle);
 
-        // Calculate rotation
+        // Update vertical angle only if it doesn't exceed limits
+        float newVerticalAngle = verticalAngle - mouseY * sensitivity * Time.deltaTime;
+        verticalAngle = Mathf.Clamp(newVerticalAngle, minVerticalAngle, maxVerticalAngle);
+
         Quaternion rotation = Quaternion.Euler(verticalAngle, horizontalAngle, 0);
 
-        // Update camera position
-        Vector3 direction = rotation * Vector3.forward;
-        cam.transform.position = currentPivot.position - direction * currentZoomDistance;
+        Vector3 offset = rotation * new Vector3(0, 0, -currentZoomDistance);
+        cam.transform.position = currentPivot.position + offset;
 
-        // Make the camera look at the pivot
-        cam.transform.LookAt(currentPivot.position);
+        cam.transform.rotation = rotation;
     }
 
     void ClampVerticalRotation()
