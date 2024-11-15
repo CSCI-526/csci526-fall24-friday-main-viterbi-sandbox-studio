@@ -40,7 +40,7 @@ public class PersistentMenu : MonoBehaviour
         if (inTransit) return;
 
         // ESC open menu
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             if (mainPanel.activeSelf)
             {

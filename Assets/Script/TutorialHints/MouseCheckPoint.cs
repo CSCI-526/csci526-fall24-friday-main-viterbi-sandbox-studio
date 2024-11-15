@@ -53,11 +53,21 @@ public class MouseCheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !hasTriggered)
+        if (other.gameObject.CompareTag("Player") && !hasTriggered)
         {
             hasTriggered = true;
             Debug.Log("Player entered mouse checkpoint");
             ShowCheckpointUI();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && !hasMovedMouse)
+        {
+            hasMovedMouse = true;
+            firstCheckpointImage.gameObject.SetActive(false);
+            StartCoroutine(ShowLastCehckpointUI());
         }
     }
 
@@ -78,7 +88,7 @@ public class MouseCheckPoint : MonoBehaviour
 
     private IEnumerator ShowLastCehckpointUI()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         checkpointImage.gameObject.SetActive(false);
 
         lastpointImage.gameObject.SetActive(true);
