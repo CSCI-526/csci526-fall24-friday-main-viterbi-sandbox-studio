@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResetOutOfBounds : MonoBehaviour
 {
-    public float yBoundary = -10f;
+    private float yBoundary = -20f;
     public GameObject player1;
     public GameObject player2; // optional
 

@@ -1,19 +1,49 @@
 using UnityEngine;
 
-public class EController : MonoBehaviour
+public class EController : MonoBehaviour, IResettable
 {
-    public float speed = 2f;         // 平台移动速度
-    public float lowerHeight = 0f;   // 平台的最低位置
-    public float upperHeight = 10f;  // 平台的最高位置
+    private Vector3 _initialPosition;
+    private Quaternion _initialRotation;
+    private bool _initialIsMoving;
+    private bool _initialMovingUp;
 
-    private bool isMoving = false;   // 控制平台是否移动
-    private bool movingUp = true;    // 控制平台的移动方向
+    public float speed = 3f;         
+    public float lowerHeight = -2f;   
+    public float upperHeight = 13f;  
 
-    // 开始平台的移动
+    private bool isMoving = false;   
+    private bool movingUp = true;
+
+    public void SaveInitialState()
+    {
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
+        _initialIsMoving = isMoving;
+        _initialMovingUp = movingUp;
+    }
+
+    public void ResetState()
+    {
+        transform.position = _initialPosition;
+        transform.rotation = _initialRotation;
+        isMoving = _initialIsMoving;
+        movingUp = _initialMovingUp;
+    }
+
     public void StartMovement()
     {
         isMoving = true;
         Debug.Log("Elevator movement started.");
+    }
+
+    private void Start()
+    {
+        SaveInitialState();
+        LevelResetManager levelResetManager = FindObjectOfType<LevelResetManager>();
+        if (levelResetManager != null)
+        {
+            levelResetManager.RegisterObject(this);
+        }
     }
 
     private void Update()

@@ -11,14 +11,12 @@ public class LevelObject : MonoBehaviour, IResettable
     {
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
-        // Save additional properties here (e.g., health, color)
     }
 
     public void ResetState()
     {
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;
-        // Reset other properties here
     }
 
     private void Start()
