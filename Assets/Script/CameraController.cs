@@ -42,6 +42,7 @@ public class CameraController : MonoBehaviour
     {
         if (PersistentMenu.instance.IsInTransitOrMenuOpened())
         {
+            previousPosition = Vector3.zero;
             return;
         }
         cam.transform.position = currentPivot.position;
