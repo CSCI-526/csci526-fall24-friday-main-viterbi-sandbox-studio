@@ -5,7 +5,7 @@ using System.Collections;
 
 public class MouseCheckPoint : MonoBehaviour
 {
-    public float movementThreshold = 10.0f; // Minimum distance required to trigger detection
+    private float movementThreshold = 30.0f; // Minimum distance required to trigger detection
     private float accumulatedMovement = 0.0f;
 
     public Image firstCheckpointImage;
@@ -32,6 +32,11 @@ public class MouseCheckPoint : MonoBehaviour
 
     private void Update()
     {
+        if (!hasTriggered)
+        {
+            return;
+        }
+
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
@@ -55,9 +60,8 @@ public class MouseCheckPoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !hasTriggered)
         {
-            hasTriggered = true;
             Debug.Log("Player entered mouse checkpoint");
-            ShowCheckpointUI();
+            StartCoroutine(ShowCheckpointUI());
         }
     }
 
@@ -71,8 +75,10 @@ public class MouseCheckPoint : MonoBehaviour
         }
     }
 
-    private void ShowCheckpointUI()
+    private IEnumerator ShowCheckpointUI()
     {
+        yield return new WaitForSeconds(1f);
+        hasTriggered = true;
         firstCheckpointImage.gameObject.SetActive(true);
     }
 

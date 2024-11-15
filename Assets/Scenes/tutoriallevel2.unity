@@ -521,9 +521,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1179363593187137780, guid: 288e12505f2f64ff396f73c94c37fc1d, type: 3}
       propertyPath: m_Text
-      value: 'Tip: Blue for blue box
-
-'
+      value: 'Tip: Blue for blue box'
       objectReference: {fileID: 0}
     - target: {fileID: 7776031875345257930, guid: 288e12505f2f64ff396f73c94c37fc1d, type: 3}
       propertyPath: m_Pivot.x
@@ -591,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7776031875345257930, guid: 288e12505f2f64ff396f73c94c37fc1d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7776031875345257930, guid: 288e12505f2f64ff396f73c94c37fc1d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -709,9 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5047749401324999153, guid: f1a55dd7152b34279b9155014ef6c8e4, type: 3}
       propertyPath: m_Text
-      value: 'Tip: Red for red box
-
-'
+      value: 'Tip: Red for red box'
       objectReference: {fileID: 0}
     - target: {fileID: 8318458702467172799, guid: f1a55dd7152b34279b9155014ef6c8e4, type: 3}
       propertyPath: m_Name
@@ -2452,7 +2448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4984319289000877095, guid: 25dab3eadcbd62642a744cc1dfdf4793, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4984319289000877095, guid: 25dab3eadcbd62642a744cc1dfdf4793, type: 3}
       propertyPath: m_LocalRotation.w

@@ -10,18 +10,17 @@ public class CameraController : MonoBehaviour
     public LayerMask wallLayerMask; // Layer mask to detect walls
 
     private Transform currentPivot;
-    private Vector3 initialOffset = new Vector3(0, 1, -7);
+    public Vector3 initialOffset = new Vector3(0, 0, 7);
     private float sensitivity = 800f;
     private int minVerticalAngle = -20;
     private int maxVerticalAngle = 60;
-    private Vector3 previousPosition;
 
     private float currentZoomDistance;
     private float maxZoomDistance;
     private float zoomSpeed = 10f;
 
     private float horizontalAngle = 90f;
-    private float verticalAngle = 15f;
+    private float verticalAngle = 45f;
 
 
     // Start is called before the first frame update
@@ -29,7 +28,6 @@ public class CameraController : MonoBehaviour
     {
         maxZoomDistance = initialOffset.magnitude;
         currentZoomDistance = maxZoomDistance;
-        previousPosition = Vector3.zero;
 
         currentPivot = cameraPivot1;
     }
@@ -63,19 +61,6 @@ public class CameraController : MonoBehaviour
         cam.transform.position = currentPivot.position + offset;
 
         cam.transform.rotation = rotation;
-    }
-
-    void ClampVerticalRotation()
-    {
-        Vector3 eulerAngles = cam.transform.eulerAngles;
-        eulerAngles.x = ClampAngle(eulerAngles.x, minVerticalAngle, maxVerticalAngle);
-        cam.transform.eulerAngles = eulerAngles;
-    }
-
-    float ClampAngle(float angle, float min, float max)
-    {
-        if (angle > 180) angle -= 360;
-        return Mathf.Clamp(angle, min, max);
     }
 
     void AdjustCameraZoom()
