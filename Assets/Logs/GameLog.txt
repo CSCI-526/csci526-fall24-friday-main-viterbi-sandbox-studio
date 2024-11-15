@@ -389,3 +389,6 @@ Switch 8: Character switched at 2024-11-06 19:50:06.992.
 Switch 9: Character switched at 2024-11-06 19:50:37.085.
 Switch 10: Character switched at 2024-11-06 19:50:42.066.
 Switch 11: Character switched at 2024-11-06 19:50:54.836.
+Switch 1: Character switched at 2024-11-08 01:37:16.572.
+Switch 2: Character switched at 2024-11-08 01:37:25.240.
+Switch 3: Character switched at 2024-11-08 01:37:26.253.
