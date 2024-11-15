@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     private Transform currentPivot;
     private Vector3 initialOffset = new Vector3(0, 1, -7);
-    public float sensitivity = 270f;
+    private float sensitivity = 800f;
     private int minVerticalAngle = -20;
     private int maxVerticalAngle = 60;
     private Vector3 previousPosition;
@@ -19,6 +19,9 @@ public class CameraController : MonoBehaviour
     private float currentZoomDistance;
     private float maxZoomDistance;
     private float zoomSpeed = 10f;
+
+    private float horizontalAngle = 90f;
+    private float verticalAngle = 0f;
 
 
     // Start is called before the first frame update
@@ -42,26 +45,27 @@ public class CameraController : MonoBehaviour
     {
         if (PersistentMenu.instance.IsInTransitOrMenuOpened())
         {
-            previousPosition = Vector3.zero;
             return;
         }
-        cam.transform.position = currentPivot.position;
-        // Capture the mouse position on the first frame
-        if (previousPosition == Vector3.zero)
-        {
-            previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
-        }
 
-        Vector3 direction = previousPosition - cam.ScreenToViewportPoint(Input.mousePosition);
+        // Get mouse input
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
+        // Update angles
+        horizontalAngle += mouseX * sensitivity * Time.deltaTime;
+        verticalAngle -= mouseY * sensitivity * Time.deltaTime;
+        verticalAngle = Mathf.Clamp(verticalAngle, minVerticalAngle, maxVerticalAngle);
 
-        cam.transform.Rotate(new Vector3(1, 0, 0), direction.y * sensitivity);
-        cam.transform.Rotate(new Vector3(0, 1, 0), -direction.x * sensitivity, Space.World);
+        // Calculate rotation
+        Quaternion rotation = Quaternion.Euler(verticalAngle, horizontalAngle, 0);
 
-        ClampVerticalRotation();
+        // Update camera position
+        Vector3 direction = rotation * Vector3.forward;
+        cam.transform.position = currentPivot.position - direction * currentZoomDistance;
 
-        previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
-        cam.transform.Translate(initialOffset);
+        // Make the camera look at the pivot
+        cam.transform.LookAt(currentPivot.position);
     }
 
     void ClampVerticalRotation()

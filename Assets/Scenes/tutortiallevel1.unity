@@ -3148,7 +3148,6 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  sensitivity: 270
 --- !u!4 &1095364249
 Transform:
   m_ObjectHideFlags: 0
