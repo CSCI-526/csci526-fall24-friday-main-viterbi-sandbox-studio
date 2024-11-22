@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     private Transform currentPivot;
     public Vector3 initialOffset = new Vector3(0, 0, 7);
-    private float sensitivity = 800f;
+    private float sensitivity = 300f;
     private int minVerticalAngle = -20;
     private int maxVerticalAngle = 60;
 

@@ -1795,7 +1795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialEventTriggers:
   - {fileID: 1760538316}
-  - {fileID: 0}
+  - {fileID: 1890280}
 --- !u!4 &1636682267
 Transform:
   m_ObjectHideFlags: 0
