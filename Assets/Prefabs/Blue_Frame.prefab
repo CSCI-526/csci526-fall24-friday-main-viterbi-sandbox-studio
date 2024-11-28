@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3488960868757972486}
   - component: {fileID: 6703741490177718254}
   - component: {fileID: 7398641399985829218}
-  - component: {fileID: 5547085509054350039}
   m_Layer: 0
   m_Name: Blue_Frame_W
   m_TagString: Untagged
@@ -106,22 +105,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5547085509054350039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2655569749639709444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d201949204371c47a268426b5378652, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPad: {fileID: 0}
-  playerName: Player1
-  nextSceneName: SceneTran_2
-  singlePlayerMode: 0
 --- !u!1 &4639476378032617617
 GameObject:
   m_ObjectHideFlags: 0

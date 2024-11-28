@@ -6,7 +6,6 @@ public class ChangeColorOnMouseMove : MonoBehaviour
 {
     private Material _originalMaterial; // Store the original material
     private Renderer _renderer;        // Reference to the object's renderer
-    private Vector3 _lastMousePosition; // Track the last mouse position
     private float _lastMouseMoveTime;   // Time when the mouse was last detected as moving
     private bool _isMouseMoving;        // Flag to check if the mouse is moving
 
@@ -15,6 +14,7 @@ public class ChangeColorOnMouseMove : MonoBehaviour
 
     [Header("Settings")]
     public float stopThreshold = 0.1f; // Time in seconds before considering the mouse "stopped"
+    public float sensitivityThreshold = 0.01f; // Minimum movement to count as "moving"
 
     void Start()
     {
@@ -30,7 +30,6 @@ public class ChangeColorOnMouseMove : MonoBehaviour
         }
 
         // Initialize mouse tracking
-        _lastMousePosition = Input.mousePosition;
         _lastMouseMoveTime = Time.time;
     }
 
@@ -50,12 +49,15 @@ public class ChangeColorOnMouseMove : MonoBehaviour
 
     void CheckMouseMovement()
     {
-        // Detect if the mouse position has changed
-        if (Input.mousePosition != _lastMousePosition)
+        // Use Input.GetAxis to detect relative mouse movement
+        float mouseDeltaX = Input.GetAxis("Mouse X");
+        float mouseDeltaY = Input.GetAxis("Mouse Y");
+
+        // Check if mouse movement exceeds sensitivity threshold
+        if (Mathf.Abs(mouseDeltaX) > sensitivityThreshold || Mathf.Abs(mouseDeltaY) > sensitivityThreshold)
         {
             _isMouseMoving = true;
             _lastMouseMoveTime = Time.time; // Update the last movement time
-            _lastMousePosition = Input.mousePosition; // Update the last mouse position
         }
         else if (Time.time - _lastMouseMoveTime > stopThreshold)
         {

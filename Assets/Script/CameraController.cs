@@ -26,9 +26,6 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Hide the cursor and lock it to the center of the screen
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
 
         maxZoomDistance = initialOffset.magnitude;
         currentZoomDistance = maxZoomDistance;

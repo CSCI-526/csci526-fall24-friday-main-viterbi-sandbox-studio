@@ -121,3 +121,4 @@ MonoBehaviour:
   playerPad: {fileID: 0}
   playerName: Player1
   nextSceneName: tutoriallevel3
+  singlePlayerMode: 0
