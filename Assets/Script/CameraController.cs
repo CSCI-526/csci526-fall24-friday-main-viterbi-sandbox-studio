@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     private Transform currentPivot;
     public Vector3 initialOffset = new Vector3(0, 0, 7);
-    private float sensitivity = 300f;
+    private float sensitivity = 250f;
     private int minVerticalAngle = -20;
     private int maxVerticalAngle = 60;
 
@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
     private float zoomSpeed = 10f;
 
     private float horizontalAngle = 90f;
-    private float verticalAngle = 45f;
+    private float verticalAngle = 25f;
 
 
     // Start is called before the first frame update
@@ -55,12 +55,12 @@ public class CameraController : MonoBehaviour
         float newVerticalAngle = verticalAngle - mouseY * sensitivity * Time.deltaTime;
         verticalAngle = Mathf.Clamp(newVerticalAngle, minVerticalAngle, maxVerticalAngle);
 
-        Quaternion rotation = Quaternion.Euler(verticalAngle, horizontalAngle, 0);
+        Quaternion rotation = Quaternion.Euler(-verticalAngle, horizontalAngle, 0);
 
-        Vector3 offset = rotation * new Vector3(0, 0, -currentZoomDistance);
+        Vector3 offset = rotation * new Vector3(0, 0, currentZoomDistance);
         cam.transform.position = currentPivot.position + offset;
 
-        cam.transform.rotation = rotation;
+        cam.transform.LookAt(currentPivot.position);
     }
 
     void AdjustCameraZoom()
