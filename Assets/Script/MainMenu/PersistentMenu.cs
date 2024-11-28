@@ -93,6 +93,10 @@ public class PersistentMenu : MonoBehaviour
 
     public void ShowMainMenu()
     {
+        // When the game is over, show the cursor and unlock it
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         menuOpened = true;
         menuButton.SetActive(false);
         LevelPanel.SetActive(false);
@@ -101,6 +105,10 @@ public class PersistentMenu : MonoBehaviour
 
     public void HideMainMenu()
     {
+        // Hide the cursor and lock it to the center of the screen
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         menuOpened = false;
         HideWinEnd();
         menuButton.SetActive(true);
