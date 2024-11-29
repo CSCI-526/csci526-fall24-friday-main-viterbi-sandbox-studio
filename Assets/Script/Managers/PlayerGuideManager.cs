@@ -5,13 +5,22 @@ using UnityEngine;
 public class PlayerGuideManager : MonoBehaviour
 {
     [Tooltip("List of positions for this level. Configure in the Inspector.")]
-    public List<Vector3> positions; // The list of positions the object will move to.
+    public List<Vector3> positions = new List<Vector3>(); // The list of positions the object will move to.
 
     private int currentPositionIndex = 0; // Tracks the current position index.
 
     private void Start()
     {
-        transform.position = positions[currentPositionIndex];
+        // Check if the positions list is populated.
+        if (positions.Count > 0)
+        {
+            // Set the initial position.
+            transform.position = positions[currentPositionIndex];
+        }
+        else
+        {
+            Debug.LogError("Positions list is empty. Please add positions in the Inspector.");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
