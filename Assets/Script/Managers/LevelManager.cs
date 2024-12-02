@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     private int currentLevel;
     private int tutorialCount = 4;
+    private int maxLevel = 6;
     private Dictionary<int, LevelStartTracker> levelStartTrackerMap = new Dictionary<int, LevelStartTracker>();
     private Dictionary<int, LevelCompleteTracker> levelCompleteTrackerMap = new Dictionary<int, LevelCompleteTracker>();
     private Dictionary<int, string> levelNameMap = new Dictionary<int, string>
@@ -51,7 +52,6 @@ public class LevelManager : MonoBehaviour
 
     public string GetCurrentLevelSceneName()
     {
-        Debug.Log("currentLevel: " + currentLevel);
         return levelSceneNameMap[currentLevel];
     }
 
@@ -138,5 +138,10 @@ public class LevelManager : MonoBehaviour
     public bool isInTutorial()
     {
         return currentLevel <= tutorialCount;
+    }
+
+    public bool isLastLevel()
+    {
+        return currentLevel == maxLevel;
     }
 }

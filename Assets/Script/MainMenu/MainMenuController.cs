@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,31 +28,27 @@ public class MainMenuController : MonoBehaviour
     private void Start()
     {
         // Assign the StartGame function to the button's onClick event
-        startGameButton.onClick.AddListener(StartGame);
+        startGameButton.onClick.AddListener(() => StartCoroutine(LoadLevel(1)));
         menuButton.onClick.AddListener(ShowMainMenu);
         continueButton.onClick.AddListener(ContinueGame);
         levelButton.onClick.AddListener(ShowLevelMenu);
-        l1Button.onClick.AddListener(() => LoadLevel(1));
-        l2Button.onClick.AddListener(() => LoadLevel(2));
-        l3Button.onClick.AddListener(() => LoadLevel(3));
-        l4Button.onClick.AddListener(() => LoadLevel(4));
-        l5Button.onClick.AddListener(() => LoadLevel(5));
-        l6Button.onClick.AddListener(() => LoadLevel(6));
+        l1Button.onClick.AddListener(() => StartCoroutine(LoadLevel(1)));
+        l2Button.onClick.AddListener(() => StartCoroutine(LoadLevel(2)));
+        l3Button.onClick.AddListener(() => StartCoroutine(LoadLevel(3)));
+        l4Button.onClick.AddListener(() => StartCoroutine(LoadLevel(4)));
+        l5Button.onClick.AddListener(() => StartCoroutine(LoadLevel(5)));
+        l6Button.onClick.AddListener(() => StartCoroutine(LoadLevel(6)));
         backButton.onClick.AddListener(ShowMainMenu);
 
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    private void StartGame()
+    private IEnumerator StartGame()
     {
         PersistentMenu.instance.inTransit = false;
         int levelNumber = 1;
-        bool result = gameManager.StartLevel(levelNumber);
-        if (!result)
-        {
-            Debug.LogError("Invalid level number");
-            return;
-        }
+        yield return gameManager.StartLevel(levelNumber);
+        
         InactiveMenu();
         ChangeButtonPattern();
     }
@@ -70,16 +67,16 @@ public class MainMenuController : MonoBehaviour
 
     private void ContinueGame()
     {
-        if (PersistentMenu.instance.inTransit)
-        {
-            bool hasTransitioned = gameManager.AdvanceToNextLevel();
-            PersistentMenu.instance.inTransit = false;
-            if (!hasTransitioned)
-            {
-                WinGame();
-                return;
-            }
-        }
+        //if (PersistentMenu.instance.inTransit)
+        //{
+        //    bool hasTransitioned = gameManager.AdvanceToNextLevel();
+        //    PersistentMenu.instance.inTransit = false;
+        //    if (!hasTransitioned)
+        //    {
+        //        WinGame();
+        //        return;
+        //    }
+        //}
         InactiveMenu();
     }
 
@@ -102,15 +99,11 @@ public class MainMenuController : MonoBehaviour
         PersistentMenu.instance.HideMainMenu();
     }
 
-    public void LoadLevel(int levelNumber)
+    public IEnumerator LoadLevel(int levelNumber)
     {
-        bool result = gameManager.StartLevel(levelNumber);
-        if (!result)
-        {
-            Debug.LogError("Invalid tutorial level number");
-            return;
-        }
-        InactiveMenu();
+        yield return gameManager.StartLevel(levelNumber);
+        
+        //InactiveMenu();
         ChangeButtonPattern();
         PersistentMenu.instance.inTransit = false;
     }

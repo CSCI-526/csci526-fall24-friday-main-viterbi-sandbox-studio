@@ -11,7 +11,7 @@ public class PadTrigger : MonoBehaviour
     private static bool player1OnPad = false;
     private static bool player2OnPad = false;
 
-    private LevelManager levelManager;
+    private GameManager gameManager;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class PadTrigger : MonoBehaviour
         player1OnPad = false;
         player2OnPad = false;
 
-        levelManager = FindObjectOfType<LevelManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,24 +66,18 @@ public class PadTrigger : MonoBehaviour
             if ((playerName == "Player1" && player1OnPad) || (playerName == "Player2" && player2OnPad))
             {
                 Debug.Log("Single player is on their pad. Transitioning to the next scene.");
-                if (levelManager != null)
+                if (gameManager != null)
                 {
-                    levelManager.OnCompleteLevel();
+                    gameManager.TriggerCompleteLevel();
                 }
-                PersistentMenu.instance.WinTransit();
             }
         }
-        else
+        else if (player1OnPad && player2OnPad)
         {
-            // Transition if both players are on their respective pads
-            if (player1OnPad && player2OnPad)
+            Debug.Log("Both players are on their respective pads. Transitioning to the next scene.");
+            if (gameManager != null)
             {
-                Debug.Log("Both players are on their respective pads. Transitioning to the next scene.");
-                if (levelManager != null)
-                {
-                    levelManager.OnCompleteLevel();
-                }
-                PersistentMenu.instance.WinTransit();
+                gameManager.TriggerCompleteLevel();
             }
         }
     }

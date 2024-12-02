@@ -7,11 +7,13 @@ public class GameManager : MonoBehaviour
 {
     private LevelManager levelManager;
     private LevelResetManager levelResetManager;
+    private SceneTransitionManager sceneTransitionManager;
 
     private void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
         levelResetManager = FindObjectOfType<LevelResetManager>();
+        sceneTransitionManager = FindObjectOfType<SceneTransitionManager>();
     }
 
     public void ReloadScene()
@@ -22,34 +24,78 @@ public class GameManager : MonoBehaviour
         levelManager.OnRestartLevel();
     }
 
-    public bool StartLevel(int level)
+    public IEnumerator StartLevel(int level)
     {
         if (!levelManager.levelSceneNameMap.ContainsKey(level))
         {
-            return false;
+            yield break;
         }
         levelManager.OnDestroyLevel();
         levelManager.SetLevel(level);
-        string levelSceneName = levelManager.GetCurrentLevelSceneName();
-        Debug.Log("level: " + levelSceneName);
-        SceneManager.LoadScene(levelSceneName);
-        levelManager.OnStartLevel();
-        return true;
+        yield return StartCoroutine(HandleSceneTransition(false));
     }
 
-    public bool AdvanceToNextLevel()
+    public void TriggerCompleteLevel()
+    {
+        StartCoroutine(CompleteLevel());
+    }
+
+    public IEnumerator CompleteLevel()
+    {
+        PersistentMenu.instance.inTransit = true;
+        levelManager.OnCompleteLevel();
+        if (levelManager.isLastLevel())
+        {
+            
+            PersistentMenu.instance.ShowWinEnd();
+            yield return GoBackToMenu();
+        }
+        else
+        {
+            PersistentMenu.instance.showWinContext();
+            yield return AdvanceToNextLevel();
+        }   
+    }
+
+    public IEnumerator AdvanceToNextLevel()
     {
         levelResetManager.UnregisterCurrentLevelObjects();
         levelManager.OnDestroyLevel();
 
         if (!levelManager.LevelUp())
         {
-            return false;
+            Debug.Log("LevelUp failed, breaking coroutine.");
+            yield break;
         }
-        string nextSceneName = levelManager.GetCurrentLevelSceneName();
-        SceneManager.LoadScene(nextSceneName);
-        levelManager.OnStartLevel();
-        return true;
+        Debug.Log("LevelUp succeeded, proceeding to HandleSceneTransition.");
+        yield return StartCoroutine(HandleSceneTransition(true));
 
+    }
+
+    public IEnumerator GoBackToMenu()
+    {
+        Debug.Log("Go back to main menu");
+        yield return null;
+    }
+
+    private IEnumerator HandleSceneTransition(bool useFadeOutDelay)
+    {
+        string nextSceneName = levelManager.GetCurrentLevelSceneName();
+
+        if (useFadeOutDelay)
+        {
+            yield return StartCoroutine(sceneTransitionManager.FadeOutDelay());
+            
+        }
+        yield return StartCoroutine(sceneTransitionManager.FadeOut());
+        PersistentMenu.instance.HideWinEnd();
+        SceneManager.LoadScene(nextSceneName);
+        PersistentMenu.instance.HideMainMenu();
+        PersistentMenu.instance.inTransit = false;
+        levelManager.OnStartLevel();
+        yield return null; // Wait a frame to ensure the new scene is loaded
+
+        yield return StartCoroutine(sceneTransitionManager.FadeIn());
+        
     }
 }
