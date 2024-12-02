@@ -22,6 +22,8 @@ public class CameraController : MonoBehaviour
     private float horizontalAngle = 90f;
     private float verticalAngle = 25f;
 
+    private int reverseCamera;
+    private LevelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,15 @@ public class CameraController : MonoBehaviour
         currentZoomDistance = maxZoomDistance;
 
         currentPivot = cameraPivot1;
+
+        levelManager = FindObjectOfType<LevelManager>();
+        if (levelManager != null && levelManager.isInTutorial())
+        {
+            reverseCamera = -1;
+        } else
+        {
+            reverseCamera = 1;
+        }
     }
 
     // Update is called once per frame
@@ -56,9 +67,9 @@ public class CameraController : MonoBehaviour
         float newVerticalAngle = verticalAngle - mouseY * sensitivity * Time.deltaTime;
         verticalAngle = Mathf.Clamp(newVerticalAngle, minVerticalAngle, maxVerticalAngle);
 
-        Quaternion rotation = Quaternion.Euler(-verticalAngle, horizontalAngle, 0);
+        Quaternion rotation = Quaternion.Euler(verticalAngle * reverseCamera, horizontalAngle, 0);
 
-        Vector3 offset = rotation * new Vector3(0, 0, currentZoomDistance);
+        Vector3 offset = rotation * new Vector3(0, 0, -currentZoomDistance * reverseCamera);
         cam.transform.position = currentPivot.position + offset;
 
         cam.transform.LookAt(currentPivot.position);

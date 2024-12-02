@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private int currentLevel;
+    private int tutorialCount = 4;
     private Dictionary<int, LevelStartTracker> levelStartTrackerMap = new Dictionary<int, LevelStartTracker>();
     private Dictionary<int, LevelCompleteTracker> levelCompleteTrackerMap = new Dictionary<int, LevelCompleteTracker>();
     private Dictionary<int, string> levelNameMap = new Dictionary<int, string>
@@ -12,8 +13,8 @@ public class LevelManager : MonoBehaviour
         { 1, "Tutorial 1" },
         { 2, "Tutorial 2" },
         { 3, "Tutorial 3" },
-        { 4, "Level 1" },
-        { 5, "Tutorial 4" },
+        { 5, "Level 1" },
+        { 4, "Tutorial 4" },
         { 6, "Level 2" }
     };
     public Dictionary<int, string> levelSceneNameMap = new Dictionary<int, string>
@@ -21,8 +22,8 @@ public class LevelManager : MonoBehaviour
         { 1, "tutortiallevel1" },
         { 2, "tutoriallevel2" },
         { 3, "tutoriallevel3" },
-        { 4, "level1" },
-        { 5, "tutoriallevel4" },
+        { 5, "level1" },
+        { 4, "tutoriallevel4" },
         { 6, "level2" }
     };
 
@@ -50,6 +51,7 @@ public class LevelManager : MonoBehaviour
 
     public string GetCurrentLevelSceneName()
     {
+        Debug.Log("currentLevel: " + currentLevel);
         return levelSceneNameMap[currentLevel];
     }
 
@@ -131,5 +133,10 @@ public class LevelManager : MonoBehaviour
             return;
         }
         levelCompleteTrackerMap[currentLevel].InitializeParams();
+    }
+
+    public bool isInTutorial()
+    {
+        return currentLevel <= tutorialCount;
     }
 }

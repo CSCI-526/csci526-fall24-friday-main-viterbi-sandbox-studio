@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         levelManager.OnDestroyLevel();
         levelManager.SetLevel(level);
         string levelSceneName = levelManager.GetCurrentLevelSceneName();
+        Debug.Log("level: " + levelSceneName);
         SceneManager.LoadScene(levelSceneName);
         levelManager.OnStartLevel();
         return true;

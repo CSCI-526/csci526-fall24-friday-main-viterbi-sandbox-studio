@@ -4779,8 +4779,8 @@ MonoBehaviour:
   l1Button: {fileID: 459213586}
   l2Button: {fileID: 2097495406}
   l3Button: {fileID: 645397051}
-  l4Button: {fileID: 979893642}
-  l5Button: {fileID: 1749840834}
+  l4Button: {fileID: 1749840834}
+  l5Button: {fileID: 979893642}
   l6Button: {fileID: 1322544135}
   backButton: {fileID: 1761393471}
 --- !u!114 &2104350041

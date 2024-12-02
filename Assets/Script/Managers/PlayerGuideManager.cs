@@ -19,7 +19,7 @@ public class PlayerGuideManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Positions list is empty. Please add positions in the Inspector.");
+            Debug.Log("Positions list is empty. Please add positions in the Inspector.");
         }
     }
 
