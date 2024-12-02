@@ -22,8 +22,6 @@ public class ResetGame : MonoBehaviour
     public void ResetGameScene()
     {
         // Reload the current scene
-        gameManager.ReloadScene();
-        PersistentMenu.instance.inTransit = false;
-        PersistentMenu.instance.HideMainMenu();
+        StartCoroutine(gameManager.ReloadScene());
     }
 }

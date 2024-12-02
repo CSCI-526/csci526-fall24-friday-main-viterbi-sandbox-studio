@@ -16,12 +16,11 @@ public class GameManager : MonoBehaviour
         sceneTransitionManager = FindObjectOfType<SceneTransitionManager>();
     }
 
-    public void ReloadScene()
+    public IEnumerator ReloadScene()
     {
         levelManager.OnDestroyLevel();
         levelResetManager.UnregisterCurrentLevelObjects();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        levelManager.OnRestartLevel();
+        yield return StartCoroutine(HandleSceneTransition(false));
     }
 
     public IEnumerator StartLevel(int level)
