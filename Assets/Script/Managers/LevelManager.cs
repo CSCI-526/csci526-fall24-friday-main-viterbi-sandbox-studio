@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     };
     public Dictionary<int, string> levelSceneNameMap = new Dictionary<int, string>
     {
+        {-1, "MainMenuScene" },
         { 1, "tutortiallevel1" },
         { 2, "tutoriallevel2" },
         { 3, "tutoriallevel3" },
@@ -63,6 +64,11 @@ public class LevelManager : MonoBehaviour
     public void SetLevel(int newLevel)
     {
         currentLevel = newLevel;
+    }
+
+    public void ResetLevel()
+    {
+        currentLevel = -1;
     }
 
     public void ResetPlayerAndObjects()

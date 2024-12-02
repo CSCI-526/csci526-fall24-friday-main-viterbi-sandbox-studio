@@ -43,16 +43,6 @@ public class MainMenuController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    private IEnumerator StartGame()
-    {
-        PersistentMenu.instance.inTransit = false;
-        int levelNumber = 1;
-        yield return gameManager.StartLevel(levelNumber);
-        
-        InactiveMenu();
-        ChangeButtonPattern();
-    }
-
     private void ChangeButtonPattern()
     {
         startGameButton.gameObject.SetActive(false);
@@ -67,22 +57,11 @@ public class MainMenuController : MonoBehaviour
 
     private void ContinueGame()
     {
-        //if (PersistentMenu.instance.inTransit)
-        //{
-        //    bool hasTransitioned = gameManager.AdvanceToNextLevel();
-        //    PersistentMenu.instance.inTransit = false;
-        //    if (!hasTransitioned)
-        //    {
-        //        WinGame();
-        //        return;
-        //    }
-        //}
         InactiveMenu();
     }
 
-    private void WinGame()
+    public void ResetButtonPattern()
     {
-        SceneManager.LoadScene("MainMenuScene");
         startGameButton.gameObject.SetActive(true);
         continueButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
@@ -102,8 +81,7 @@ public class MainMenuController : MonoBehaviour
     public IEnumerator LoadLevel(int levelNumber)
     {
         yield return gameManager.StartLevel(levelNumber);
-        
-        //InactiveMenu();
+
         ChangeButtonPattern();
         PersistentMenu.instance.inTransit = false;
     }

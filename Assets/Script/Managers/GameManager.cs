@@ -48,11 +48,14 @@ public class GameManager : MonoBehaviour
         {
             
             PersistentMenu.instance.ShowWinEnd();
+            // TODO: Add win context
             yield return GoBackToMenu();
         }
         else
         {
-            PersistentMenu.instance.showWinContext();
+            // TODO: Add win context (showWinContext won't work)
+            //PersistentMenu.instance.showWinContext();
+            //PersistentMenu.instance.ShowMainMenu();
             yield return AdvanceToNextLevel();
         }   
     }
@@ -75,7 +78,12 @@ public class GameManager : MonoBehaviour
     public IEnumerator GoBackToMenu()
     {
         Debug.Log("Go back to main menu");
-        yield return null;
+        levelManager.ResetLevel();
+
+        MainMenuController mainMenuController = FindObjectOfType<MainMenuController>();
+        mainMenuController.ResetButtonPattern();
+
+        yield return StartCoroutine(HandleSceneTransition(true));
     }
 
     private IEnumerator HandleSceneTransition(bool useFadeOutDelay)
@@ -88,7 +96,7 @@ public class GameManager : MonoBehaviour
             
         }
         yield return StartCoroutine(sceneTransitionManager.FadeOut());
-        PersistentMenu.instance.HideWinEnd();
+        //PersistentMenu.instance.HideWinEnd();
         SceneManager.LoadScene(nextSceneName);
         PersistentMenu.instance.HideMainMenu();
         PersistentMenu.instance.inTransit = false;
