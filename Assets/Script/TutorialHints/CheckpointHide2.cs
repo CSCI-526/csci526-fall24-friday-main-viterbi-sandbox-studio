@@ -28,7 +28,10 @@ public class CheckpointHideTwo : MonoBehaviour
 
     private void HideCheckpointUI()
     {
-        checkpointImage.gameObject.SetActive(false);
+        if (checkpointImage != null)
+        {
+            checkpointImage.gameObject.SetActive(false);
+        }
         
         secondCheckpointImage.gameObject.SetActive(true);
         
