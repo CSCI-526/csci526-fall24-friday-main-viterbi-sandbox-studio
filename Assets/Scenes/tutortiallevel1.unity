@@ -6159,6 +6159,8 @@ GameObject:
   - component: {fileID: 909197841}
   - component: {fileID: 909197840}
   - component: {fileID: 909197839}
+  - component: {fileID: 909197843}
+  - component: {fileID: 909197842}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -6231,6 +6233,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &909197842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909197837}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 2.220446e-16, z: 10.000001}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &909197843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909197837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d4249a679874cc69d5e54180fa3253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &916584734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10971,6 +11006,10 @@ PrefabInstance:
     - target: {fileID: 7850472824241410297, guid: 6b27d8be568a84255b77ecc580544899, type: 3}
       propertyPath: m_Name
       value: ResetOutOfBoundsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7850472824241410297, guid: 6b27d8be568a84255b77ecc580544899, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8599046865256920603, guid: 6b27d8be568a84255b77ecc580544899, type: 3}
       propertyPath: player1
