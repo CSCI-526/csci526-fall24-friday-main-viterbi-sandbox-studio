@@ -11,8 +11,8 @@ public class LiftController : MonoBehaviour, IResettable
     private bool _initialMovingUp;
 
     public float speed = 3f;         
-    public float lowerHeight = -2f;   
-    public float upperHeight = 13f;  
+    public float lowerHeight = 56.8235f;   
+    public float upperHeight = 63f;  
 
     private bool isMoving = false;   
     private bool movingUp = true;
@@ -55,9 +55,9 @@ public class LiftController : MonoBehaviour, IResettable
         {
             if (movingUp)
             {
-                if (transform.position.y < upperHeight)
+                if (transform.position.x < upperHeight)
                 {
-                    transform.position += Vector3.left * speed * Time.deltaTime;
+                    transform.position += Vector3.right * speed * Time.deltaTime;
                 }
                 else
                 {
@@ -66,9 +66,9 @@ public class LiftController : MonoBehaviour, IResettable
             }
             else
             {
-                if (transform.position.y > lowerHeight)
+                if (transform.position.x > lowerHeight)
                 {
-                    transform.position += Vector3.right* speed * Time.deltaTime; 
+                    transform.position += Vector3.left* speed * Time.deltaTime; 
                 }
                 else
                 {
