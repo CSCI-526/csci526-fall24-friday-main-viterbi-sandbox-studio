@@ -37,6 +37,7 @@ public class CheckpointHideTwo : MonoBehaviour
 
     private IEnumerator FadeOutUI()
     {
+        Color originalColor = secondCheckpointImage.color;
         float startAlphaImage = secondCheckpointImage.color.a;
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
@@ -51,5 +52,8 @@ public class CheckpointHideTwo : MonoBehaviour
         }
         
         secondCheckpointImage.gameObject.SetActive(false);
+        // Restore the original color
+        originalColor.a = startAlphaImage;
+        secondCheckpointImage.color = originalColor;
     }
 }
