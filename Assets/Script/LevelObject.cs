@@ -49,7 +49,7 @@ public class LevelObject : MonoBehaviour, IResettable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(checkpointType))
+        if (checkpointType != null && other.CompareTag(checkpointType))
         {
             UpdateState();
         }
