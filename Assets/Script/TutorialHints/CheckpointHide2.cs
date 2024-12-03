@@ -28,7 +28,10 @@ public class CheckpointHideTwo : MonoBehaviour
 
     private void HideCheckpointUI()
     {
-        checkpointImage.gameObject.SetActive(false);
+        if (checkpointImage != null)
+        {
+            checkpointImage.gameObject.SetActive(false);
+        }
         
         secondCheckpointImage.gameObject.SetActive(true);
         
@@ -37,19 +40,23 @@ public class CheckpointHideTwo : MonoBehaviour
 
     private IEnumerator FadeOutUI()
     {
+        Color originalColor = secondCheckpointImage.color;
         float startAlphaImage = secondCheckpointImage.color.a;
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            float normalizedTime = t / fadeDuration; 
+            //float normalizedTime = t / fadeDuration; 
             
-            Color imageColor = secondCheckpointImage.color;
-            imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
-            secondCheckpointImage.color = imageColor;
+            //Color imageColor = secondCheckpointImage.color;
+            //imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
+            //secondCheckpointImage.color = imageColor;
 
             yield return null; 
         }
         
         secondCheckpointImage.gameObject.SetActive(false);
+        //// Restore the original color
+        //originalColor.a = startAlphaImage;
+        //secondCheckpointImage.color = originalColor;
     }
 }

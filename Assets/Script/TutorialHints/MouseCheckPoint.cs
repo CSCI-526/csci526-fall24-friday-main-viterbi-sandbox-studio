@@ -5,13 +5,13 @@ using System.Collections;
 
 public class MouseCheckPoint : MonoBehaviour
 {
-    private float movementThreshold = 30.0f; // Minimum distance required to trigger detection
+    private float movementThreshold = 150.0f; // Minimum distance required to trigger detection
     private float accumulatedMovement = 0.0f;
 
     public Image firstCheckpointImage;
     public Image checkpointImage;
     public Image lastpointImage;
-    public float fadeDuration = 2.0f;
+    public float fadeDuration = 3.0f;
     private bool hasTriggered;
     private bool hasMovedMouse;
 
@@ -71,6 +71,7 @@ public class MouseCheckPoint : MonoBehaviour
         {
             hasMovedMouse = true;
             firstCheckpointImage.gameObject.SetActive(false);
+            checkpointImage.gameObject.SetActive(false);
             StartCoroutine(ShowLastCehckpointUI());
         }
     }
@@ -81,7 +82,6 @@ public class MouseCheckPoint : MonoBehaviour
         hasTriggered = true;
         firstCheckpointImage.gameObject.SetActive(true);
     }
-
 
     private void ShowSecondCheckpointUI()
     {
@@ -98,7 +98,27 @@ public class MouseCheckPoint : MonoBehaviour
         checkpointImage.gameObject.SetActive(false);
 
         lastpointImage.gameObject.SetActive(true);
+        StartCoroutine(FadeOutUI());
+
         StartPlayerMoveEvent();
+    }
+
+    private IEnumerator FadeOutUI()
+    {
+        float startAlphaImage = lastpointImage.color.a;
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            //float normalizedTime = t / fadeDuration;
+
+            //Color imageColor = lastpointImage.color;
+            //imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
+            //lastpointImage.color = imageColor;
+
+            yield return null;
+        }
+
+        lastpointImage.gameObject.SetActive(false);
     }
 
     private void SendCameraRotationEvent()
