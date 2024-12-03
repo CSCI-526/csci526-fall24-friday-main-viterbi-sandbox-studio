@@ -17,6 +17,9 @@ public class LiftController : MonoBehaviour, IResettable
     private bool isMoving = false;   
     private bool movingUp = true;
 
+    // Delegate for custom reset logic
+    private System.Action _customResetAction;
+
     public void SaveInitialState()
     {
         _initialPosition = transform.position;
@@ -31,6 +34,17 @@ public class LiftController : MonoBehaviour, IResettable
         transform.rotation = _initialRotation;
         isMoving = _initialIsMoving;
         movingUp = _initialMovingUp;
+    }
+
+    public void UpdateState(System.Action customResetAction = null)
+    {
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
+
+        if (customResetAction != null)
+        {
+            _customResetAction = customResetAction;
+        }
     }
 
     public void StartMovement()

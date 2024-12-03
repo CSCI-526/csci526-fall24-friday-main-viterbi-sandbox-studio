@@ -12,16 +12,38 @@ public class ElevatorController : MonoBehaviour, IResettable
     private bool _initialIsMoving;
     private bool _initialMovingUp;
 
+    private Vector3 _initialPosition;
+    private Quaternion _initialRotation;
+    private System.Action _customResetAction;
+
     public void SaveInitialState()
     {
         _initialIsMoving = isMoving;
         _initialMovingUp = movingUp;
+
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
     }
 
     public void ResetState()
     {
         isMoving = _initialIsMoving;
         movingUp = _initialMovingUp;
+        _customResetAction?.Invoke();
+    }
+
+    public void UpdateState(System.Action customResetAction = null)
+    {
+        _initialIsMoving = isMoving;
+        _initialMovingUp = movingUp;
+
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
+
+        if (customResetAction != null)
+        {
+            _customResetAction = customResetAction;
+        }
     }
 
     public void ToggleMovement()

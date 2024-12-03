@@ -5,7 +5,9 @@ public class Liftcativator : MonoBehaviour, IResettable
     private bool _initialHasActivated;
 
     public LiftController LiftController; 
-    private bool hasActivated = false; 
+    private bool hasActivated = false;
+    // Delegate for custom reset logic
+    private System.Action _customResetAction;
 
     public void SaveInitialState()
     {
@@ -24,6 +26,16 @@ public class Liftcativator : MonoBehaviour, IResettable
         if (levelResetManager != null)
         {
             levelResetManager.RegisterObject(this);
+        }
+    }
+
+    public void UpdateState(System.Action customResetAction = null)
+    {
+        _initialHasActivated = hasActivated;
+
+        if (customResetAction != null)
+        {
+            _customResetAction = customResetAction;
         }
     }
 

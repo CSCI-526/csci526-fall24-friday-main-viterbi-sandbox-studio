@@ -6,6 +6,10 @@ public class LevelObject : MonoBehaviour, IResettable
 {
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
+    public string checkpointType;
+
+    // Delegate for custom reset logic
+    private System.Action _customResetAction;
 
     public void SaveInitialState()
     {
@@ -17,6 +21,20 @@ public class LevelObject : MonoBehaviour, IResettable
     {
         transform.position = _initialPosition;
         transform.rotation = _initialRotation;
+
+        // Invoke custom reset logic if defined
+        _customResetAction?.Invoke();
+    }
+
+    public void UpdateState(System.Action customResetAction = null)
+    {
+        _initialPosition = transform.position;
+        _initialRotation = transform.rotation;
+
+        if (customResetAction != null)
+        {
+            _customResetAction = customResetAction;
+        }
     }
 
     private void Start()
@@ -26,6 +44,14 @@ public class LevelObject : MonoBehaviour, IResettable
         if (levelResetManager != null)
         {
             levelResetManager.RegisterObject(this);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(checkpointType))
+        {
+            UpdateState();
         }
     }
 }
