@@ -42,18 +42,18 @@ public class CheckpointHideTwo : MonoBehaviour
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            float normalizedTime = t / fadeDuration; 
+            //float normalizedTime = t / fadeDuration; 
             
-            Color imageColor = secondCheckpointImage.color;
-            imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
-            secondCheckpointImage.color = imageColor;
+            //Color imageColor = secondCheckpointImage.color;
+            //imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
+            //secondCheckpointImage.color = imageColor;
 
             yield return null; 
         }
         
         secondCheckpointImage.gameObject.SetActive(false);
-        // Restore the original color
-        originalColor.a = startAlphaImage;
-        secondCheckpointImage.color = originalColor;
+        //// Restore the original color
+        //originalColor.a = startAlphaImage;
+        //secondCheckpointImage.color = originalColor;
     }
 }

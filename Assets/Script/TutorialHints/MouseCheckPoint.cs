@@ -109,11 +109,11 @@ public class MouseCheckPoint : MonoBehaviour
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            float normalizedTime = t / fadeDuration;
+            //float normalizedTime = t / fadeDuration;
 
-            Color imageColor = lastpointImage.color;
-            imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
-            lastpointImage.color = imageColor;
+            //Color imageColor = lastpointImage.color;
+            //imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
+            //lastpointImage.color = imageColor;
 
             yield return null;
         }
