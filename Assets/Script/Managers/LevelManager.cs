@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     private int currentLevel;
     private int tutorialCount = 4;
-    private int maxLevel = 6;
+    private int maxLevel = 7;
     private Dictionary<int, LevelStartTracker> levelStartTrackerMap = new Dictionary<int, LevelStartTracker>();
     private Dictionary<int, LevelCompleteTracker> levelCompleteTrackerMap = new Dictionary<int, LevelCompleteTracker>();
     private Dictionary<int, string> levelNameMap = new Dictionary<int, string>
@@ -16,7 +16,8 @@ public class LevelManager : MonoBehaviour
         { 3, "Tutorial 3" },
         { 5, "Level 1" },
         { 4, "Tutorial 4" },
-        { 6, "Level 2" }
+        { 6, "Level 2" },
+        { 7, "Level 3" }
     };
     public Dictionary<int, string> levelSceneNameMap = new Dictionary<int, string>
     {
@@ -26,7 +27,8 @@ public class LevelManager : MonoBehaviour
         { 3, "tutoriallevel3" },
         { 5, "level1" },
         { 4, "tutoriallevel4" },
-        { 6, "level2" }
+        { 6, "level2" },
+        { 7, "level3" }
     };
 
     // Start is called before the first frame update
