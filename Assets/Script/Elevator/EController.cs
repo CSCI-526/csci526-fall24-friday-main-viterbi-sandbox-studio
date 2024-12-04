@@ -15,6 +15,7 @@ public class EController : MonoBehaviour, IResettable
 
     private bool isMoving = false;
     private bool movingUp = true;
+
     // Delegate for custom reset logic
     private System.Action _customResetAction;
 
@@ -37,6 +38,8 @@ public class EController : MonoBehaviour, IResettable
     {
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
+        _initialIsMoving = isMoving;
+        _initialMovingUp = movingUp;
 
         if (customResetAction != null)
         {

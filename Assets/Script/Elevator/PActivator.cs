@@ -45,8 +45,10 @@ public class PActivator : MonoBehaviour, IResettable
         {
             if (elevatorController != null)
             {
-                elevatorController.StartMovement(); 
-                hasActivated = true; 
+                elevatorController.StartMovement();
+                elevatorController.UpdateState();
+                hasActivated = true;
+                UpdateState();
                 Debug.Log("Platform activated by Player.");
             }
             else
