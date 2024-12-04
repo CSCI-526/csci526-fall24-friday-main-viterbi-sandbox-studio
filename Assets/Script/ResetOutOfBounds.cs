@@ -15,7 +15,7 @@ public class ResetOutOfBounds : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (ShouldTriggerReset(other))
+        if (!PersistentMenu.instance.inTransit && ShouldTriggerReset(other))
         {
             StartCoroutine(ResetGame());
         }
