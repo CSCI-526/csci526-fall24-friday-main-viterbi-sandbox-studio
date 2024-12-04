@@ -7,6 +7,7 @@ public class PadTrigger : MonoBehaviour
     public string playerName; // Set to "Player1" or "Player2"
     public string nextSceneName; // Set the name of the next scene in the Inspector
     public bool singlePlayerMode = false; // Set to true if there's only one player and one pad
+    public BeaconController beaconController;
 
     private static bool player1OnPad = false;
     private static bool player2OnPad = false;
@@ -65,6 +66,7 @@ public class PadTrigger : MonoBehaviour
             // Transition if in single-player mode and the player is on their pad
             if ((playerName == "Player1" && player1OnPad) || (playerName == "Player2" && player2OnPad))
             {
+                TriggerBeaconFires();
                 Debug.Log("Single player is on their pad. Transitioning to the next scene.");
                 if (gameManager != null)
                 {
@@ -74,11 +76,24 @@ public class PadTrigger : MonoBehaviour
         }
         else if (player1OnPad && player2OnPad)
         {
+            TriggerBeaconFires();
             Debug.Log("Both players are on their respective pads. Transitioning to the next scene.");
             if (gameManager != null)
             {
                 gameManager.TriggerCompleteLevel();
             }
+        }
+    }
+
+    private void TriggerBeaconFires()
+    {
+        if (beaconController != null)
+        {
+            beaconController.LightUp();
+        }
+        else
+        {
+            Debug.LogWarning("BeaconController reference is not set!");
         }
     }
 }
