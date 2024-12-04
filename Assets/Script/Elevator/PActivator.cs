@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Liftcativator : MonoBehaviour, IResettable
+public class PActivator : MonoBehaviour, IResettable
 {
     private bool _initialHasActivated;
 
-    public LiftController LiftController; 
+    public EController elevatorController; 
     private bool hasActivated = false;
     // Delegate for custom reset logic
     private System.Action _customResetAction;
@@ -43,9 +43,9 @@ public class Liftcativator : MonoBehaviour, IResettable
     {
         if (other.CompareTag("Player") && !hasActivated)
         {
-            if (LiftController != null)
+            if (elevatorController != null)
             {
-                LiftController.StartMovement(); 
+                elevatorController.StartMovement(); 
                 hasActivated = true; 
                 Debug.Log("Platform activated by Player.");
             }

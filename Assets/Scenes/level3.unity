@@ -26525,17 +26525,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 210286016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1428213549 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1000421342741593395, guid: cb42a769718a17941b0f854307eba043, type: 3}
-  m_PrefabInstance: {fileID: 7285219052490504551}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855a801acde3c2b4fa2bdce5212ca561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1465484298
 GameObject:
   m_ObjectHideFlags: 0
@@ -27455,8 +27444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d4249a679874cc69d5e54180fa3253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 133371708}
-  player2: {fileID: 350947615}
 --- !u!4 &1812984612
 Transform:
   m_ObjectHideFlags: 0
@@ -30576,17 +30563,39 @@ PrefabInstance:
     - target: {fileID: 7533999894099324568, guid: 77c4e2ba477dbc04fbe09844fa75ea55, type: 3}
       propertyPath: elevatorController
       value: 
-      objectReference: {fileID: 1428213549}
-    m_RemovedComponents: []
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7533999894099324568, guid: 77c4e2ba477dbc04fbe09844fa75ea55, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4739503705114052053, guid: 77c4e2ba477dbc04fbe09844fa75ea55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 261976976290476689}
   m_SourcePrefab: {fileID: 100100000, guid: 77c4e2ba477dbc04fbe09844fa75ea55, type: 3}
 --- !u!4 &261976976290476687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6059911040985871219, guid: 77c4e2ba477dbc04fbe09844fa75ea55, type: 3}
   m_PrefabInstance: {fileID: 261976976290476686}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &261976976290476688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4739503705114052053, guid: 77c4e2ba477dbc04fbe09844fa75ea55, type: 3}
+  m_PrefabInstance: {fileID: 261976976290476686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &261976976290476689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261976976290476688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c270e45fe2dfea4ea53aee7dac35b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elevatorController: {fileID: 7285219052490504553}
 --- !u!1001 &5315737775419127193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30708,11 +30717,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1000421342741593395, guid: cb42a769718a17941b0f854307eba043, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5009720843002873714, guid: cb42a769718a17941b0f854307eba043, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7285219052490504553}
   m_SourcePrefab: {fileID: 100100000, guid: cb42a769718a17941b0f854307eba043, type: 3}
+--- !u!1 &7285219052490504552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5009720843002873714, guid: cb42a769718a17941b0f854307eba043, type: 3}
+  m_PrefabInstance: {fileID: 7285219052490504551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7285219052490504553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285219052490504552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61930d2921a512f429ec748d3d42b721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  lowerHeight: -2
+  upperHeight: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
