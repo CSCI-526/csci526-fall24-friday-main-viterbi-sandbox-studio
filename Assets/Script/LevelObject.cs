@@ -6,7 +6,7 @@ public class LevelObject : MonoBehaviour, IResettable
 {
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
-    public string checkpointType;
+    public string checkpointType = null;
 
     // Delegate for custom reset logic
     private System.Action _customResetAction;
