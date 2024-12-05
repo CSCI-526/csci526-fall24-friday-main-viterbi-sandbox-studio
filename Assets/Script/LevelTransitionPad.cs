@@ -7,11 +7,12 @@ public class PadTrigger : MonoBehaviour
     public string playerName; // Set to "Player1" or "Player2"
     public string nextSceneName; // Set the name of the next scene in the Inspector
     public bool singlePlayerMode = false; // Set to true if there's only one player and one pad
-    public BeaconController beaconController;
+    
 
     private static bool player1OnPad = false;
     private static bool player2OnPad = false;
 
+    private BeaconController beaconController;
     private GameManager gameManager;
 
     private void Start()
@@ -20,6 +21,7 @@ public class PadTrigger : MonoBehaviour
         player1OnPad = false;
         player2OnPad = false;
 
+        beaconController = FindObjectOfType<BeaconController>();
         gameManager = FindObjectOfType<GameManager>();
     }
 
