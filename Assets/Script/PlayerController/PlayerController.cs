@@ -9,12 +9,27 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 10f;
     public float speed = 7f;
     public float jumpForce = 11f;
-    public float distanceToGround = 2.0f;
-    public bool isRectangular = true;
+    protected virtual float distanceToGround { get; }
+
     private Rigidbody rb;           
 
     public GameObject arrowPrefab;   
-    private GameObject arrowInstance; 
+    private GameObject arrowInstance;
+
+    [SerializeField] private string floorLayerName = "Floor";
+    [SerializeField] private string platformLayerName = "Platform";
+    [SerializeField] private string boxLayerName = "Box";
+    [SerializeField] private string jumpableLayerName = "Jumpable";
+    protected int combinedLayerMask;
+
+    private void Awake()
+    {
+        // Get the layer mask for the specified floor layer
+        combinedLayerMask = LayerMask.GetMask(floorLayerName)
+            | LayerMask.GetMask(platformLayerName)
+            | LayerMask.GetMask(boxLayerName)
+            | LayerMask.GetMask(jumpableLayerName);
+    }
 
     void Start()
     {
@@ -48,25 +63,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
+    protected virtual bool IsGrounded()
     {
-        if (isRectangular)
-        {
-            return IsBoxGrounded();
-        }
-        return IsSphereGrounded();
-    }
-
-    private bool IsBoxGrounded()
-    {
-        Vector3 boxSize = new Vector3(transform.localScale.x / 2, 0.1f, transform.localScale.z / 2);
-        return Physics.BoxCast(transform.position, boxSize, Vector3.down, Quaternion.identity, distanceToGround + 0.1f);
-    }
-
-    private bool IsSphereGrounded()
-    {
-        float sphereRadius = transform.localScale.x / 2;
-        return Physics.SphereCast(transform.position, sphereRadius, Vector3.down, out RaycastHit hit, distanceToGround + 0.1f);
+        return false; // Default behavior, should be overridden by child classes
     }
 
     public void ToggleArrow(bool showArrow)
