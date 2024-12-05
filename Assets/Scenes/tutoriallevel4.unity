@@ -1604,6 +1604,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7119833764073023857, guid: ceeec515f67ccba4f9d5a01d34a27fd0, type: 3}
+      propertyPath: transitionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 16109368501c44215a8f97bbf58ef3d8, type: 3}
+    - target: {fileID: 7119833764073023857, guid: ceeec515f67ccba4f9d5a01d34a27fd0, type: 3}
       propertyPath: singlePlayerMode
       value: 1
       objectReference: {fileID: 0}
