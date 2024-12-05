@@ -8,11 +8,12 @@ public class PersistentMenu : MonoBehaviour
     public static PersistentMenu instance;
     public GameObject mainPanel; 
     public GameObject LevelPanel;
+    public GameObject ControlPanel;
     public GameObject winContext;
-    public GameObject MainText;
     public GameObject menuButton;
     public GameObject winEndGame;
     public TMP_Text levelTitle;
+    public GameObject levelBlock;
 
     public bool inTransit = false;
     public bool menuOpened = false; // disable input
@@ -57,13 +58,13 @@ public class PersistentMenu : MonoBehaviour
     {
         if (scene.name == "MainMenuScene")
         {
-            levelTitle.gameObject.SetActive(false);
+            levelBlock.SetActive(false);
             ShowMainMenu();
         }
         else
         {   
             levelTitle.text = levelManager.GetCurrentLevelName();
-            levelTitle.gameObject.SetActive(true);
+            levelBlock.gameObject.SetActive(true);
         }
     }
 
@@ -76,17 +77,17 @@ public class PersistentMenu : MonoBehaviour
     public void showWinContext()
     {
         winContext.SetActive(true);
-        MainText.SetActive(false);
+
     }
 
     public void ShowWinEnd() {
         winContext.SetActive(false);
-        MainText.SetActive(false);
+
         winEndGame.SetActive(true);
     }
 
     public void HideWinEnd() {
-        MainText.SetActive(true);
+
         winEndGame.SetActive(false);
         winContext.SetActive(false);
     }
@@ -101,6 +102,7 @@ public class PersistentMenu : MonoBehaviour
         menuButton.SetActive(false);
         LevelPanel.SetActive(false);
         mainPanel.SetActive(true);
+        ControlPanel.SetActive(false);
     }
 
     public void HideMainMenu()
@@ -114,6 +116,7 @@ public class PersistentMenu : MonoBehaviour
         menuButton.SetActive(true);
         mainPanel.SetActive(false);
         LevelPanel.SetActive(false);
+        ControlPanel.SetActive(false);
     }
 
     public void WinTransit()

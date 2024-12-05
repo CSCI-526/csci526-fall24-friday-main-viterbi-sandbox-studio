@@ -11,9 +11,11 @@ public class MainMenuController : MonoBehaviour
     public Button continueButton;
     public Button levelButton;
     public Button restartButton;
+    public Button controlButton;
 
     public GameObject mainPanel;
     public GameObject LevelPanel;
+    public GameObject ControlPanel;
 
     public Button l1Button;
     public Button l2Button;
@@ -23,6 +25,7 @@ public class MainMenuController : MonoBehaviour
     public Button l6Button;
     public Button l7Button;
     public Button backButton;
+    public Button backButton2;
 
     private GameManager gameManager;
 
@@ -33,6 +36,7 @@ public class MainMenuController : MonoBehaviour
         menuButton.onClick.AddListener(ShowMainMenu);
         continueButton.onClick.AddListener(ContinueGame);
         levelButton.onClick.AddListener(ShowLevelMenu);
+        controlButton.onClick.AddListener(ShowControlPanel);
         l1Button.onClick.AddListener(() => StartCoroutine(LoadLevel(1)));
         l2Button.onClick.AddListener(() => StartCoroutine(LoadLevel(2)));
         l3Button.onClick.AddListener(() => StartCoroutine(LoadLevel(3)));
@@ -41,6 +45,7 @@ public class MainMenuController : MonoBehaviour
         l6Button.onClick.AddListener(() => StartCoroutine(LoadLevel(6)));
         l7Button.onClick.AddListener(() => StartCoroutine(LoadLevel(7)));
         backButton.onClick.AddListener(ShowMainMenu);
+        backButton2.onClick.AddListener(ShowMainMenu);
 
         gameManager = FindObjectOfType<GameManager>();
     }
@@ -60,6 +65,12 @@ public class MainMenuController : MonoBehaviour
     private void ContinueGame()
     {
         InactiveMenu();
+    }
+
+    private void ShowControlPanel()
+    {
+        mainPanel.SetActive(false);
+        ControlPanel.SetActive(true);
     }
 
     public void ResetButtonPattern()
