@@ -13159,6 +13159,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3739803916216700843, guid: d18a55c77b9aa422ca13d628d5a91265, type: 3}
+      propertyPath: moveSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
+    - target: {fileID: -3739803916216700843, guid: d18a55c77b9aa422ca13d628d5a91265, type: 3}
       propertyPath: positions.Array.size
       value: 7
       objectReference: {fileID: 0}

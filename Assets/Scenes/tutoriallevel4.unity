@@ -1400,6 +1400,7 @@ MonoBehaviour:
   positions:
   - {x: 32.04, y: 4.828, z: 0.05}
   - {x: 71.3, y: 4.828, z: 0.05}
+  moveSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!1001 &324679889
 PrefabInstance:
   m_ObjectHideFlags: 0
