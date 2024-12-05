@@ -7642,6 +7642,10 @@ PrefabInstance:
       value: level1
       objectReference: {fileID: 0}
     - target: {fileID: 7119833764073023857, guid: ceeec515f67ccba4f9d5a01d34a27fd0, type: 3}
+      propertyPath: transitionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 16109368501c44215a8f97bbf58ef3d8, type: 3}
+    - target: {fileID: 7119833764073023857, guid: ceeec515f67ccba4f9d5a01d34a27fd0, type: 3}
       propertyPath: beaconController
       value: 
       objectReference: {fileID: 1363678827}
@@ -9234,6 +9238,10 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: level1
       objectReference: {fileID: 0}
+    - target: {fileID: 6806246745128666250, guid: 85376866fdc90e24394cbf5b03a5e8d6, type: 3}
+      propertyPath: transitionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 16109368501c44215a8f97bbf58ef3d8, type: 3}
     - target: {fileID: 6806246745128666250, guid: 85376866fdc90e24394cbf5b03a5e8d6, type: 3}
       propertyPath: beaconController
       value: 

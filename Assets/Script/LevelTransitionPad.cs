@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PadTrigger : MonoBehaviour
 {
@@ -7,8 +8,9 @@ public class PadTrigger : MonoBehaviour
     public string playerName; // Set to "Player1" or "Player2"
     public string nextSceneName; // Set the name of the next scene in the Inspector
     public bool singlePlayerMode = false; // Set to true if there's only one player and one pad
-    
+    public AudioClip transitionSound; // The sound to play during level transition
 
+    private AudioSource audioSource; // Audio source to play the sound
     private static bool player1OnPad = false;
     private static bool player2OnPad = false;
 
@@ -23,6 +25,11 @@ public class PadTrigger : MonoBehaviour
 
         beaconController = FindObjectOfType<BeaconController>();
         gameManager = FindObjectOfType<GameManager>();
+
+        // Add or configure an AudioSource on this GameObject
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = transitionSound;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,25 +72,45 @@ public class PadTrigger : MonoBehaviour
     {
         if (singlePlayerMode)
         {
-            // Transition if in single-player mode and the player is on their pad
             if ((playerName == "Player1" && player1OnPad) || (playerName == "Player2" && player2OnPad))
             {
-                TriggerBeaconFires();
-                Debug.Log("Single player is on their pad. Transitioning to the next scene.");
-                if (gameManager != null)
-                {
-                    gameManager.TriggerCompleteLevel();
-                }
+                HandleLevelTransition();
             }
         }
         else if (player1OnPad && player2OnPad)
         {
-            TriggerBeaconFires();
-            Debug.Log("Both players are on their respective pads. Transitioning to the next scene.");
-            if (gameManager != null)
-            {
-                gameManager.TriggerCompleteLevel();
-            }
+            HandleLevelTransition();
+        }
+    }
+
+    private void HandleLevelTransition()
+    {
+        TriggerBeaconFires();
+
+        if (audioSource != null && transitionSound != null)
+        {
+            audioSource.Play();
+            StartCoroutine(WaitForSoundAndTransition());
+        }
+        else
+        {
+            Debug.LogWarning("Transition sound is missing!");
+            PerformTransition();
+        }
+    }
+
+    private IEnumerator WaitForSoundAndTransition()
+    {
+        yield return new WaitForSeconds(transitionSound.length); // Wait for the sound to finish
+        PerformTransition();
+    }
+
+    private void PerformTransition()
+    {
+        Debug.Log("Transitioning to the next scene.");
+        if (gameManager != null)
+        {
+            gameManager.TriggerCompleteLevel();
         }
     }
 
