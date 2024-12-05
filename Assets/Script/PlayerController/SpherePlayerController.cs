@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpherePlayerController : PlayerController
 {
-    public float sphereDistanceToGround = 1.5f;
+    public float sphereDistanceToGround = 0f;
 
     protected override float distanceToGround => sphereDistanceToGround;
 
