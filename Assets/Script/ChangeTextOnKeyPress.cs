@@ -5,24 +5,36 @@ using UnityEngine;
 
 public class ChangeTextOnKeyPress : MonoBehaviour
 {
-    public TextMeshPro textMeshPro;
+    public TextMeshPro textMeshProCross;
+    public TextMeshPro textMeshProCircle;
 
-    // Define colors
-    private Color shiftPressedColor = new Color(44f / 255f, 223f / 255f, 15f / 255f);
-    private Color defaultColor = Color.red;
+    public GameObject arrow1;
+    public GameObject arrow2;
+
+    private void Start()
+    {
+        textMeshProCross.gameObject.SetActive(true);
+        textMeshProCircle.gameObject.SetActive(false);
+        arrow1.SetActive(false);
+        arrow2.SetActive(false);
+    }
 
     void Update()
     {
         // Check if either Left Shift or Right Shift is being pressed
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            textMeshPro.text = "O";
-            textMeshPro.color = shiftPressedColor;
+            textMeshProCross.gameObject.SetActive(false);
+            textMeshProCircle.gameObject.SetActive(true);
+            arrow1.SetActive(true);
+            arrow2.SetActive(true);
         }
         else
         {
-            textMeshPro.text = "X";
-            textMeshPro.color = defaultColor;
+            textMeshProCross.gameObject.SetActive(true);
+            textMeshProCircle.gameObject.SetActive(false);
+            arrow1.SetActive(false);
+            arrow2.SetActive(false);
         }
     }
 }
