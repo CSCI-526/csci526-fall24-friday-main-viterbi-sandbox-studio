@@ -12,7 +12,7 @@ public class PushByColorRed : MonoBehaviour
     {
 
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
+        rb.isKinematic = false;
 
     }
 
