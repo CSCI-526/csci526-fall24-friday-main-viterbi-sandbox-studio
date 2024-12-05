@@ -5,23 +5,15 @@ using System.Collections;
 
 public class CheckpointHideTwo : MonoBehaviour
 {
-    public Image checkpointImage;          // The first checkpoint UI image
-    public Image secondCheckpointImage;   // The second checkpoint UI image
-    public float fadeDuration = 3.0f;     // Duration of fade-out effect
-    public AudioClip checkpointSound;     // Sound effect for checkpoint trigger
-
-    private AudioSource audioSource;      // Audio source to play the sound
-    private bool hasTriggered;            // Flag to prevent multiple triggers
+    public Image checkpointImage;       
+    public Image secondCheckpointImage; 
+    public float fadeDuration = 3.0f;
+    private bool hasTriggered;
 
     public void Start()
     {
         secondCheckpointImage.gameObject.SetActive(false);
         hasTriggered = false;
-
-        // Add or use an existing AudioSource on the GameObject
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = checkpointSound;
-        audioSource.playOnAwake = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,13 +22,6 @@ public class CheckpointHideTwo : MonoBehaviour
         {
             hasTriggered = true;
             Debug.Log("Player entered checkpointHide");
-
-            // Play the sound effect
-            if (checkpointSound != null)
-            {
-                audioSource.Play();
-            }
-
             HideCheckpointUI();
         }
     }
@@ -45,12 +30,12 @@ public class CheckpointHideTwo : MonoBehaviour
     {
         if (checkpointImage != null)
         {
-            checkpointImage.gameObject.SetActive(false); // Hide the first image
+            checkpointImage.gameObject.SetActive(false);
         }
-
-        secondCheckpointImage.gameObject.SetActive(true); // Show the second image
-
-        StartCoroutine(FadeOutUI()); // Start fade-out coroutine
+        
+        secondCheckpointImage.gameObject.SetActive(true);
+        
+        StartCoroutine(FadeOutUI());
     }
 
     private IEnumerator FadeOutUI()
@@ -60,20 +45,18 @@ public class CheckpointHideTwo : MonoBehaviour
 
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
-            float normalizedTime = t / fadeDuration;
+            //float normalizedTime = t / fadeDuration; 
+            
+            //Color imageColor = secondCheckpointImage.color;
+            //imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
+            //secondCheckpointImage.color = imageColor;
 
-            // Gradually reduce the alpha of the second checkpoint image
-            Color imageColor = secondCheckpointImage.color;
-            imageColor.a = Mathf.Lerp(startAlphaImage, 0, normalizedTime);
-            secondCheckpointImage.color = imageColor;
-
-            yield return null; // Wait for the next frame
+            yield return null; 
         }
-
-        secondCheckpointImage.gameObject.SetActive(false); // Hide the second image
-
-        // Restore the original color
-        originalColor.a = startAlphaImage;
-        secondCheckpointImage.color = originalColor;
+        
+        secondCheckpointImage.gameObject.SetActive(false);
+        //// Restore the original color
+        //originalColor.a = startAlphaImage;
+        //secondCheckpointImage.color = originalColor;
     }
 }
