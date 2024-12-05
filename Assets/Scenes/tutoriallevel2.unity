@@ -17790,6 +17790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d4249a679874cc69d5e54180fa3253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetSound: {fileID: 8300000, guid: d6aba21fda18748aaa5a2f19eb42cf26, type: 3}
 --- !u!65 &2033751307
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18152,6 +18153,10 @@ PrefabInstance:
       propertyPath: player2
       value: 
       objectReference: {fileID: 838871652}
+    - target: {fileID: 8599046865256920603, guid: 6b27d8be568a84255b77ecc580544899, type: 3}
+      propertyPath: resetSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d6aba21fda18748aaa5a2f19eb42cf26, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
