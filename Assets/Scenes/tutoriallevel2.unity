@@ -3735,6 +3735,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 0}
   secondCheckpointImage: {fileID: 389963613}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!1001 &934389716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4909,6 +4910,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 1445977338}
   secondCheckpointImage: {fileID: 379327012}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!65 &1256665528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17028,6 +17030,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 389963613}
   secondCheckpointImage: {fileID: 1445977338}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!65 &1806805497
 BoxCollider:
   m_ObjectHideFlags: 0

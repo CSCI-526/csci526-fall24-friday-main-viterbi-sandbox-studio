@@ -445,6 +445,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 1743152872}
   secondCheckpointImage: {fileID: 1004529492}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!1001 &57854278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5688,6 +5689,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 348208507}
   secondCheckpointImage: {fileID: 1084085825}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!114 &136878443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10524,6 +10526,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 1743152872}
   secondCheckpointImage: {fileID: 1952473786}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!1001 &744123446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15548,6 +15551,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 1004529492}
   secondCheckpointImage: {fileID: 1743152872}
   fadeDuration: 2
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!114 &1547696975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15874,6 +15878,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 1743152872}
   secondCheckpointImage: {fileID: 908030478}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!65 &1650947553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16039,6 +16044,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 1952473786}
   secondCheckpointImage: {fileID: 348208507}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!1001 &1695487000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19055,6 +19061,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 908030478}
   secondCheckpointImage: {fileID: 1743152872}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!65 &2066375502
 BoxCollider:
   m_ObjectHideFlags: 0

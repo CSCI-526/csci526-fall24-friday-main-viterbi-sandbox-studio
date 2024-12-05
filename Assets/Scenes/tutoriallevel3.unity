@@ -7110,6 +7110,7 @@ MonoBehaviour:
   checkpointImage: {fileID: 529135621}
   secondCheckpointImage: {fileID: 210972073}
   fadeDuration: 3
+  checkpointSound: {fileID: 8300000, guid: 3bc44f50c3e0f4f148a26b1b164e0005, type: 3}
 --- !u!65 &600984485
 BoxCollider:
   m_ObjectHideFlags: 0
