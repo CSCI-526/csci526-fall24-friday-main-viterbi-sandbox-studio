@@ -89,6 +89,7 @@ public class PadTrigger : MonoBehaviour
 
     private void HandleLevelTransition()
     {
+        PersistentMenu.instance.inTransit = true;
         if (audioSource != null && transitionSound != null)
         {
             audioSource.Play();
@@ -103,7 +104,7 @@ public class PadTrigger : MonoBehaviour
 
     private IEnumerator WaitForSoundAndTransition()
     {
-        yield return new WaitForSeconds(transitionSound.length); // Wait for the sound to finish
+        yield return new WaitForSeconds(transitionSound.length - 2); // Wait for the sound to finish
         PerformTransition();
     }
 

@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         MainMenuController mainMenuController = FindObjectOfType<MainMenuController>();
         mainMenuController.ResetButtonPattern();
 
+        yield return new WaitForSeconds(2f);
         yield return StartCoroutine(HandleSceneTransition(true));
     }
 
