@@ -46,8 +46,23 @@ public class BeaconController : MonoBehaviour
         }
     }
 
+    public void LightDown()
+    {
+        if (beaconFire1 != null)
+        {
+            StopCoroutine(nameof(ScaleFireDown)); // Ensure no duplicate coroutines run
+            StartCoroutine(ScaleFireDown(beaconFire1));
+        }
+
+        if (beaconFire2 != null)
+        {
+            StopCoroutine(nameof(ScaleFireDown)); // Ensure no duplicate coroutines run
+            StartCoroutine(ScaleFireDown(beaconFire2));
+        }
+    }
+
     // Coroutine to scale a fire from (0, 0, 0) to the target size
-    private System.Collections.IEnumerator ScaleFire(GameObject fire)
+    private IEnumerator ScaleFire(GameObject fire)
     {
         Vector3 initialScale = Vector3.zero;
         float elapsedTime = 0f;
@@ -60,5 +75,21 @@ public class BeaconController : MonoBehaviour
         }
 
         fire.transform.localScale = targetScale; // Ensure final scale is the target scale
+    }
+
+    private IEnumerator ScaleFireDown(GameObject fire)
+    {
+        Vector3 initialScale = fire.transform.localScale;
+        Vector3 targetScale = Vector3.zero; // Target scale is zero to "light down"
+        float elapsedTime = 0f;
+
+        while (elapsedTime < scaleDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            fire.transform.localScale = Vector3.Lerp(initialScale, targetScale, elapsedTime / scaleDuration);
+            yield return null;
+        }
+
+        fire.transform.localScale = targetScale; // Ensure final scale is zero
     }
 }
