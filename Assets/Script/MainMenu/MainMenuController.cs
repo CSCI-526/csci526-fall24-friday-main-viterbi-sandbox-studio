@@ -26,6 +26,7 @@ public class MainMenuController : MonoBehaviour
     public Button l7Button;
     public Button backButton;
     public Button backButton2;
+    public Button backButton3;
 
     private GameManager gameManager;
 
@@ -46,7 +47,7 @@ public class MainMenuController : MonoBehaviour
         l7Button.onClick.AddListener(() => StartCoroutine(LoadLevel(7)));
         backButton.onClick.AddListener(ShowMainMenu);
         backButton2.onClick.AddListener(ShowMainMenu);
-
+        backButton3.onClick.AddListener(ShowMainMenu);
         gameManager = FindObjectOfType<GameManager>();
     }
 

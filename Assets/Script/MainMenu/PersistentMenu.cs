@@ -9,7 +9,6 @@ public class PersistentMenu : MonoBehaviour
     public GameObject mainPanel; 
     public GameObject LevelPanel;
     public GameObject ControlPanel;
-    public GameObject winContext;
     public GameObject menuButton;
     public GameObject winEndGame;
     public TMP_Text levelTitle;
@@ -76,20 +75,16 @@ public class PersistentMenu : MonoBehaviour
 
     public void showWinContext()
     {
-        winContext.SetActive(true);
 
     }
 
     public void ShowWinEnd() {
-        winContext.SetActive(false);
-
         winEndGame.SetActive(true);
     }
 
     public void HideWinEnd() {
 
         winEndGame.SetActive(false);
-        winContext.SetActive(false);
     }
 
     public void ShowMainMenu()
@@ -103,6 +98,7 @@ public class PersistentMenu : MonoBehaviour
         LevelPanel.SetActive(false);
         mainPanel.SetActive(true);
         ControlPanel.SetActive(false);
+        HideWinEnd();
     }
 
     public void HideMainMenu()
