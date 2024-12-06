@@ -45,8 +45,7 @@ public class GameManager : MonoBehaviour
         levelManager.OnCompleteLevel();
         if (levelManager.isLastLevel())
         {
-            
-            PersistentMenu.instance.ShowWinEnd();
+            yield return StartCoroutine(ShowEndingScreen());
             yield return GoBackToMenu();
         }
         else
@@ -70,6 +69,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public IEnumerator ShowEndingScreen()
+    {
+        yield return StartCoroutine(sceneTransitionManager.FadeOutDelay());
+        yield return StartCoroutine(sceneTransitionManager.FadeOut());
+        PersistentMenu.instance.ShowWinEnd();
+        yield return null; // Wait a frame to ensure the new scene is loaded
+        yield return StartCoroutine(sceneTransitionManager.FadeIn());
+
+    }
+
     public IEnumerator GoBackToMenu()
     {
         Debug.Log("Go back to main menu");
@@ -78,7 +87,6 @@ public class GameManager : MonoBehaviour
         MainMenuController mainMenuController = FindObjectOfType<MainMenuController>();
         mainMenuController.ResetButtonPattern();
 
-        yield return new WaitForSeconds(2f);
         yield return StartCoroutine(HandleSceneTransition(true));
     }
 
