@@ -7,6 +7,9 @@ public class PActivator : MonoBehaviour, IResettable
     public EController elevatorController;
     public AudioClip activationSound; // Sound effect for elevator activation
 
+    [Range(0f, 1f)]
+    public float volume = 1.0f; // Volume control for the sound effect
+
     private AudioSource audioSource;  // Audio source to play the sound
     private bool hasActivated = false;
 
@@ -36,6 +39,7 @@ public class PActivator : MonoBehaviour, IResettable
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
         audioSource.clip = activationSound; // Assign the activation sound effect
+        audioSource.volume = volume; // Set the volume level
 
         // Debug log to confirm setup
         if (activationSound == null)

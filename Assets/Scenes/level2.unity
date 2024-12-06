@@ -14626,6 +14626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elevatorController: {fileID: 7285219052490504554}
   activationSound: {fileID: 8300000, guid: e4d019e04ea984c6e9cc47d0c50820b0, type: 3}
+  volume: 0.1
 --- !u!64 &261976976290476690
 MeshCollider:
   m_ObjectHideFlags: 0

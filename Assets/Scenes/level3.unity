@@ -45726,6 +45726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LiftController: {fileID: 11265226}
   activationSound: {fileID: 8300000, guid: e4d019e04ea984c6e9cc47d0c50820b0, type: 3}
+  volume: 0.1
 --- !u!64 &1890005560
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -49194,6 +49195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elevatorController: {fileID: 794551645}
   activationSound: {fileID: 8300000, guid: e4d019e04ea984c6e9cc47d0c50820b0, type: 3}
+  volume: 0.1
 --- !u!1001 &7285219052490504551
 PrefabInstance:
   m_ObjectHideFlags: 0
