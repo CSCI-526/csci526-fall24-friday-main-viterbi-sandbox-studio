@@ -47,14 +47,10 @@ public class GameManager : MonoBehaviour
         {
             
             PersistentMenu.instance.ShowWinEnd();
-            // TODO: Add win context
             yield return GoBackToMenu();
         }
         else
         {
-            // TODO: Add win context (showWinContext won't work)
-            //PersistentMenu.instance.showWinContext();
-            //PersistentMenu.instance.ShowMainMenu();
             yield return AdvanceToNextLevel();
         }   
     }

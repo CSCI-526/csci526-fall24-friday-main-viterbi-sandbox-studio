@@ -14,7 +14,8 @@ public class PadTrigger : MonoBehaviour
     private static bool player1OnPad = false;
     private static bool player2OnPad = false;
 
-    private BeaconController beaconController;
+    public BeaconController beaconControllerBlue;
+    public BeaconController beaconControllerRed;
     private GameManager gameManager;
 
     private void Start()
@@ -23,7 +24,6 @@ public class PadTrigger : MonoBehaviour
         player1OnPad = false;
         player2OnPad = false;
 
-        beaconController = FindObjectOfType<BeaconController>();
         gameManager = FindObjectOfType<GameManager>();
 
         // Add or configure an AudioSource on this GameObject
@@ -38,12 +38,14 @@ public class PadTrigger : MonoBehaviour
         {
             if (playerName == "Player1" && !player1OnPad)
             {
+                TriggerBeaconFires(beaconControllerBlue);
                 player1OnPad = true;
                 Debug.Log("Player 1 is on their pad.");
                 CheckTransitionCondition();
             }
             else if (playerName == "Player2" && !player2OnPad)
             {
+                TriggerBeaconFires(beaconControllerRed);
                 player2OnPad = true;
                 Debug.Log("Player 2 is on their pad.");
                 CheckTransitionCondition();
@@ -57,11 +59,13 @@ public class PadTrigger : MonoBehaviour
         {
             if (playerName == "Player1")
             {
+                PutOutBeaconFires(beaconControllerBlue);
                 player1OnPad = false;
                 Debug.Log("Player 1 left their pad.");
             }
             else if (playerName == "Player2")
             {
+                PutOutBeaconFires(beaconControllerRed);
                 player2OnPad = false;
                 Debug.Log("Player 2 left their pad.");
             }
@@ -85,8 +89,6 @@ public class PadTrigger : MonoBehaviour
 
     private void HandleLevelTransition()
     {
-        TriggerBeaconFires();
-
         if (audioSource != null && transitionSound != null)
         {
             audioSource.Play();
@@ -114,11 +116,23 @@ public class PadTrigger : MonoBehaviour
         }
     }
 
-    private void TriggerBeaconFires()
+    private void TriggerBeaconFires(BeaconController beaconController)
     {
         if (beaconController != null)
         {
             beaconController.LightUp();
+        }
+        else
+        {
+            Debug.LogWarning("BeaconController reference is not set!");
+        }
+    }
+
+    private void PutOutBeaconFires(BeaconController beaconController)
+    {
+        if (beaconController != null)
+        {
+            beaconController.LightDown();
         }
         else
         {
