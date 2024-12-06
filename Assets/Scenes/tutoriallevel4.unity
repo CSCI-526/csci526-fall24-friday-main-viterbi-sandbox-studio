@@ -132,8 +132,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1890278}
   - component: {fileID: 1890281}
-  - component: {fileID: 1890280}
   - component: {fileID: 1890279}
+  - component: {fileID: 1890282}
   m_Layer: 0
   m_Name: Checkpoint-2
   m_TagString: Untagged
@@ -171,18 +171,6 @@ MonoBehaviour:
   checkpointImage: {fileID: 1462877007}
   secondCheckpointImage: {fileID: 2056613408}
   fadeDuration: 3
---- !u!114 &1890280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d14d92fe4d5402f939c66efd09efd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1890281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -204,6 +192,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1890282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab30df4295d549619777e082e7fd27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2540598
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,6 +2923,7 @@ Transform:
   m_Children:
   - {fileID: 1176855406}
   - {fileID: 1672695758}
+  - {fileID: 1636682267}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &669280451
@@ -6290,7 +6291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialEventTriggers:
   - {fileID: 1760538316}
-  - {fileID: 1890280}
+  - {fileID: 1890282}
 --- !u!4 &1636682267
 Transform:
   m_ObjectHideFlags: 0
@@ -6299,12 +6300,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636682264}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.410126, y: 3.448936, z: -3.0690503}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 26.668278, y: -1.8860011, z: -11.2755165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 635702183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1672695756
 GameObject:
@@ -8140,7 +8141,6 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 609541101}
-  - {fileID: 1636682267}
   - {fileID: 220489195}
   - {fileID: 432053374}
   - {fileID: 1933354908}
