@@ -10,8 +10,8 @@ public class CameraController : MonoBehaviour
     public LayerMask wallLayerMask; // Layer mask to detect walls
 
     private Transform currentPivot;
-    public Vector3 initialOffset = new Vector3(0, 0, 7);
-    private float sensitivity = 250f;
+    private Vector3 initialOffset = new Vector3(0, 0, 10);
+    private float sensitivity = 200f;
     private int minVerticalAngle = -20;
     private int maxVerticalAngle = 60;
 
