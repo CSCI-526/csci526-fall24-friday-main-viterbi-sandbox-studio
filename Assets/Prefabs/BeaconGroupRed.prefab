@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b665a6810004251b62183a068cf183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beaconFire1: {fileID: 0}
-  beaconFire2: {fileID: 0}
+  beaconFire1: {fileID: 4366407643237687929}
+  beaconFire2: {fileID: 2023132163136849741}
   targetScale: {x: 4.580769, y: 1.384175, z: 7.105816}
   scaleDuration: 1
 --- !u!1 &4366407643237687929
@@ -5090,6 +5090,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28afa7ab5aa4945138947a47932daa83, type: 3}
+--- !u!1 &2023132163136849741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2739252210285016488, guid: 28afa7ab5aa4945138947a47932daa83, type: 3}
+  m_PrefabInstance: {fileID: 4183945917521294053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7534742698354637758 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5944914462479223131, guid: 28afa7ab5aa4945138947a47932daa83, type: 3}
