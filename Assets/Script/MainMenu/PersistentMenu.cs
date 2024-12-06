@@ -63,7 +63,7 @@ public class PersistentMenu : MonoBehaviour
         else
         {   
             levelTitle.text = levelManager.GetCurrentLevelName();
-            levelBlock.gameObject.SetActive(true);
+            levelBlock.SetActive(true);
         }
     }
 
@@ -79,6 +79,8 @@ public class PersistentMenu : MonoBehaviour
     }
 
     public void ShowWinEnd() {
+        levelBlock.SetActive(false);
+        menuButton.gameObject.SetActive(false);
         winEndGame.SetActive(true);
     }
 
@@ -113,20 +115,6 @@ public class PersistentMenu : MonoBehaviour
         mainPanel.SetActive(false);
         LevelPanel.SetActive(false);
         ControlPanel.SetActive(false);
-    }
-
-    public void WinTransit()
-    {
-        if (levelManager.GetLevel() == 6)
-        {
-            ShowWinEnd();
-        }
-        else
-        {
-            showWinContext();
-        }
-        ShowMainMenu();
-        inTransit = true;
     }
 
     public bool IsInTransitOrMenuOpened()
